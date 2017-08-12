@@ -43,7 +43,7 @@ export default () => ({ // eslint-disable-line
   // if array of authors, url is optional
   byline: [
     { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Author Two', url: '/foo/bar' },
   ],
 
   // Appears in the HTML <title>
