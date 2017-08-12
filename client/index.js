@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Select from './components/select/index.jsx';
 
 function App() {
-  return (
-    <p>Hi, I&apos;m React.</p>
-  );
+  return <Select />;
 }
 
 const reactApp = <App />;
