@@ -6,7 +6,7 @@ class Select extends Component {
     super(props);
 
     this.state = {
-      value: 'default',
+      sector: 'foo',
       changed: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,24 +21,29 @@ class Select extends Component {
 
   render() {
     const selectSector = (
-      <label htmlFor="select">
-        Which sector do you work in?
+      <label htmlFor="select-sector">
+        “I work in the&nbsp;
 
         <select
-          value={this.state.value}
+          value={this.state.sector}
           onChange={this.handleChange}
-          id="select"
+          id="select-sector"
         >
-          <option value="default" disabled>Choose your sector</option>
-          <option value="foo">Foo</option>
-          <option value="bar">Bar</option>
-          <option value="baz">Baz</option>
+          <option value="foo">foo</option>
+          <option value="bar">bar</option>
+          <option value="baz">baz</option>
         </select>
+
+        &nbsp;sector.”
       </label>
     );
 
     const selectDays = (
-      null
+      <label htmlFor="select-days">
+        {/* eslint-disable max-len */}
+        “I think {this.state.sector} companies lose {0} days of productive time per employee per year due to health issues.”
+        {/* eslint-enable max-len */}
+      </label>
     );
 
     const article = this.state.changed ? (
@@ -127,12 +132,14 @@ class Select extends Component {
           {/* eslint-enable max-len */}
         </p>
       </section>
-    ) : null;
+    ) : (
+      <div className="spacer"></div>
+    );
 
     return (
       <div>
         <form>
-          {selectSector}
+          {selectSector}<br />
           {selectDays}
         </form>
 
