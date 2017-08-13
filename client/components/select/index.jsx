@@ -50,13 +50,13 @@ class Select extends Component {
       <section>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed {0} days. But the real number is {0} — {this.state.sector} employees lost {0} days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed <span className="variable">{0}</span> days. But the real number is <span className="variable">{'higher'}</span> — <span className="variable">{this.state.sector}</span> companies lost <span className="variable">{0}</span> employee days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
           {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue in the {this.state.sector} industry is {'TK'} — {0} per cent of employees in the sector are classed as “physically inactive” meaning that they {'TK'}.
+          The most serious issue in the <span className="variable">{this.state.sector}</span> industry is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
           {/* eslint-enable max-len */}
         </p>
 
