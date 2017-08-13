@@ -44,9 +44,9 @@ class Select extends Component {
     const article = this.state.changed ? (
       <section>
         <p className="o-typography-body">
-          {/* eslint-disable */}
+          {/* eslint-disable max-len */}
           You guessed {0} days. But the real number is {0} — {this.state.sector} employees lost {0} days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
-          {/* eslint-enable */}
+          {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
