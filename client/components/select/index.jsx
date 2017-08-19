@@ -116,7 +116,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue for employees in this salary range is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
+          The most serious issue for employees in this salary range is <span className="variable">{'TK'}</span> — <span className="variable">{'0 per cent'}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
           {/* eslint-enable max-len */}
         </p>
 
