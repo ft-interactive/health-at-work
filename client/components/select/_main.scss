@@ -11,3 +11,7 @@ span.variable {
   -moz-font-feature-settings: 'tnum';
   font-feature-settings: 'tnum';
 }
+
+input[type='range'] {
+  display: inline-block;
+}

@@ -6,19 +6,44 @@ class Select extends Component {
     super(props);
 
     this.state = {
+      data: props.data,
+      selectionMade: false,
       income: '[select your income range]',
-      changed: false,
+      daysGuess: 25,
+      submitted: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleDaysChange = this.handleDaysChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     console.log(props.data);
-    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
+    const filteredData = this.props.data.filter(d => d.income === event.target.value);
+
     this.setState({
+      data: filteredData[0],
+      selectionMade: true,
       income: event.target.value,
-      changed: true,
     });
+  }
+
+  handleDaysChange(event) {
+    const inputValue = parseInt(event.target.value, 10);
+    const number = isNaN(inputValue) ? 50 / 2 : inputValue;
+
+    this.setState({ daysGuess: number });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    this.setState({
+      submitted: true,
+    });
+
+    console.log(this.state.data);
   }
 
   render() {
@@ -30,7 +55,7 @@ class Select extends Component {
         {d.income}
       </option>
     ));
-    const selectIncome = (
+    const incomeSelect = (
       <label htmlFor="select-income">
         “I am in the&nbsp;
 
@@ -52,26 +77,46 @@ class Select extends Component {
         &nbsp;income range.”
       </label>
     );
-
-    const selectDays = (
+    const daysRange = (
       <label htmlFor="select-days">
-        {/* eslint-disable max-len */}
-        “I think {this.state.income} companies lose {0} days of productive time per employee per year due to health issues.”
-        {/* eslint-enable max-len */}
+        “I think {this.state.income} companies lose&nbsp;
+
+        <input
+          type="range"
+          min={0}
+          max={50}
+          step={1}
+          value={this.state.daysGuess}
+          onChange={this.handleDaysChange}
+          disabled={!this.state.selectionMade}
+        />
+
+        <output>
+          {this.state.daysGuess}
+        </output>
+
+        &nbsp;days of productive time per employee per year due to health issues.”
       </label>
     );
-
-    const article = this.state.changed ? (
+    const submitButton = (
+      <input
+        type="submit"
+        value="Read article"
+        disabled={!this.state.selectionMade}
+        className="o-buttons o-buttons--big o-buttons--standout"
+      />
+    );
+    const article = this.state.selectionMade && this.state.submitted ? (
       <section>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed <span className="variable">{0}</span> days. But the real number is <span className="variable">{'higher'}</span> — <span className="variable">{this.state.income}</span> companies lost <span className="variable">{0}</span> employee days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed <span className="variable">{this.state.daysGuess}</span> days. But the real number is <span className="variable">{'higher'}</span> — <span className="variable">{this.state.income}</span> companies lost <span className="variable">{this.state.data.absence.days}</span> employee days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
           {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue in the <span className="variable">{this.state.income}</span> industry is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
+          The most serious issue for employees in this salary range is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
           {/* eslint-enable max-len */}
         </p>
 
@@ -148,14 +193,17 @@ class Select extends Component {
         </p>
       </section>
     ) : (
-      <div className="spacer"></div>
+      <div className="spacer" />
     );
 
     return (
       <div>
-        <form>
-          {selectIncome}<br />
-          {selectDays}
+        <form onSubmit={this.handleSubmit}>
+          {incomeSelect}<br />
+
+          {daysRange}
+
+          {submitButton}
         </form>
 
         {article}
