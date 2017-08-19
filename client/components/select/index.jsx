@@ -1,47 +1,62 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Select extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      sector: 'foo',
+      income: '[select your income range]',
       changed: false,
     };
+
+    console.log(props.data);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({
-      sector: event.target.value,
+      income: event.target.value,
       changed: true,
     });
   }
 
   render() {
-    const selectSector = (
-      <label htmlFor="select-sector">
-        “I work in the&nbsp;
+    const incomeOptions = this.props.data.map(d => (
+      <option
+        key={`income${d.rank}`}
+        value={d.income}
+      >
+        {d.income}
+      </option>
+    ));
+    const selectIncome = (
+      <label htmlFor="select-income">
+        “I am in the&nbsp;
 
         <select
-          value={this.state.sector}
+          value={this.state.income}
           onChange={this.handleChange}
-          id="select-sector"
+          id="select-income"
         >
-          <option value="foo">foo</option>
-          <option value="bar">bar</option>
-          <option value="baz">baz</option>
+          <option
+            value={this.state.income}
+            disabled
+          >
+            {this.state.income}
+          </option>
+
+          {incomeOptions}
         </select>
 
-        &nbsp;sector.”
+        &nbsp;income range.”
       </label>
     );
 
     const selectDays = (
       <label htmlFor="select-days">
         {/* eslint-disable max-len */}
-        “I think {this.state.sector} companies lose {0} days of productive time per employee per year due to health issues.”
+        “I think {this.state.income} companies lose {0} days of productive time per employee per year due to health issues.”
         {/* eslint-enable max-len */}
       </label>
     );
@@ -50,13 +65,13 @@ class Select extends Component {
       <section>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed <span className="variable">{0}</span> days. But the real number is <span className="variable">{'higher'}</span> — <span className="variable">{this.state.sector}</span> companies lost <span className="variable">{0}</span> employee days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed <span className="variable">{0}</span> days. But the real number is <span className="variable">{'higher'}</span> — <span className="variable">{this.state.income}</span> companies lost <span className="variable">{0}</span> employee days per year due to health reasons, according to a RAND report commissioned for the Financial Times.
           {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue in the <span className="variable">{this.state.sector}</span> industry is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
+          The most serious issue in the <span className="variable">{this.state.income}</span> industry is <span className="variable">{'TK'}</span> — <span className="variable">{`0 per cent`}</span> of employees in the sector are classed as “physically inactive”, meaning that they TK.
           {/* eslint-enable max-len */}
         </p>
 
@@ -139,7 +154,7 @@ class Select extends Component {
     return (
       <div>
         <form>
-          {selectSector}<br />
+          {selectIncome}<br />
           {selectDays}
         </form>
 
@@ -148,5 +163,9 @@ class Select extends Component {
     );
   }
 }
+
+Select.propTypes = {
+  data: PropTypes.array.isRequired, // eslint-disable-line
+};
 
 export default Select;

@@ -184,3 +184,7 @@
 }
 </script>
 {% endif %}
+
+{% if data %}
+{{ data | jsonScriptElement('data') }}
+{% endif %}
