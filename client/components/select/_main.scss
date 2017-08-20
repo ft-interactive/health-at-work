@@ -2,6 +2,19 @@
   height: 394px;
 }
 
+form.form-select {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 20px;
+
+    input[type='range'] {
+      display: inline-block;
+    }
+  }
+}
+
 span.variable {
   padding: 1px 4px;
   background-color: #FF1A66;
@@ -10,8 +23,4 @@ span.variable {
   -webkit-font-feature-settings: 'tnum';
   -moz-font-feature-settings: 'tnum';
   font-feature-settings: 'tnum';
-}
-
-input[type='range'] {
-  display: inline-block;
 }
