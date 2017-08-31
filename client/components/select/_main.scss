@@ -1,6 +1,6 @@
 article {
   form.form-select {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 
     label {
       display: block;
@@ -10,12 +10,17 @@ article {
         display: inline-block;
       }
     }
+
+    button {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   section {
     span.variable {
       padding: 1px 2px;
-      background-color: #E6175C;
+      background-color: #FF1A66;
       color: #fff;
       font-weight: 400;
       -webkit-font-feature-settings: 'tnum';
@@ -39,7 +44,7 @@ article {
         padding: 0;
         text-shadow: 0 0 10px #fff;
         color: rgba(255, 255, 255, 0);
-        box-shadow: 0 0 10px 5px #E6175C;
+        box-shadow: 0 0 10px 5px #FF1A66;
       }
     }
   }
