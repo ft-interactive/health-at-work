@@ -7,13 +7,21 @@ class Select extends Component {
 
     this.state = {
       data: props.data,
-      selectionMade: false,
-      income: '[select your income range]',
-      daysGuess: 25,
+      incomeSelected: false,
       submitted: false,
       submitButtonText: 'Read article',
+      inputs: {
+        income: '[select your income range]',
+        daysGuess: 25,
+        rightWrong: '',
+      },
+      render: {
+        data: [],
+        income: '',
+        daysGuess: 25,
+        rightWrong: '',
+      },
     };
-    this.rightWrong = null;
     this.handleChange = this.handleChange.bind(this);
     this.handleDaysChange = this.handleDaysChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,12 +30,12 @@ class Select extends Component {
   }
 
   handleChange(event) {
-    const filteredData = this.props.data.filter(d => d.income === event.target.value);
-
     this.setState({
-      data: filteredData[0],
-      selectionMade: true,
-      income: event.target.value,
+      incomeSelected: true,
+      inputs: {
+        income: event.target.value,
+        daysGuess: 25,
+      },
     });
   }
 
@@ -35,29 +43,44 @@ class Select extends Component {
     const inputValue = parseInt(event.target.value, 10);
     const number = isNaN(inputValue) ? 50 / 2 : inputValue;
 
-    this.setState({ daysGuess: number });
+    this.setState({
+      inputs: {
+        income: this.state.inputs.income,
+        daysGuess: number,
+      },
+    });
   }
 
   handleSubmit(event) {
+    const filteredData = this.props.data.filter(d => d.income === this.state.inputs.income);
+    const income = this.state.inputs.income;
+    const daysGuess = this.state.inputs.daysGuess;
+    let rightWrong;
+
     event.preventDefault();
 
-    if (this.state.daysGuess > Math.round(this.state.data.absence.days)) {
-      this.rightWrong = 'The actual number is lower';
-    } else if (this.state.daysGuess < Math.round(this.state.data.absence.days)) {
-      this.rightWrong = 'The actual number is higher';
+    if (daysGuess > Math.round(filteredData[0].absence.days)) {
+      rightWrong = 'The actual number is lower';
+    } else if (daysGuess < Math.round(filteredData[0].absence.days)) {
+      rightWrong = 'The actual number is higher';
     } else {
-      this.rightWrong = 'You are correct';
+      rightWrong = 'You are correct';
     }
 
     this.setState({
+      daysGuess,
       submitted: true,
       submitButtonText: 'Refresh article',
+      render: {
+        data: filteredData[0],
+        income,
+        rightWrong,
+      },
     });
-
-    console.log(this.state.data);
   }
 
   render() {
+    const data = this.state.render.data;
     const incomeOptions = this.props.data.map(d => (
       <option
         key={`income${d.rank}`}
@@ -71,15 +94,15 @@ class Select extends Component {
         “I am in the&nbsp;
 
         <select
-          value={this.state.income}
+          value={this.state.inputs.income}
           onChange={this.handleChange}
           id="select-income"
         >
           <option
-            value={this.state.income}
+            value={this.state.inputs.income}
             disabled
           >
-            {this.state.income}
+            {this.state.inputs.income}
           </option>
 
           {incomeOptions}
@@ -90,20 +113,20 @@ class Select extends Component {
     );
     const daysRange = (
       <label htmlFor="select-days">
-        “I think {this.state.income} companies lose&nbsp;
+        “I think {this.state.inputs.income} companies lose&nbsp;
 
         <input
           type="range"
           min={0}
           max={50}
           step={1}
-          value={this.state.daysGuess}
+          value={this.state.inputs.daysGuess}
           onChange={this.handleDaysChange}
-          disabled={!this.state.selectionMade}
+          disabled={!this.state.incomeSelected}
         />
 
         <output>
-          {this.state.daysGuess}
+          {this.state.inputs.daysGuess}
         </output>
 
         &nbsp;days of productive time per employee per year due to health issues.”
@@ -113,16 +136,16 @@ class Select extends Component {
       <input
         type="submit"
         value={this.state.submitButtonText}
-        disabled={!this.state.selectionMade}
+        disabled={!this.state.incomeSelected}
         className="o-buttons o-buttons--big o-buttons--standout"
         id="submit-button"
       />
     );
-    const article = this.state.selectionMade && this.state.submitted ? (
+    const article = this.state.incomeSelected && this.state.submitted ? (
       <section>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed <span className="variable">{this.state.daysGuess}</span> days. {this.rightWrong} — employees earning <span className="variable">{this.state.income}</span> missed an average of <span className="variable">{this.state.data.absence.days}</span> days of work per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed <span className="variable">{this.state.daysGuess}</span> days. {this.state.render.rightWrong} — employees earning <span className="variable">{this.state.render.income}</span> missed an average of <span className="variable">{data.absence.days}</span> days of work per year due to health reasons, according to a RAND report commissioned for the Financial Times.
           {/* eslint-enable max-len */}
         </p>
 
@@ -136,7 +159,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.physicallyinactivepc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.physicallyinactivepc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -144,7 +167,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.fruitvegpc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> do not eat at least five portions of fruit and vegetables per day. This compares to [TKTKT] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.fruitvegpc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> do not eat at least five portions of fruit and vegetables per day. This compares to [TKTKT] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -152,7 +175,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.smokepc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> smoke. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.smokepc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> smoke. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -160,7 +183,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.sleeppc}</span> per cent of employees sleep less than seven hours per night. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.sleeppc}</span> per cent of employees sleep less than seven hours per night. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -168,7 +191,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.obesepc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>. **BMI calculator here?**
+          <span className="variable">{data.obesepc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>. **BMI calculator here?**
           {/* eslint-enable max-len */}
         </p>
 
@@ -176,7 +199,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.twomscondspc}</span> per cent of employees have two or more musculoskeletal conditions. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.twomscondspc}</span> per cent of employees have two or more musculoskeletal conditions. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -184,7 +207,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.depressionpc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> suffer from depression. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.depressionpc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> suffer from depression. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -192,7 +215,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{this.state.data.finconcernspc}</span> per cent of employees earning <span className="variable">{this.state.income}</span> have financial concerns. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          <span className="variable">{data.finconcernspc}</span> per cent of employees earning <span className="variable">{this.state.render.income}</span> have financial concerns. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
 
@@ -200,7 +223,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          Employees earning <span className="variable">{this.state.income}</span> have an average of <span className="variable">{this.state.data.stressdimensions}</span> “work-related stress dimensions”, according the the Health and Safety Executive scale, meaning [TKTK], and <span className="variable">{this.state.data.twoplusstressdimensions}</span> per cent of employees have two or more stress dimensions. By contrast, employees across all sectors in the UK have an average of [TKTK] work-related stress dimensions, and [TKTK] per cent of all employees in the UK have two or more work related stress dimensions. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
+          Employees earning <span className="variable">{this.state.render.income}</span> have an average of <span className="variable">{data.stressdimensions}</span> “work-related stress dimensions”, according the the Health and Safety Executive scale, meaning [TKTK], and <span className="variable">{data.twoplusstressdimensions}</span> per cent of employees have two or more stress dimensions. By contrast, employees across all sectors in the UK have an average of [TKTK] work-related stress dimensions, and [TKTK] per cent of all employees in the UK have two or more work related stress dimensions. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer">link to the story</a>.
           {/* eslint-enable max-len */}
         </p>
       </section>

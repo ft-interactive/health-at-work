@@ -1,7 +1,3 @@
-.spacer {
-  height: 394px;
-}
-
 form.form-select {
   margin-bottom: 20px;
 
@@ -15,12 +11,18 @@ form.form-select {
   }
 }
 
-span.variable {
-  padding: 1px 4px;
-  background-color: #FF1A66;
-  color: #fff;
-  font-weight: 400;
-  -webkit-font-feature-settings: 'tnum';
-  -moz-font-feature-settings: 'tnum';
-  font-feature-settings: 'tnum';
+.spacer {
+  height: 394px;
+}
+
+article {
+  span.variable {
+    padding: 1px 4px;
+    background-color: #FF1A66;
+    color: #fff;
+    font-weight: 400;
+    -webkit-font-feature-settings: 'tnum';
+    -moz-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+  }
 }
