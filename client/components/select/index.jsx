@@ -35,6 +35,7 @@ class Select extends Component {
       inputs: {
         income: event.target.value,
         daysGuess: 25,
+        rightWrong: '',
       },
     });
   }
@@ -47,6 +48,7 @@ class Select extends Component {
       inputs: {
         income: this.state.inputs.income,
         daysGuess: number,
+        rightWrong: '',
       },
     });
   }
@@ -68,12 +70,12 @@ class Select extends Component {
     }
 
     this.setState({
-      daysGuess,
       submitted: true,
       submitButtonText: 'Refresh article',
       render: {
         data: filteredData[0],
         income,
+        daysGuess,
         rightWrong,
       },
     });
@@ -145,7 +147,7 @@ class Select extends Component {
       <section>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed <span className="variable">{this.state.daysGuess}</span> days. {this.state.render.rightWrong} — employees earning <span className="variable">{this.state.render.income}</span> missed an average of <span className="variable">{data.absence.days}</span> days of work per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed <span className="variable">{this.state.render.daysGuess}</span> days. {this.state.render.rightWrong} — employees earning <span className="variable">{this.state.render.income}</span> missed an average of <span className="variable">{data.absence.days}</span> days of work per year due to health reasons, according to a RAND report commissioned for the Financial Times.
           {/* eslint-enable max-len */}
         </p>
 
