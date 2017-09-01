@@ -115,7 +115,7 @@ class Select extends Component {
     );
     const daysRange = (
       <label htmlFor="select-days">
-        “I think {this.state.inputs.income} companies lose&nbsp;
+        “I think employees in this income range lose&nbsp;
 
         <input
           type="range"
@@ -131,7 +131,7 @@ class Select extends Component {
           {this.state.inputs.daysGuess}
         </output>
 
-        &nbsp;days of productive time per employee per year due to health issues.”
+        &nbsp;days of productive time per employee per year due to absence and presenteeism (turning up to work but being unproductive).”
       </label>
     );
     const submitButton = (
@@ -151,13 +151,13 @@ class Select extends Component {
       <section className={!this.state.submitted && 'blurred'}>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed {this.state.render.daysGuess} days. {this.state.render.rightWrong || 'You are correct'} — employees earning {this.state.render.income || this.state.data[0].income} missed an average of <span className="variable">{(this.state.submitted && renderData.absence.days) || this.state.render.daysGuess}</span> days of work per year due to health reasons, according to a RAND report commissioned for the Financial Times.
+          You guessed {this.state.render.daysGuess} days. {this.state.render.rightWrong || 'You are correct'} — employees earning {this.state.render.income || this.state.data[0].income} lose <span className="variable">{(this.state.submitted && renderData.absence.days) || this.state.render.daysGuess}</span> days per year because of absenteeism and presenteeism, according to research for Britain’s Healthiest Workplace. This research was commissioned by VitalityHealth and produced in association with the Financial Times, Rand Europe, the research consultancy, the University of Cambridge and Mercer, the human resources consultants.
           {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue for employees in this salary range is <span className="variable">{'TK'}</span>.
+          The most serious issue for employees earning {this.state.render.income || this.state.data[0].income} is {'TK'} — {'TK'} per cent TKTK description TKTK.
           {/* eslint-enable max-len */}
         </p>
 
@@ -165,7 +165,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.physicallyinactivepc || this.state.data[0].physicallyinactivepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.physicallyinactivepc || this.state.data[0].physicallyinactivepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to {'TK'} per cent of all employees in the UK. If sedentary employees start to introduce 150 minutes per week of at least moderate exercise, they can reduce productive days lost by 3.2 per year. Some employers are <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">taking action</a> and helping staff to become more active.
           {/* eslint-enable max-len */}
         </p>
 
