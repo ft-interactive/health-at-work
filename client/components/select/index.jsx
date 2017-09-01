@@ -34,7 +34,7 @@ class Select extends Component {
       incomeSelected: true,
       inputs: {
         income: event.target.value,
-        daysGuess: 25,
+        daysGuess: this.state.inputs.daysGuess,
         rightWrong: '',
       },
     });
@@ -143,6 +143,8 @@ class Select extends Component {
         onClick={this.handleSubmit}
       >
         {this.state.submitButtonText}
+
+        {(!this.state.submitted && <i className="icon-down" />) || <i className="icon-refresh" />}
       </button>
     );
     const article = (

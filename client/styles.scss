@@ -1,4 +1,19 @@
 @import 'o-colors/main';
 @import 'o-grid/main';
+@import 'o-icons/main';
 @import 'components/core/main';
 @import 'components/select/main';
+
+.icon-down {
+  @include oIconsGetIcon('arrow-down', #fff, 24);
+  position: absolute;
+  top: 7px;
+  // margin: 0 0 -4px 2px;
+}
+
+.icon-refresh {
+  @include oIconsGetIcon('refresh', #fff, 24);
+  position: absolute;
+  top: 7px;
+  // margin: 0 0 -4px 2px;
+}

@@ -12,20 +12,35 @@ article {
     }
 
     button {
+      position: relative;
       display: block;
       margin: 0 auto;
+      padding-right: 37px;
     }
   }
 
   section {
     span.variable {
-      padding: 1px 2px;
-      background-color: #FF1A66;
-      color: #fff;
-      font-weight: 400;
+      position: relative;
+      margin: 0 0 0 4px;
+      padding: 0 0 0 4px;
+      // background-color: #FF1A66;
+      // border-left: 3px solid #FF1A66;
+      color: #FF1A66;
+      font-weight: 600;
       -webkit-font-feature-settings: 'tnum';
       -moz-font-feature-settings: 'tnum';
       font-feature-settings: 'tnum';
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        width: 4px;
+        height: 21px;
+        background-color: #FF1A66;
+      }
     }
 
     &.blurred {
@@ -41,10 +56,15 @@ article {
       }
 
       span.variable {
-        padding: 0;
-        text-shadow: 0 0 10px #fff;
-        color: rgba(255, 255, 255, 0);
-        box-shadow: 0 0 10px 5px #FF1A66;
+        // padding: 0;
+        text-shadow: 0 0 10px #FF1A66;
+        color: rgba(255, 26, 102, 0);;
+        // box-shadow: 0 0 5px 5px #FF1A66;
+
+        &:before {
+          box-shadow: 0 0 4px 2px #FF1A66;
+          background-color: rgba(255, 26, 102, 0.8);;
+        }
       }
     }
   }
