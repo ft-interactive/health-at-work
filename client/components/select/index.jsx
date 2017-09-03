@@ -11,7 +11,7 @@ class Select extends Component {
       submitted: false,
       submitButtonText: 'Read article',
       inputs: {
-        income: '[select your income range]',
+        income: '-',
         daysGuess: 25,
         rightWrong: '',
       },
