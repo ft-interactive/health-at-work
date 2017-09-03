@@ -92,13 +92,19 @@ class Select extends Component {
       </option>
     ));
     const incomeSelect = (
-      <label htmlFor="select-income">
-        “I am in the&nbsp;
+      <div className="o-forms">
+        <label
+          htmlFor="select-income"
+          className="o-forms__label"
+        >
+          Select your income range
+        </label>
 
         <select
           value={this.state.inputs.income}
           onChange={this.handleChange}
           id="select-income"
+          className="o-forms__select"
         >
           <option
             value={this.state.inputs.income}
@@ -109,13 +115,18 @@ class Select extends Component {
 
           {incomeOptions}
         </select>
-
-        &nbsp;income range.”
-      </label>
+      </div>
     );
     const daysRange = (
-      <label htmlFor="select-days">
-        “I think employees in this income range lose&nbsp;
+      <div className="o-forms">
+        <label
+          htmlFor="select-days"
+          className="o-forms__label"
+        >
+          Guess the number of productive days lost
+        </label>
+
+        <small className="o-forms__additional-info">Due to absence and presenteeism</small>
 
         <input
           type="range"
@@ -130,22 +141,22 @@ class Select extends Component {
         <output>
           {this.state.inputs.daysGuess}
         </output>
-
-        &nbsp;days of productive time per employee per year due to absence and presenteeism (turning up to work but being unproductive).”
-      </label>
+      </div>
     );
     const submitButton = (
-      <button
-        value={this.state.submitButtonText}
-        disabled={!this.state.incomeSelected}
-        className="o-buttons o-buttons--big o-buttons--primary"
-        id="submit-button"
-        onClick={this.handleSubmit}
-      >
-        {this.state.submitButtonText}
+      <div className="o-forms">
+        <button
+          value={this.state.submitButtonText}
+          disabled={!this.state.incomeSelected}
+          className="o-buttons o-buttons--big o-buttons--primary"
+          id="submit-button"
+          onClick={this.handleSubmit}
+        >
+          {this.state.submitButtonText}
 
-        {(!this.state.submitted && <i className="icon-down" />) || <i className="icon-refresh" />}
-      </button>
+          {(!this.state.submitted && <i className="icon-down" />) || <i className="icon-refresh" />}
+        </button>
+      </div>
     );
     const article = (
       <section className={!this.state.submitted && 'blurred'}>
@@ -237,18 +248,11 @@ class Select extends Component {
 
     return (
       <div>
-        <form
-          onSubmit={this.handleSubmit}
-          className="form-select"
-        >
-          {incomeSelect}
+        {incomeSelect}
 
-          {daysRange}
+        {daysRange}
 
-          <div>
-            {submitButton}
-          </div>
-        </form>
+        {submitButton}
 
         {article}
       </div>

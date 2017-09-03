@@ -4,6 +4,7 @@
   "dependencies": {
     "o-colors": "^4.1.1",
     "o-grid": "^4.3.3",
-    "o-icons": "^5.4.0"
+    "o-icons": "^5.4.0",
+    "o-forms": "^4.0.4"
   }
 }

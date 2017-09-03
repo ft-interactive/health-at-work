@@ -1,14 +1,15 @@
+@import 'o-icons/main';
+
 article {
-  form.form-select {
-    margin-bottom: 28px;
+  .o-forms {
+    margin: 0 auto 20px;
 
-    label {
-      display: block;
-      margin-bottom: 20px;
+    .o-forms__select:focus {
+      // box-shadow: 0 0 0 2px #1aecff;
+    }
 
-      input[type='range'] {
-        display: inline-block;
-      }
+    input[type='range'] {
+      width: 100%;
     }
 
     button {
@@ -20,6 +21,8 @@ article {
   }
 
   section {
+    padding: 8px 0 0;
+
     .o-typography-body {
       text-shadow: 0 0 0 #33302e;
       color: #33302e;
@@ -40,8 +43,9 @@ article {
       -webkit-font-feature-settings: 'tnum';
       -moz-font-feature-settings: 'tnum';
       font-feature-settings: 'tnum';
-      color: #FF1A66;
-      text-shadow: 0 0 0 #FF1A66;
+      // color: #1aecff;
+      // text-shadow: 0 0 0 #1aecff;
+      text-shadow: 0 0 0 #33302e;
       transition: all 600ms;
 
       &:before {
@@ -51,7 +55,7 @@ article {
         left: -4px;
         width: 4px;
         height: 21px;
-        background-color: #FF1A66;
+        background-color: #1aecff;
         transition: all 600ms;
       }
     }
@@ -69,16 +73,30 @@ article {
       }
 
       span.variable {
-        text-shadow: 0 0 10px #FF1A66;
-        color: rgba(255, 26, 102, 0);;
+        // text-shadow: 0 0 10px #1aecff;
+        // color: rgba(255, 26, 102, 0);
+        text-shadow: 0 0 10px #33302e;
+        color: rgba(51, 48, 46, 0);
 
         &:before {
-          -webkit-box-shadow: 0 0 4px 2px #FF1A66;
-          -moz-box-shadow: 0 0 4px 2px #FF1A66;
-          box-shadow: 0 0 4px 2px #FF1A66;
-          background-color: rgba(255, 26, 102, 0.8);;
+          -webkit-box-shadow: 0 0 4px 2px #1aecff;
+          -moz-box-shadow: 0 0 4px 2px #1aecff;
+          box-shadow: 0 0 4px 2px #1aecff;
+          background-color: rgba(26, 236, 255, 0.8);
         }
       }
     }
   }
+}
+
+.icon-down {
+  @include oIconsGetIcon('arrow-down', #fff, 24);
+  position: absolute;
+  top: 7px;
+}
+
+.icon-refresh {
+  @include oIconsGetIcon('refresh', #fff, 24);
+  position: absolute;
+  top: 7px;
 }
