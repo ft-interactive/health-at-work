@@ -126,7 +126,7 @@ class Select extends Component {
           Guess the number of productive days lost
         </label>
 
-        <small className="o-forms__additional-info">Due to absence and presenteeism</small>
+        {/* <small className="o-forms__additional-info">Due to absence and presenteeism</small> */}
 
         <input
           type="range"
