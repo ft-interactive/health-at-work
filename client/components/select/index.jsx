@@ -162,21 +162,27 @@ class Select extends Component {
       <section className={!this.state.submitted && 'blurred'}>
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          You guessed {this.state.render.daysGuess} days. {this.state.render.rightWrong || 'You are correct'} — employees earning {this.state.render.income || this.state.data[0].income} lose <span className="variable">{(this.state.submitted && renderData.absence.days) || this.state.render.daysGuess}</span> days per year because of absenteeism and presenteeism, according to research for Britain’s Healthiest Workplace. This research was commissioned by VitalityHealth and produced in association with the Financial Times, Rand Europe, the research consultancy, the University of Cambridge and Mercer, the human resources consultants.
+          You guessed {this.state.render.daysGuess} days. {this.state.render.rightWrong || 'You are correct'}: employees earning {this.state.render.income || this.state.data[0].income} lose <span className="variable">{(this.state.submitted && renderData.absence.days) || this.state.render.daysGuess}</span> days per year because of absenteeism and presenteeism, according to research for the Britain’s Healthiest Workplace survey. The research was developed by VitalityHealth and produced in association with the Financial Times, Rand Europe, the research consultancy, the University of Cambridge and Mercer, the human resources consultants.
           {/* eslint-enable max-len */}
         </p>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          The most serious issue for employees earning {this.state.render.income || this.state.data[0].income} is {'TK'} — {'TK'} per cent TKTK description TKTK.
+          The three most serious issues for employees earning {this.state.render.income || this.state.data[0].income} are:
           {/* eslint-enable max-len */}
+
+          <ol className="o-typography-list o-typography-list--ordered">
+            <li>{this.state.data[0].mostserious1}</li>
+            <li>{this.state.data[0].mostserious2}</li>
+            <li>{this.state.data[0].mostserious3}</li>
+          </ol>
         </p>
 
         <h2 className="o-typography-heading-level-2">Physical activity</h2>
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.physicallyinactivepc || this.state.data[0].physicallyinactivepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to {'TK'} per cent of all employees in the UK. If sedentary employees start to introduce 150 minutes per week of at least moderate exercise, they can reduce productive days lost by 3.2 per year. Some employers are <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">taking action</a> and helping staff to become more active.
+          <span className="variable">{renderData.physicallyinactivepc || this.state.data[0].physicallyinactivepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are physically inactive, meaning that they get less than 150 minutes of activity per week; this compares to TKTK per cent of all employees in the UK. If sedentary employees start to introduce 150 minutes per week of at least moderate exercise, they can reduce productive days lost by 3.2 per year. Some employers are <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">taking action</a> and helping staff to become more active.
           {/* eslint-enable max-len */}
         </p>
 
@@ -184,7 +190,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.fruitvegpc || this.state.data[0].fruitvegpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} do not eat at least five portions of fruit and vegetables per day. This compares to [TKTKT] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.fruitvegpc || this.state.data[0].fruitvegpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} do not eat at least five portions of fruit and vegetables per day. This compares to TKTK per cent of all employees in the UK. Britain’s Healthiest Workplace research shows employees with poor diets lose 3.5 productive days per year. Employers are responding <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">with incentives</a> to eat more salad and less fried food.
           {/* eslint-enable max-len */}
         </p>
 
@@ -192,7 +198,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.smokepc || this.state.data[0].smokepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} smoke. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.smokepc || this.state.data[0].smokepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} smoke. This compares to TKTK per cent of all employees in the UK. While the UK, in common with many other countries around the globe, has laws that prevent smoking in the workplace, China has <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">yet to introduce</a> a national ban and around half of all Chinese men are regular smokers.
           {/* eslint-enable max-len */}
         </p>
 
@@ -200,7 +206,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.sleeppc || this.state.data[0].sleeppc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} sleep less than seven hours per night. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.sleeppc || this.state.data[0].sleeppc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} sleep less than seven hours per night. This compares to TKTK per cent of all employees in the UK. Sleep disorders have been shown to have a dramatic effect on work productivity and are a significant cause of accidents in the workplace. Research shows nearly 30 per cent of British workers sleep less than seven hours per night. Some employers are providing places to <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">take a nap</a> at work.
           {/* eslint-enable max-len */}
         </p>
 
@@ -208,7 +214,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.obesepc || this.state.data[0].obesepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.obesepc || this.state.data[0].obesepc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to TKTK per cent of all employees in the UK. Some professions, such as nursing, are particularly badly affected — about 25 per cent of UK nurses have a body mass index of more than 30. One idea is gaining traction: should <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">weight be a factor</a> in career appraisals?
           {/* eslint-enable max-len */}
         </p>
 
@@ -216,7 +222,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.twomscondspc || this.state.data[0].twomscondspc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} have two or more musculoskeletal conditions. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.twomscondspc || this.state.data[0].twomscondspc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} have two or more musculoskeletal conditions. This compares to TKTK per cent of all employees in the UK. For many opioid addicts in the US, their plight started with painkillers for conditions such as these. <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">US employers</a> have to bear their portion of the blame for the opioid addiction epidemic.
           {/* eslint-enable max-len */}
         </p>
 
@@ -224,7 +230,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.depressionpc || this.state.data[0].depressionpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} suffer from depression. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.depressionpc || this.state.data[0].depressionpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} suffer from depression. This compares to TKTK per cent of all employees in the UK. Research shows 33 productive days are lost per year by those suffering from moderate to severe depression. Managers <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">need to be trained</a> to recognise the symptoms.
           {/* eslint-enable max-len */}
         </p>
 
@@ -232,17 +238,17 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.finconcernspc || this.state.data[0].finconcernspc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} have financial concerns. This compares to [TKTK] per cent of all employees in the UK. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          <span className="variable">{renderData.finconcernspc || this.state.data[0].finconcernspc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} have financial concerns. This compares to TKTK per cent of all employees in the UK. Nearly <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">half of all</a> employees surveyed for Britain’s Healthiest Workplace indicated they have at least some money worries and are losing six productive days per year — some employers are finding ways to help.
           {/* eslint-enable max-len */}
         </p>
 
-        <h2 className="o-typography-heading-level-2">Stress</h2>
+        {/* <h2 className="o-typography-heading-level-2">Stress</h2> */}
 
-        <p className="o-typography-body">
+        {/* <p className="o-typography-body"> */}
           {/* eslint-disable max-len */}
-          Employees earning {this.state.render.income || this.state.data[0].income} have an average of <span className="variable">{renderData.stressdimensions || this.state.data[0].stressdimensions}</span> “work-related stress dimensions”, according the the Health and Safety Executive scale, meaning [TKTK], and <span className="variable">{renderData.twoplusstressdimensions || this.state.data[0].twoplusstressdimensions}</span> per cent of employees have two or more stress dimensions. By contrast, employees across all sectors in the UK have an average of [TKTK] work-related stress dimensions, and [TKTK] per cent of all employees in the UK have two or more work related stress dimensions. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>.
+          {/* Employees earning {this.state.render.income || this.state.data[0].income} have an average of <span className="variable">{renderData.stressdimensions || this.state.data[0].stressdimensions}</span> “work-related stress dimensions”, according the the Health and Safety Executive scale, meaning [TKTK], and <span className="variable">{renderData.twoplusstressdimensions || this.state.data[0].twoplusstressdimensions}</span> per cent of employees have two or more stress dimensions. By contrast, employees across all sectors in the UK have an average of [TKTK] work-related stress dimensions, and [TKTK] per cent of all employees in the UK have two or more work related stress dimensions. Sentence here providing a <a href="https://ft.com" target="_blank" rel="noopener noreferrer" className="o-typography-link">link to the story</a>. */}
           {/* eslint-enable max-len */}
-        </p>
+        {/* </p> */}
       </section>
     );
 

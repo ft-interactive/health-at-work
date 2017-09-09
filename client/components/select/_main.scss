@@ -48,6 +48,16 @@ article {
         transition: all 600ms;
       }
     }
+
+    ol {
+      li {
+        transition: all 600ms;
+
+        &:before {
+          transition: all 600ms;
+        }
+      }
+    }
   }
 }
 
@@ -79,6 +89,18 @@ article {
     color: #33302e;
   }
 
+  ol {
+    li {
+      text-shadow: 0 0 0 #33302e;
+      color: #33302e;
+
+      &:before {
+        text-shadow: 0 0 0 #990f3d;
+        color: #990f3d;
+      }
+    }
+  }
+
   .blurred {
     .o-typography-body {
       text-shadow: 0 0 10px #33302e;
@@ -100,6 +122,18 @@ article {
         -moz-box-shadow: 0 0 6px 3px #1aecff;
         box-shadow: 0 0 6px 3px #1aecff;
         background-color: rgba(26, 236, 255, 0.8);
+      }
+    }
+
+    ol {
+      li {
+        text-shadow: 0 0 10px #33302e;
+        color: rgba(51, 48, 46, 0);
+
+        &:before {
+          text-shadow: 0 0 10px #990f3d;
+          color: rgba(153, 15, 61, 0);
+        }
       }
     }
   }
