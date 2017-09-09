@@ -170,13 +170,13 @@ class Select extends Component {
           {/* eslint-disable max-len */}
           The three most serious issues for employees earning {this.state.render.income || this.state.data[0].income} are:
           {/* eslint-enable max-len */}
-
-          <ol className="o-typography-list o-typography-list--ordered">
-            <li>{this.state.data[0].mostserious1}</li>
-            <li>{this.state.data[0].mostserious2}</li>
-            <li>{this.state.data[0].mostserious3}</li>
-          </ol>
         </p>
+
+        <ol className="o-typography-list o-typography-list--ordered">
+          <li>{this.state.data[0].mostserious1}</li>
+          <li>{this.state.data[0].mostserious2}</li>
+          <li>{this.state.data[0].mostserious3}</li>
+        </ol>
 
         <h2 className="o-typography-heading-level-2">Physical activity</h2>
 

@@ -49,7 +49,9 @@ article {
       }
     }
 
-    ol {
+    .o-typography-list {
+      transition: all 600ms;
+
       li {
         transition: all 600ms;
 
@@ -89,7 +91,7 @@ article {
     color: #33302e;
   }
 
-  ol {
+  .o-typography-list {
     li {
       text-shadow: 0 0 0 #33302e;
       color: #33302e;
@@ -125,7 +127,7 @@ article {
       }
     }
 
-    ol {
+    .o-typography-list {
       li {
         text-shadow: 0 0 10px #33302e;
         color: rgba(51, 48, 46, 0);
@@ -146,7 +148,7 @@ article {
   }
 
   .blurred {
-    .o-typography-body {
+    .o-typography-body, .o-typography-list {
       -webkit-filter: blur(6px);
       filter: blur(6px);
     }
