@@ -4,6 +4,10 @@ article {
   .o-forms {
     margin: 0 auto 20px;
 
+    .o-forms__select {
+      font-size: 16px;
+    }
+
     &.range-input {
       font-family: Metric, sans-serif;
       -webkit-font-feature-settings: 'tnum';
@@ -32,16 +36,7 @@ article {
         input[type='range'] {
           -webkit-appearance: none;
           width: 100%;
-
-          &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 28px;
-            height: 28px;
-            margin-top: -12px;
-            border: 2px solid #fff1e0;
-            border-radius: 50%;
-            background-color: #0d7680;
-          }
+          padding: 0 !important; // Necessary to ensure correct track width in Firefox
 
           &::-webkit-slider-runnable-track {
             width: 100%;
@@ -50,10 +45,12 @@ article {
             background-color: #b3a9a0;
           }
 
-          &::-moz-range-thumb {
-            width: 26px;
-            height: 26px;
-            border: 2px solid #fff1e0;
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            margin-top: -12px;
+            border: 2px solid #fff1e5;
             border-radius: 50%;
             background-color: #0d7680;
           }
@@ -65,10 +62,10 @@ article {
             background-color: #b3a9a0;
           }
 
-          &::-ms-thumb {
+          &::-moz-range-thumb {
             width: 28px;
             height: 28px;
-            border: none;
+            border: 2px solid #fff1e5;
             border-radius: 50%;
             background-color: #0d7680;
           }
@@ -83,6 +80,14 @@ article {
           &::-ms-fill-upper, &::-ms-fill-lower {
             border-radius: 2px;
             background-color: #b3a9a0;
+          }
+
+          &::-ms-thumb {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #fff1e5;
+            border-radius: 50%;
+            background-color: #0d7680;
           }
 
           &:focus {
@@ -101,7 +106,7 @@ article {
         left: 0;
         z-index: 1;
         width: 40px;
-        // margin-left: -7px;
+        margin-left: -10px;
         border: 2px solid #74736c;
         border-radius: 5px;
         padding: 5px 0 0 0;
@@ -281,5 +286,11 @@ article {
       -webkit-filter: blur(6px);
       filter: blur(6px);
     }
+  }
+}
+
+@include oGridRespondTo(S) {
+  article .o-forms.range-input output {
+    margin-left: 0;
   }
 }

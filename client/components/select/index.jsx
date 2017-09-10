@@ -51,26 +51,23 @@ class Select extends Component {
     const inputValue = parseInt(event.target.value, 10);
     const number = isNaN(inputValue) ? 25 : inputValue;
     const rangeEl = document.querySelector('input[type=range]');
-    // const rangeWidthStr = rangeEl.clientWidth;
-    // const rangeWidthInt = parseInt(rangeWidthStr, 10);
-    const rangeWidthInt = rangeEl.clientWidth;
+    const rangeWidth = rangeEl.clientWidth - 30; // Width of range input minus width of thumb including border
     const rangeProgress = number / 50;
     const outputEl = document.querySelector('.range-input output');
+    const offset = 14; // Half width of thumb excluding border
     let outputLeft;
-    let offset = 22;
 
     if (rangeProgress < 0) {
       outputLeft = 0;
     } else if (rangeProgress > 1) {
-      outputLeft = rangeWidthInt;
+      outputLeft = rangeWidth;
     } else {
-      outputLeft = (rangeWidthInt * rangeProgress) - (offset * rangeProgress);
+      outputLeft = (rangeWidth * rangeProgress) + offset;
     }
 
-    console.log(rangeWidthInt, rangeProgress, outputLeft, offset);
+    console.log(rangeWidth, rangeProgress, outputLeft, offset);
 
     outputEl.style.left = `${outputLeft}px`;
-    // outputEl.style.marginLeft = `${offset}%`;
 
     this.setState({
       inputs: {
@@ -111,23 +108,21 @@ class Select extends Component {
 
   handleResize() {
     const rangeEl = document.querySelector('input[type=range]');
-    // const rangeWidthStr = rangeEl.clientWidth;
-    // const rangeWidthInt = parseInt(rangeWidthStr, 10);
-    const rangeWidthInt = rangeEl.clientWidth;
+    const rangeWidth = rangeEl.clientWidth - 30; // Width of range input minus width of thumb including border
     const rangeProgress = this.state.inputs.daysGuess / 50;
     const outputEl = document.querySelector('.range-input output');
+    const offset = 14; // Half width of thumb excluding border
     let outputLeft;
-    let offset = 22;
 
     if (rangeProgress < 0) {
       outputLeft = 0;
     } else if (rangeProgress > 1) {
-      outputLeft = rangeWidthInt;
+      outputLeft = rangeWidth;
     } else {
-      outputLeft = (rangeWidthInt * rangeProgress) - (offset * rangeProgress);
+      outputLeft = (rangeWidth * rangeProgress) + offset;
     }
 
-    console.log(rangeProgress, outputLeft, offset);
+    console.log(rangeWidth, rangeProgress, outputLeft, offset);
 
     outputEl.style.left = `${outputLeft}px`;
   }
