@@ -25,8 +25,15 @@ class Select extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDaysChange = this.handleDaysChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleResize = this.handleResize.bind(this);
 
     console.log(props.data);
+  }
+
+  componentDidMount() {
+    this.handleResize();
+
+    window.addEventListener('resize', this.handleResize);
   }
 
   handleChange(event) {
@@ -43,26 +50,27 @@ class Select extends Component {
   handleDaysChange(event) {
     const inputValue = parseInt(event.target.value, 10);
     const number = isNaN(inputValue) ? 25 : inputValue;
-    const rangeEl = document.querySelector('.range-input');
-    const rangeWidthStr = window.getComputedStyle(rangeEl, null).width;
-    const rangeWidthInt = parseInt(rangeWidthStr, 10);
+    const rangeEl = document.querySelector('input[type=range]');
+    // const rangeWidthStr = rangeEl.clientWidth;
+    // const rangeWidthInt = parseInt(rangeWidthStr, 10);
+    const rangeWidthInt = rangeEl.clientWidth;
     const rangeProgress = number / 50;
     const outputEl = document.querySelector('.range-input output');
     let outputLeft;
-    let offset = 0.5;
+    let offset = 22;
 
     if (rangeProgress < 0) {
       outputLeft = 0;
     } else if (rangeProgress > 1) {
       outputLeft = rangeWidthInt;
     } else {
-      outputLeft = (rangeWidthInt * rangeProgress) + offset; offset -= rangeProgress;
+      outputLeft = (rangeWidthInt * rangeProgress) - (offset * rangeProgress);
     }
 
-    console.log(rangeProgress, outputLeft, offset);
+    console.log(rangeWidthInt, rangeProgress, outputLeft, offset);
 
     outputEl.style.left = `${outputLeft}px`;
-    outputEl.style.marginLeft = `${offset}%`;
+    // outputEl.style.marginLeft = `${offset}%`;
 
     this.setState({
       inputs: {
@@ -102,7 +110,26 @@ class Select extends Component {
   }
 
   handleResize() {
-    this.handleDaysChange();
+    const rangeEl = document.querySelector('input[type=range]');
+    // const rangeWidthStr = rangeEl.clientWidth;
+    // const rangeWidthInt = parseInt(rangeWidthStr, 10);
+    const rangeWidthInt = rangeEl.clientWidth;
+    const rangeProgress = this.state.inputs.daysGuess / 50;
+    const outputEl = document.querySelector('.range-input output');
+    let outputLeft;
+    let offset = 22;
+
+    if (rangeProgress < 0) {
+      outputLeft = 0;
+    } else if (rangeProgress > 1) {
+      outputLeft = rangeWidthInt;
+    } else {
+      outputLeft = (rangeWidthInt * rangeProgress) - (offset * rangeProgress);
+    }
+
+    console.log(rangeProgress, outputLeft, offset);
+
+    outputEl.style.left = `${outputLeft}px`;
   }
 
   render() {
@@ -146,24 +173,27 @@ class Select extends Component {
         <label
           htmlFor="select-days"
           className="o-forms__label"
-          >
-            Guess the number of productive days lost
-          </label>
+        >
+          Guess the number of productive days lost
+        </label>
 
-        <div className="range-labels">
-          <div className="range-labels-min">0</div>
-          <div className="range-labels-max">50</div>
+        <div className="range-input-container">
+
+          <div className="range-labels">
+            <div className="range-labels-min">0</div>
+            <div className="range-labels-max">50</div>
+          </div>
+
+          <input
+            type="range"
+            min={0}
+            max={50}
+            step={1}
+            value={this.state.inputs.daysGuess}
+            onChange={this.handleDaysChange}
+            disabled={!this.state.incomeSelected}
+          />
         </div>
-
-        <input
-          type="range"
-          min={0}
-          max={50}
-          step={1}
-          value={this.state.inputs.daysGuess}
-          onChange={this.handleDaysChange}
-          disabled={!this.state.incomeSelected}
-        />
 
         <output>
           {this.state.inputs.daysGuess}
