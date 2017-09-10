@@ -42,7 +42,27 @@ class Select extends Component {
 
   handleDaysChange(event) {
     const inputValue = parseInt(event.target.value, 10);
-    const number = isNaN(inputValue) ? 50 / 2 : inputValue;
+    const number = isNaN(inputValue) ? 25 : inputValue;
+    const rangeEl = document.querySelector('.range-input');
+    const rangeWidthStr = window.getComputedStyle(rangeEl, null).width;
+    const rangeWidthInt = parseInt(rangeWidthStr, 10);
+    const rangeProgress = number / 50;
+    const outputEl = document.querySelector('.range-input output');
+    let outputLeft;
+    let offset = 0.5;
+
+    if (rangeProgress < 0) {
+      outputLeft = 0;
+    } else if (rangeProgress > 1) {
+      outputLeft = rangeWidthInt;
+    } else {
+      outputLeft = (rangeWidthInt * rangeProgress) + offset; offset -= rangeProgress;
+    }
+
+    console.log(rangeProgress, outputLeft, offset);
+
+    outputEl.style.left = `${outputLeft}px`;
+    outputEl.style.marginLeft = `${offset}%`;
 
     this.setState({
       inputs: {
@@ -79,6 +99,10 @@ class Select extends Component {
         rightWrong,
       },
     });
+  }
+
+  handleResize() {
+    this.handleDaysChange();
   }
 
   render() {
@@ -118,15 +142,18 @@ class Select extends Component {
       </div>
     );
     const daysRange = (
-      <div className="o-forms">
+      <div className="o-forms range-input">
         <label
           htmlFor="select-days"
           className="o-forms__label"
-        >
-          Guess the number of productive days lost
-        </label>
+          >
+            Guess the number of productive days lost
+          </label>
 
-        {/* <small className="o-forms__additional-info">Due to absence and presenteeism</small> */}
+        <div className="range-labels">
+          <div className="range-labels-min">0</div>
+          <div className="range-labels-max">50</div>
+        </div>
 
         <input
           type="range"
