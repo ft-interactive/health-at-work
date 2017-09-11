@@ -15,8 +15,7 @@ article {
       font-feature-settings: 'tnum';
 
       .range-input-container {
-        padding-right: 10px;
-        padding-left: 10px;
+        padding: 30px 10px 0;
 
         .range-labels {
           display: flex;
@@ -106,10 +105,10 @@ article {
         left: 0;
         z-index: 1;
         width: 40px;
-        margin-left: -10px;
+        margin: 32px 0 0 -10px;
         border: 2px solid #74736c;
         border-radius: 5px;
-        padding: 5px 0 0 0;
+        padding: 6px 0 0 0;
         background-color: #fff;
         text-align: center;
         font-weight: 600;
