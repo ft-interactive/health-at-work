@@ -1,0 +1,295 @@
+@import 'o-icons/main';
+
+article {
+  .o-forms {
+    margin: 0 auto 20px;
+
+    .o-forms__select {
+      font-size: 16px;
+    }
+
+    &.range-input {
+      font-family: Metric, sans-serif;
+      -webkit-font-feature-settings: 'tnum';
+      -moz-font-feature-settings: 'tnum';
+      font-feature-settings: 'tnum';
+
+      .range-input-container {
+        padding: 30px 10px 0;
+
+        .range-labels {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-top: 12px;
+
+          &-min {
+            align-self: flex-start;
+          }
+
+          &-max {
+            align-self: flex-end;
+          }
+        }
+
+        input[type='range'] {
+          -webkit-appearance: none;
+          width: 100%;
+          padding: 0 !important; // Necessary to ensure correct track width in Firefox
+
+          &::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #b3a9a0;
+          }
+
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            margin-top: -12px;
+            border: 2px solid #fff1e5;
+            border-radius: 50%;
+            background-color: #0d7680;
+          }
+
+          &::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #b3a9a0;
+          }
+
+          &::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #fff1e5;
+            border-radius: 50%;
+            background-color: #0d7680;
+          }
+
+          &::-ms-track {
+            width: 100%;
+            border-color: transparent;
+            background-color: transparent;
+            color: transparent;
+          }
+
+          &::-ms-fill-upper, &::-ms-fill-lower {
+            border-radius: 2px;
+            background-color: #b3a9a0;
+          }
+
+          &::-ms-thumb {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #fff1e5;
+            border-radius: 50%;
+            background-color: #0d7680;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          &[disabled] {
+            opacity: 0.4;
+          }
+        }
+      }
+
+      output {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 40px;
+        margin: 32px 0 0 -10px;
+        border: 2px solid #74736c;
+        border-radius: 5px;
+        padding: 6px 0 0 0;
+        background-color: #fff;
+        text-align: center;
+        font-weight: 600;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          margin-left: -14px;
+          border-top: 14px solid #74736c;
+          border-left: 14px solid transparent;
+          border-right: 14px solid transparent;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          margin: -1px 0 0 -12px;
+          border-top: 12px solid #fff;
+          border-left: 12px solid transparent;
+          border-right: 12px solid transparent;
+        }
+      }
+    }
+
+    button {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      padding-right: 37px;
+    }
+  }
+
+  section {
+    padding: 8px 0 0;
+
+    .o-typography-body {
+      transition: all 600ms;
+    }
+
+    .o-typography-link {
+      transition: all 600ms;
+    }
+
+    span.variable {
+      position: relative;
+      margin: 0 0 0 4px;
+      padding: 0 0 0 4px;
+      font-weight: 600;
+      -webkit-font-feature-settings: 'tnum';
+      -moz-font-feature-settings: 'tnum';
+      font-feature-settings: 'tnum';
+      transition: all 600ms;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        width: 4px;
+        height: 21px;
+        background-color: #1aecff;
+        transition: all 600ms;
+      }
+    }
+
+    .o-typography-list {
+      transition: all 600ms;
+
+      li {
+        transition: all 600ms;
+
+        &:before {
+          transition: all 600ms;
+        }
+      }
+    }
+  }
+}
+
+.icon-down {
+  @include oIconsGetIcon('arrow-down', #fff, 24);
+  position: absolute;
+  top: 7px;
+}
+
+.icon-refresh {
+  @include oIconsGetIcon('refresh', #fff, 24);
+  position: absolute;
+  top: 7px;
+}
+
+.no-cssfilters {
+  .o-typography-body {
+    text-shadow: 0 0 0 #33302e;
+    color: #33302e;
+  }
+
+  .o-typography-link {
+    text-shadow: 0 0 0 #00757f;
+    color: #00757f;
+  }
+
+  span.variable {
+    text-shadow: 0 0 0 #33302e;
+    color: #33302e;
+  }
+
+  .o-typography-list {
+    li {
+      text-shadow: 0 0 0 #33302e;
+      color: #33302e;
+
+      &:before {
+        text-shadow: 0 0 0 #990f3d;
+        color: #990f3d;
+      }
+    }
+  }
+
+  .blurred {
+    .o-typography-body {
+      text-shadow: 0 0 10px #33302e;
+      color: rgba(51, 48, 46, 0);
+    }
+
+    .o-typography-link {
+      text-shadow: 0 0 10px #00757f;
+      color: rgba(0, 117, 127, 0);
+      border-bottom: none;
+    }
+
+    span.variable {
+      text-shadow: 0 0 10px #33302e;
+      color: rgba(51, 48, 46, 0);
+
+      &:before {
+        -webkit-box-shadow: 0 0 6px 3px #1aecff;
+        -moz-box-shadow: 0 0 6px 3px #1aecff;
+        box-shadow: 0 0 6px 3px #1aecff;
+        background-color: rgba(26, 236, 255, 0.8);
+      }
+    }
+
+    .o-typography-list {
+      li {
+        text-shadow: 0 0 10px #33302e;
+        color: rgba(51, 48, 46, 0);
+
+        &:before {
+          text-shadow: 0 0 10px #990f3d;
+          color: rgba(153, 15, 61, 0);
+        }
+      }
+    }
+  }
+}
+
+.cssfilters {
+  .o-typography-body {
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  .blurred {
+    .o-typography-body, .o-typography-list {
+      -webkit-filter: blur(6px);
+      filter: blur(6px);
+    }
+  }
+}
+
+@include oGridRespondTo(S) {
+  article .o-forms.range-input output {
+    margin-left: 0;
+  }
+}

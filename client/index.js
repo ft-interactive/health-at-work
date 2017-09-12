@@ -1,19 +1,14 @@
-/*
-  TODO: delete this comment
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Modernizr from './modernizr';
+import Select from './components/select/index.jsx';
 
-  This file is where you bootstrap your JS code
-  For example import stuff here:
+const data = JSON.parse(document.getElementById('data').textContent);
 
-  import {select} from 'd3-selection';
-  import myComponent from './components/my-component';
+function App() {
+  return <Select data={data} />;
+}
 
-  Split logical parts of you project into components e.g.
+const reactApp = <App />;
 
-  /client
-    - /components
-        - /component-name
-            - styles.scss
-            - index.js
-            - template.html
-
-*/
+ReactDOM.render(reactApp, document.getElementById('react-app'));

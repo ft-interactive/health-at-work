@@ -1,17 +1,11 @@
 @import 'o-colors/main';
+@import 'o-forms/main';
 @import 'o-grid/main';
 @import 'components/core/main';
+@import 'components/select/main';
 
-/*
-      TODO: delete this comment
+@include oForms;
 
-      Write your code here - keep it neat!
-      Split logical parts of you project into components e.g.
-
-      /client
-        - /components
-            - /component-name
-                - styles.scss
-                - index.js
-                - template.html
-*/
+figcaption.o-typography-caption {
+  margin-bottom: 8px;
+}

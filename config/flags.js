@@ -5,8 +5,8 @@ export default () => ({ // eslint-disable-line
   errorReporting: prod,
   analytics: prod,
   googleAnalytics: prod,
-  ads: true,
-  onwardjourney: true,
+  ads: false,
+  onwardjourney: false,
   shareButtons: true,
   header: true,
   footer: true,
@@ -29,5 +29,5 @@ export default () => ({ // eslint-disable-line
     3a499586-b2e0-11e4-a058-00144feab7de
 
   */
-  comments: true,
+  comments: false,
 });
