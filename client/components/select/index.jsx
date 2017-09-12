@@ -234,7 +234,7 @@ class Select extends Component {
 
         <p className="o-typography-body">
           {/* eslint-disable max-len */}
-          <span className="variable">{renderData.alcoholpc || this.state.data[0].alcoholpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} drink more than 14 units of alcohol per week. This compares to 29.4 per cent of employees in the UK. <span className="variable">{renderData.bingepc || this.state.data[0].bingepc}</span> per cent of employees in this income range also go binge drinking at least once per month. This compares to 50.1 per cent of all employees surveyed in the UK. Heavy drinking is often associated with other risk issues, such as <a href="https://www.ft.com/content/38ba3602-3fa7-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">financial worries</a>.
+          <span className="variable">{renderData.alcoholpc || this.state.data[0].alcoholpc}</span> per cent of employees earning {this.state.render.income || this.state.data[0].income} drink more than 14 units of alcohol per week. This compares to 29.4 per cent of employees in the UK. <span className="variable">{renderData.bingepc || this.state.data[0].bingepc}</span> per cent of employees in this income range also go binge drinking at least once per month. This compares to 50.1 per cent of all employees surveyed in the UK. Heavy drinking is often associated with other risk factors, such as <a href="https://www.ft.com/content/38ba3602-3fa7-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">financial worries</a>.
           {/* eslint-enable max-len */}
         </p>
 
