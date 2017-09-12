@@ -17,8 +17,8 @@ export default () => ({ // eslint-disable-line
   summary: 'Our interactive feature shows that, as your pay packet increases, so do certain risky behaviours',
 
   topic: {
-    name: 'Special Reports',
-    url: 'https://www.ft.com/special-reports',
+    name: 'Health at Work',
+    url: 'https://www.ft.com/health-work',
   },
 
   relatedArticle: {
