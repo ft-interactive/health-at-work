@@ -9,7 +9,7 @@ article {
     }
 
     &.range-input {
-      font-family: Metric, sans-serif;
+      font-family: MetricWeb, sans-serif;
       -webkit-font-feature-settings: 'tnum';
       -moz-font-feature-settings: 'tnum';
       font-feature-settings: 'tnum';
@@ -108,7 +108,7 @@ article {
         margin: 32px 0 0 -10px;
         border: 2px solid #74736c;
         border-radius: 5px;
-        padding: 6px 0 0 0;
+        padding: 4px 0;
         background-color: #fff;
         text-align: center;
         font-weight: 600;
