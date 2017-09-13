@@ -225,9 +225,9 @@ class Select extends Component {
         </p>
 
         <ol className="o-typography-list o-typography-list--ordered">
-          <li>{this.state.data[0].mostserious1}</li>
-          <li>{this.state.data[0].mostserious2}</li>
-          <li>{this.state.data[0].mostserious3}</li>
+          <li>{renderData.mostserious1}</li>
+          <li>{renderData.mostserious2}</li>
+          <li>{renderData.mostserious3}</li>
         </ol>
 
         <h2 className="o-typography-heading-level-2">Drinking alcohol</h2>
