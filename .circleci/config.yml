@@ -19,8 +19,10 @@ jobs:
           key: bower_components-hack1-{{ checksum "bower.json" }}
       - run:
           name: Install dependencies
-          # NB. this also does bower install as postinstall step
           command: npm install
+      - run:
+          name: Bowerrrrrrrrr
+          command: ./node_modules/.bin/bower install
       - run:
           name: Rebuild problematic node modules
           command: npm rebuild
@@ -55,15 +57,3 @@ jobs:
             else
               npm run deploy -- --confirm
             fi
-      - run:
-          name: Check accessibility of deployed site
-          command: |
-            if [ "$PREVIEW" == "true" ]
-            then
-              npm run check-accessibility:preview
-            else
-              npm run check-accessibility
-            fi
-      - run:
-          name: General QA checks
-          command: npm run qa || echo "Automatic QA checks failed. Continuing anyway"
