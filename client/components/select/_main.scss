@@ -36,6 +36,7 @@ article {
           -webkit-appearance: none;
           width: 100%;
           padding: 0 !important; // Necessary to ensure correct track width in Firefox
+          background-color: #fff1e5; // Appears to be necessary at least in Firefox Developer Edition
 
           &::-webkit-slider-runnable-track {
             width: 100%;
