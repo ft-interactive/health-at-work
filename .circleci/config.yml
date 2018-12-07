@@ -22,7 +22,7 @@ jobs:
           command: npm install
       - run:
           name: Bowerrrrrrrrr
-          command: npm install -g bower && bower install
+          command: ./node_modules/.bin/bower install
       - run:
           name: Rebuild problematic node modules
           command: npm rebuild
