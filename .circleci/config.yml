@@ -19,11 +19,10 @@ jobs:
           key: bower_components-hack1-{{ checksum "bower.json" }}
       - run:
           name: Install dependencies
-          # NB. this also does bower install as postinstall step
           command: npm install
       - run:
           name: Bowerrrrrrrrr
-          command: npm install bower && bower install
+          command: npm install -g bower && bower install
       - run:
           name: Rebuild problematic node modules
           command: npm rebuild
