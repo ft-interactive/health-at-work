@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from './select/index.jsx';
+import InputRange from './input-range/index.jsx';
+import Button from './button/index.jsx';
 
-class Select extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -129,87 +132,6 @@ class Select extends Component {
 
   render() {
     const renderData = this.state.render.data;
-    const incomeOptions = this.props.data.map(d => (
-      <option
-        key={`income${d.rank}`}
-        value={d.income}
-      >
-        {d.income}
-      </option>
-    ));
-    const incomeSelect = (
-      <div className="o-forms">
-        <label
-          htmlFor="select-income"
-          className="o-forms__label"
-        >
-          Select your income range
-        </label>
-
-        <select
-          value={this.state.inputs.income}
-          onChange={this.handleChange}
-          id="select-income"
-          className="o-forms__select"
-        >
-          <option
-            value={this.state.inputs.income}
-            disabled
-          >
-            {this.state.inputs.income}
-          </option>
-
-          {incomeOptions}
-        </select>
-      </div>
-    );
-    const daysRange = (
-      <div className="o-forms range-input">
-        <label
-          htmlFor="select-days"
-          className="o-forms__label"
-        >
-          Guess the number of productive days lost
-        </label>
-
-        <div className="range-input-container">
-
-          <div className="range-labels">
-            <div className="range-labels-min">0</div>
-            <div className="range-labels-max">50</div>
-          </div>
-
-          <input
-            type="range"
-            min={0}
-            max={50}
-            step={1}
-            value={this.state.inputs.daysGuess}
-            onChange={this.handleDaysChange}
-            disabled={!this.state.incomeSelected}
-          />
-        </div>
-
-        <output>
-          {this.state.inputs.daysGuess}
-        </output>
-      </div>
-    );
-    const submitButton = (
-      <div className="o-forms">
-        <button
-          value={this.state.submitButtonText}
-          disabled={!this.state.incomeSelected}
-          className="o-buttons o-buttons--big o-buttons--primary"
-          id="submit-button"
-          onClick={this.handleSubmit}
-        >
-          {this.state.submitButtonText}
-
-          {(!this.state.submitted && <i className="icon-down" />) || <i className="icon-refresh" />}
-        </button>
-      </div>
-    );
     const article = (
       <section className={!this.state.submitted && 'blurred'}>
         <p className="o-typography-body">
@@ -306,11 +228,24 @@ class Select extends Component {
 
     return (
       <div>
-        {incomeSelect}
+        <Select
+          data={this.props.data}
+          value={this.state.inputs.income}
+          onChange={this.handleChange}
+        />
 
-        {daysRange}
+        <InputRange
+          value={this.state.inputs.daysGuess}
+          onChange={this.handleDaysChange}
+          disabled={!this.state.incomeSelected}
+        />
 
-        {submitButton}
+        <Button
+          value={this.state.submitButtonText}
+          onClick={this.handleSubmit}
+          disabled={!this.state.incomeSelected}
+          submitted={this.state.submitted}
+        />
 
         {article}
       </div>
@@ -318,8 +253,8 @@ class Select extends Component {
   }
 }
 
-Select.propTypes = {
+App.propTypes = {
   data: PropTypes.array.isRequired, // eslint-disable-line
 };
 
-export default Select;
+export default App;
