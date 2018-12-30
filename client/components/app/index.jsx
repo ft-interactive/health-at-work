@@ -28,8 +28,6 @@ class App extends Component {
     this.handleDaysChange = this.handleDaysChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleResize = this.handleResize.bind(this);
-
-    // console.log(props.data);
   }
 
   componentDidMount() {
@@ -67,8 +65,6 @@ class App extends Component {
       outputLeft = (rangeWidth * rangeProgress) + offset;
     }
 
-    console.log(rangeWidth, rangeProgress, outputLeft, offset);
-
     outputEl.style.left = `${outputLeft}px`;
 
     this.setState({
@@ -78,6 +74,7 @@ class App extends Component {
         rightWrong: '',
       },
     });
+    // console.log(rangeWidth, rangeProgress, outputLeft, offset);
   }
 
   handleSubmit(event) {
@@ -124,9 +121,8 @@ class App extends Component {
       outputLeft = (rangeWidth * rangeProgress) + offset;
     }
 
-    console.log(rangeWidth, rangeProgress, outputLeft, offset);
-
     outputEl.style.left = `${outputLeft}px`;
+    // console.log(rangeWidth, rangeProgress, outputLeft, offset);
   }
 
   render() {
