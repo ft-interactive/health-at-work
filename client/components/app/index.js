@@ -13,11 +13,11 @@ class App extends Component {
       incomeSelected: false,
       submitted: false,
       submitButtonText: 'Read article',
-      inputs: {
+      inputValues: {
         income: '-',
         daysGuess: 25,
       },
-      render: {
+      renderValues: {
         data: [],
         income: '',
         daysGuess: 25,
@@ -39,9 +39,9 @@ class App extends Component {
   handleChange(event) {
     this.setState({
       incomeSelected: true,
-      inputs: {
+      inputValues: {
         income: event.target.value,
-        daysGuess: this.state.inputs.daysGuess,
+        daysGuess: this.state.inputValues.daysGuess,
       },
     });
   }
@@ -67,8 +67,8 @@ class App extends Component {
     outputEl.style.left = `${outputLeft}px`;
 
     this.setState({
-      inputs: {
-        income: this.state.inputs.income,
+      inputValues: {
+        income: this.state.inputValues.income,
         daysGuess: number,
       },
     });
@@ -76,10 +76,10 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    const filteredData = this.props.data.filter(d => d.income === this.state.inputs.income);
-    const income = this.state.inputs.income;
-    const daysGuess = this.state.inputs.daysGuess;
-    let rightWrong = this.state.render.rightWrong;
+    const filteredData = this.props.data.filter(d => d.income === this.state.inputValues.income);
+    const income = this.state.inputValues.income;
+    const daysGuess = this.state.inputValues.daysGuess;
+    let rightWrong = this.state.renderValues.rightWrong;
 
     event.preventDefault();
 
@@ -91,12 +91,10 @@ class App extends Component {
       rightWrong = 'You are correct';
     }
 
-    console.log(rightWrong, filteredData[0].absence.days);
-
     this.setState({
       submitted: true,
       submitButtonText: 'Refresh article',
-      render: {
+      renderValues: {
         data: filteredData[0],
         income,
         daysGuess,
@@ -108,7 +106,7 @@ class App extends Component {
   handleResize() {
     const rangeEl = document.querySelector('input[type=range]');
     const rangeWidth = rangeEl.clientWidth - 30; // Width of range input minus width of thumb including border
-    const rangeProgress = this.state.inputs.daysGuess / 50;
+    const rangeProgress = this.state.inputValues.daysGuess / 50;
     const outputEl = document.querySelector('.range-input output');
     const offset = 14; // Half width of thumb excluding border
     let outputLeft;
@@ -126,18 +124,18 @@ class App extends Component {
   }
 
   render() {
-    const renderData = this.state.submitted ? this.state.render.data : this.props.data[0];
+    const renderData = this.state.submitted ? this.state.renderValues.data : this.props.data[0];
 
     return (
       <div>
         <Select
           data={this.props.data}
-          value={this.state.inputs.income}
+          value={this.state.inputValues.income}
           onChange={this.handleChange}
         />
 
         <InputRange
-          value={this.state.inputs.daysGuess}
+          value={this.state.inputValues.daysGuess}
           onChange={this.handleDaysChange}
           disabled={!this.state.incomeSelected}
         />
@@ -151,8 +149,8 @@ class App extends Component {
 
         <Copy
           data={renderData}
-          guess={this.state.render.daysGuess}
-          rightWrong={this.state.render.rightWrong}
+          guess={this.state.renderValues.daysGuess}
+          rightWrong={this.state.renderValues.rightWrong}
           submitted={this.state.submitted}
         />
       </div>
