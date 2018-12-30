@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Select from './select/index.jsx';
-import InputRange from './input-range/index.jsx';
-import Button from './button/index.jsx';
+import Select from './select';
+import InputRange from './input-range';
+import Button from './button';
 
 class App extends Component {
   constructor(props) {
