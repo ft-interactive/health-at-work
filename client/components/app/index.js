@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from './select';
 import InputRange from './input-range';
 import Button from './button';
+import Chart from './chart';
 import Copy from './copy';
 
 class App extends Component {
@@ -150,6 +151,8 @@ class App extends Component {
             submitted={this.state.submitted}
           />
         </div>
+
+        <Chart />
 
         <Copy
           data={renderData}
