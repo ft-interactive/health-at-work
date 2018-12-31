@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function InputRange(props) {
   return (
@@ -11,7 +12,6 @@ function InputRange(props) {
       </label>
 
       <div className="range-input-container">
-
         <div className="range-labels">
           <div className="range-labels-min">0</div>
           <div className="range-labels-max">50</div>
@@ -34,5 +34,11 @@ function InputRange(props) {
     </div>
   );
 }
+
+InputRange.propTypes = {
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
 
 export default InputRange;

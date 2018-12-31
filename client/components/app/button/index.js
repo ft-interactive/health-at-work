@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Button(props) {
   return (
@@ -17,5 +18,12 @@ function Button(props) {
     </div>
   );
 }
+
+Button.propTypes = {
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  submitted: PropTypes.bool.isRequired,
+};
 
 export default Button;

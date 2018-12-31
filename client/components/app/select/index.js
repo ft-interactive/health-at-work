@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Select(props) {
   const incomeOptions = props.data.map(d => (
@@ -37,5 +38,11 @@ function Select(props) {
     </div>
   );
 }
+
+Select.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.any).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Select;

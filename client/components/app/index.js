@@ -28,6 +28,7 @@ class App extends Component {
     this.handleDaysChange = this.handleDaysChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    // console.log(props.data);
   }
 
   componentDidMount() {
@@ -159,7 +160,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  data: PropTypes.array.isRequired, // eslint-disable-line
+  data: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default App;

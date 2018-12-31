@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Copy(props) {
   const { data, guess, rightWrong, submitted } = props;
@@ -97,5 +98,12 @@ function Copy(props) {
     </section>
   );
 }
+
+Copy.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+  guess: PropTypes.number.isRequired,
+  rightWrong: PropTypes.string.isRequired,
+  submitted: PropTypes.bool.isRequired,
+};
 
 export default Copy;
