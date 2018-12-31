@@ -1,10 +1,7 @@
 @import 'o-colors/main';
-@import 'o-forms/main';
 @import 'o-grid/main';
 @import 'components/core/main';
 @import 'components/app/main';
-
-@include oForms;
 
 figcaption.o-typography-caption {
   margin-bottom: 8px;

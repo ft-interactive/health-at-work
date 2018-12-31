@@ -1,11 +1,11 @@
-@import 'o-icons/main';
+@import 'o-forms/main';
 @import './select/main';
 @import './input-range/main';
 @import './button/main';
 @import './copy/main';
 
-article {
-  .o-forms {
-    margin: 0 auto 20px;
-  }
+@include oForms;
+
+.o-forms {
+  margin: 0 auto 20px;
 }
