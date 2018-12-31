@@ -130,7 +130,7 @@ class App extends Component {
 
     return (
       <div>
-        <div className="o-forms">
+        <section className="o-forms">
           <Select
             data={this.props.data}
             value={this.state.inputValues.income}
@@ -149,7 +149,7 @@ class App extends Component {
             disabled={!this.state.incomeSelected}
             submitted={this.state.submitted}
           />
-        </div>
+        </section>
 
         <Copy
           data={renderData}
