@@ -12,7 +12,7 @@ function Select(props) {
   ));
 
   return (
-    <div className="o-forms">
+    <div>
       <label
         htmlFor="select-income"
         className="o-forms__label"

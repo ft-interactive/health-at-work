@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Button(props) {
   return (
-    <div className="o-forms">
+    <div>
       <button
         value={props.value}
         onClick={props.onClick}

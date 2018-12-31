@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function InputRange(props) {
   return (
-    <div className="o-forms range-input">
+    <div className="range-input">
       <label
         htmlFor="select-days"
         className="o-forms__label"
@@ -14,6 +14,7 @@ function InputRange(props) {
       <div className="range-input-container">
         <div className="range-labels">
           <div className="range-labels-min">0</div>
+
           <div className="range-labels-max">50</div>
         </div>
 

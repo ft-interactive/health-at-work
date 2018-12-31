@@ -105,6 +105,7 @@ class App extends Component {
   }
 
   handleResize() {
+    // Reposition range slider output element
     const rangeEl = document.querySelector('input[type=range]');
     const rangeWidth = rangeEl.clientWidth - 30; // Width of range input minus width of thumb including border
     const rangeProgress = this.state.inputValues.daysGuess / 50;
@@ -129,24 +130,26 @@ class App extends Component {
 
     return (
       <div>
-        <Select
-          data={this.props.data}
-          value={this.state.inputValues.income}
-          onChange={this.handleChange}
-        />
+        <div className="o-forms">
+          <Select
+            data={this.props.data}
+            value={this.state.inputValues.income}
+            onChange={this.handleChange}
+          />
 
-        <InputRange
-          value={this.state.inputValues.daysGuess}
-          onChange={this.handleDaysChange}
-          disabled={!this.state.incomeSelected}
-        />
+          <InputRange
+            value={this.state.inputValues.daysGuess}
+            onChange={this.handleDaysChange}
+            disabled={!this.state.incomeSelected}
+          />
 
-        <Button
-          value={this.state.submitButtonText}
-          onClick={this.handleSubmit}
-          disabled={!this.state.incomeSelected}
-          submitted={this.state.submitted}
-        />
+          <Button
+            value={this.state.submitButtonText}
+            onClick={this.handleSubmit}
+            disabled={!this.state.incomeSelected}
+            submitted={this.state.submitted}
+          />
+        </div>
 
         <Copy
           data={renderData}

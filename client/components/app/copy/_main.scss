@@ -1,0 +1,125 @@
+section {
+  padding: 8px 0 0;
+
+  .o-typography-body {
+    transition: all 600ms;
+  }
+
+  .o-typography-link {
+    transition: all 600ms;
+  }
+
+  span.variable {
+    position: relative;
+    margin: 0 0 0 4px;
+    padding: 0 0 0 4px;
+    font-weight: 600;
+    -webkit-font-feature-settings: 'tnum';
+    -moz-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+    transition: all 600ms;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -4px;
+      width: 4px;
+      height: 21px;
+      background-color: #1aecff;
+      transition: all 600ms;
+    }
+  }
+
+  .o-typography-list {
+    transition: all 600ms;
+
+    li {
+      transition: all 600ms;
+
+      &:before {
+        transition: all 600ms;
+      }
+    }
+  }
+}
+
+.no-cssfilters {
+  .o-typography-body {
+    text-shadow: 0 0 0 #33302e;
+    color: #33302e;
+  }
+
+  .o-typography-link {
+    text-shadow: 0 0 0 #00757f;
+    color: #00757f;
+  }
+
+  span.variable {
+    text-shadow: 0 0 0 #33302e;
+    color: #33302e;
+  }
+
+  .o-typography-list {
+    li {
+      text-shadow: 0 0 0 #33302e;
+      color: #33302e;
+
+      &:before {
+        text-shadow: 0 0 0 #990f3d;
+        color: #990f3d;
+      }
+    }
+  }
+
+  .blurred {
+    .o-typography-body {
+      text-shadow: 0 0 10px #33302e;
+      color: rgba(51, 48, 46, 0);
+    }
+
+    .o-typography-link {
+      text-shadow: 0 0 10px #00757f;
+      color: rgba(0, 117, 127, 0);
+      border-bottom: none;
+    }
+
+    span.variable {
+      text-shadow: 0 0 10px #33302e;
+      color: rgba(51, 48, 46, 0);
+
+      &:before {
+        -webkit-box-shadow: 0 0 6px 3px #1aecff;
+        -moz-box-shadow: 0 0 6px 3px #1aecff;
+        box-shadow: 0 0 6px 3px #1aecff;
+        background-color: rgba(26, 236, 255, 0.8);
+      }
+    }
+
+    .o-typography-list {
+      li {
+        text-shadow: 0 0 10px #33302e;
+        color: rgba(51, 48, 46, 0);
+
+        &:before {
+          text-shadow: 0 0 10px #990f3d;
+          color: rgba(153, 15, 61, 0);
+        }
+      }
+    }
+  }
+}
+
+.cssfilters {
+  .o-typography-body {
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  .blurred {
+    .o-typography-body, .o-typography-list {
+      -webkit-filter: blur(6px);
+      filter: blur(6px);
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.o-forms button {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding-right: 37px;
+
+  .icon-down {
+    @include oIconsGetIcon('arrow-down', #fff, 24);
+    position: absolute;
+    top: 7px;
+  }
+
+  .icon-refresh {
+    @include oIconsGetIcon('refresh', #fff, 24);
+    position: absolute;
+    top: 7px;
+  }
+}
