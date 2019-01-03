@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Select from './select';
 import InputRange from './input-range';
 import Button from './button';
+import responsiveGraphicsWrapper from '../hocs/responsive-graphics-wrapper';
 import Chart from './chart';
 import Copy from './copy';
 
@@ -128,6 +129,7 @@ class App extends Component {
 
   render() {
     const renderData = this.state.submitted ? this.state.renderValues.data : this.props.data[0];
+    const ResponsiveChart = responsiveGraphicsWrapper(Chart);
 
     return (
       <div>
@@ -152,7 +154,7 @@ class App extends Component {
           />
         </div>
 
-        <Chart />
+        <ResponsiveChart />
 
         <Copy
           data={renderData}

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 function Copy(props) {
   const { data, guess, rightWrong, submitted } = props;
+  let className = 'copy';
+  if (!submitted) className += ' blurred';
 
   return (
-    <section className={!submitted && 'blurred'}>
+    <section className={className}>
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
         You guessed {guess} days. {rightWrong || 'You are correct'}: employees earning {data.income} lose <span className="variable">{(submitted && data.absence.days) || guess}</span> days per year because of absenteeism and presenteeism, according to research for the Britain’s Healthiest Workplace survey. The research was developed by VitalityHealth and produced in association with the Financial Times, Rand Europe, the research consultancy, the University of Cambridge and Mercer, the human resources consultants.

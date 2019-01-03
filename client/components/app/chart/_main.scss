@@ -1,0 +1,9 @@
+section.full-width {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+
+  svg.chart {
+    display: block;
+    margin: 0 auto;
+  }
+}
