@@ -18,6 +18,7 @@ section {
     -moz-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
     transition: all 600ms;
+    display: inline-block;
 
     &:before {
       content: '';
