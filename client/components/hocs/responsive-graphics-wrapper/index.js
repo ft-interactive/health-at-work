@@ -15,6 +15,8 @@ const responsiveGraphicsWrapper = (Component) => {
     }
 
     componentDidMount() {
+      this._isMounted = true;
+
       if (window) {
         oGrid.enableLayoutChangeEvents();
 
@@ -26,34 +28,44 @@ const responsiveGraphicsWrapper = (Component) => {
 
     componentWillUnmount() {
       window.removeEventListener('o-grid.layoutChange', ({ detail }) => this.handleLayoutChange(detail.layout));
+
+      this._isMounted = false;
     }
 
     handleLayoutChange(newLayout) {
-      console.log(`Layout change detected: ${newLayout}`);
+      if (this._isMounted) {
+        console.log(`Layout change detected: ${newLayout}`);
 
-      switch (newLayout) {
-        case 'XL':
-          return this.setState({
-            graphicsDimensions: { width: 1180, height: 700 },
-            gutters: 20,
-          });
-        case 'L':
-          return this.setState({
-            graphicsDimensions: { width: 700, height: 500 },
-            gutters: 20,
-          });
-        case 'M':
-          return this.setState({
-            graphicsDimensions: { width: 700, height: 500 },
-            gutters: 20,
-          });
-        case 'S':
-        case 'default':
-        default:
-          return this.setState({
-            graphicsDimensions: { width: 300, height: 400 },
-            gutters: 10,
-          });
+        switch (newLayout) {
+          case 'XL':
+            this.setState({
+              graphicsDimensions: { width: 1180, height: 700 },
+              gutters: 20,
+            });
+
+            return;
+          case 'L':
+            this.setState({
+              graphicsDimensions: { width: 700, height: 500 },
+              gutters: 20,
+            });
+
+            return;
+          case 'M':
+            this.setState({
+              graphicsDimensions: { width: 700, height: 500 },
+              gutters: 20,
+            });
+
+            return;
+          case 'S':
+          case 'default':
+          default:
+            this.setState({
+              graphicsDimensions: { width: 300, height: 400 },
+              gutters: 10,
+            });
+        }
       }
     }
 
