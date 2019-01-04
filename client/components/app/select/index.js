@@ -2,28 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Select(props) {
-  const incomeOptions = props.data.map(d => (
-    <option
-      key={`income${d.rank}`}
-      value={d.income}
-    >
-      {d.income}
-    </option>
-  ));
+  const ageOptions = props.data.filter(d => d.age.toLowerCase() !== 'average')
+    .map(d => (
+      <option
+        key={`age-${d.rank}`}
+        value={d.age}
+      >
+        {d.age}
+      </option>
+    ));
 
   return (
     <div>
       <label
-        htmlFor="select-income"
+        htmlFor="select-age"
         className="o-forms__label"
       >
-        Select your income range
+        Select your age range
       </label>
 
       <select
         value={props.value}
         onChange={props.onChange}
-        id="select-income"
+        id="select-age"
         className="o-forms__select"
       >
         <option
@@ -33,7 +34,7 @@ function Select(props) {
           {props.value}
         </option>
 
-        {incomeOptions}
+        {ageOptions}
       </select>
     </div>
   );

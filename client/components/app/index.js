@@ -10,21 +10,21 @@ class App extends Component {
     super(props);
 
     this.state = {
-      incomeSelected: false,
+      ageSelected: false,
       submitted: false,
       submitButtonText: 'Read article',
       inputValues: {
-        income: '-',
+        age: '-',
         daysGuess: 25,
       },
       renderValues: {
         data: [],
-        income: '',
+        age: '',
         daysGuess: 25,
         rightWrong: '',
       },
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleDaysChange = this.handleDaysChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleResize = this.handleResize.bind(this);
@@ -37,12 +37,12 @@ class App extends Component {
     window.addEventListener('resize', this.handleResize);
   }
 
-  handleChange(event) {
+  handleSelectChange(event) {
     this.setState({
-      incomeSelected: true,
+      ageSelected: true,
       inputValues: {
-        income: event.target.value,
-        daysGuess: this.state.inputValues.daysGuess,
+        ...this.state.inputValues,
+        age: event.target.value,
       },
     });
   }
@@ -69,7 +69,7 @@ class App extends Component {
 
     this.setState({
       inputValues: {
-        income: this.state.inputValues.income,
+        age: this.state.inputValues.age,
         daysGuess: number,
       },
     });
@@ -77,9 +77,8 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    const filteredData = this.props.data.filter(d => d.income === this.state.inputValues.income);
-    const income = this.state.inputValues.income;
-    const daysGuess = this.state.inputValues.daysGuess;
+    const filteredData = this.props.data.filter(d => d.age === this.state.inputValues.age);
+    const { age, daysGuess } = this.state.inputValues;
     let rightWrong = this.state.renderValues.rightWrong;
 
     event.preventDefault();
@@ -97,7 +96,7 @@ class App extends Component {
       submitButtonText: 'Refresh article',
       renderValues: {
         data: filteredData[0],
-        income,
+        age,
         daysGuess,
         rightWrong,
       },
@@ -127,26 +126,27 @@ class App extends Component {
 
   render() {
     const renderData = this.state.submitted ? this.state.renderValues.data : this.props.data[0];
+    const averages = this.props.data.filter(d => d.age.toLowerCase() === 'average')[0];
 
     return (
       <div>
         <section className="o-forms">
           <Select
             data={this.props.data}
-            value={this.state.inputValues.income}
-            onChange={this.handleChange}
+            value={this.state.inputValues.age}
+            onChange={this.handleSelectChange}
           />
 
           <InputRange
             value={this.state.inputValues.daysGuess}
             onChange={this.handleDaysChange}
-            disabled={!this.state.incomeSelected}
+            disabled={!this.state.ageSelected}
           />
 
           <Button
             value={this.state.submitButtonText}
             onClick={this.handleSubmit}
-            disabled={!this.state.incomeSelected}
+            disabled={!this.state.ageSelected}
             submitted={this.state.submitted}
           />
         </section>
@@ -156,6 +156,7 @@ class App extends Component {
           guess={this.state.renderValues.daysGuess}
           rightWrong={this.state.renderValues.rightWrong}
           submitted={this.state.submitted}
+          averages={averages}
         />
       </div>
     );
