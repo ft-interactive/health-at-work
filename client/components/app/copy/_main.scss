@@ -26,7 +26,7 @@ section {
       left: -4px;
       width: 4px;
       height: 21px;
-      background-color: #1aecff;
+      background-color: #ff1a66;
       transition: all 600ms;
     }
   }
@@ -89,10 +89,10 @@ section {
       color: rgba(51, 48, 46, 0);
 
       &:before {
-        -webkit-box-shadow: 0 0 6px 3px #1aecff;
-        -moz-box-shadow: 0 0 6px 3px #1aecff;
-        box-shadow: 0 0 6px 3px #1aecff;
-        background-color: rgba(26, 236, 255, 0.8);
+        -webkit-box-shadow: 0 0 6px 3px #ff1a66;
+        -moz-box-shadow: 0 0 6px 3px #ff1a66;
+        box-shadow: 0 0 6px 3px #ff1a66;
+        background-color: rgba(255, 26, 102, 0.8);
       }
     }
 
