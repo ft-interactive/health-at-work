@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Copy(props) {
-  const { data, guess, rightWrong, submitted } = props;
+  const { data, guess, rightWrong, submitted, averages } = props;
+  const selectedDimension = data.age;
   let className = 'copy';
   if (!submitted) className += ' blurred';
 
@@ -10,14 +11,12 @@ function Copy(props) {
     <section className={className}>
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        You guessed {guess} days. {rightWrong || 'You are correct'}: employees earning {data.income} lose <span className="variable">{(submitted && data.absence.days) || guess}</span> days per year because of absenteeism and presenteeism, according to research for the Britain’s Healthiest Workplace survey. The research was developed by VitalityHealth and produced in association with the Financial Times, Rand Europe, the research consultancy, the University of Cambridge and Mercer, the human resources consultants.
+        You guessed {guess} days. {rightWrong || 'You are correct'}: employees aged {selectedDimension} lose <span className="variable">{(submitted && data.absence.days) || guess}</span> days per year because of absenteeism and presenteeism, according to a survey developed by VitalityHealth and produced in association with Rand Europe, the Financial Times, the University of Cambridge and Healthy Workplace, a joint venture between Vitality and Nuffield Health.
         {/* eslint-enable max-len */}
       </p>
 
       <p className="o-typography-body">
-        {/* eslint-disable max-len */}
-        The three most serious issues for employees earning {data.income} are:
-        {/* eslint-enable max-len */}
+        The three most serious problems for employees aged {selectedDimension} are:
       </p>
 
       <ol className="o-typography-list o-typography-list--ordered">
@@ -26,11 +25,19 @@ function Copy(props) {
         <li>{data.mostserious3}</li>
       </ol>
 
+      <h2 className="o-typography-heading-level-2">Work-related stress</h2>
+
+      <p className="o-typography-body">
+        {/* eslint-disable max-len */}
+        <span className="variable">{data.twoplusstressdimensions}</span> per cent of employees aged {selectedDimension} report two or more aspects of workplace stress defined as: lack of choice over the tasks they carry out at work; not receiving respect from colleagues; strained relationships at work; and lack of clarity on duties and responsibilities. This compares to an average of {averages.twoplusstressdimensions} per cent of employees of all ages surveyed in the UK. Workplace stress is often associated with other risk factors, such as <a href="https://www.ft.com/content/d2fcf18c-9cbc-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">mental health</a>.
+        {/* eslint-enable max-len */}
+      </p>
+
       <h2 className="o-typography-heading-level-2">Drinking alcohol</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.alcoholpc}</span> per cent of employees earning {data.income} drink more than 14 units of alcohol per week. This compares to 29.4 per cent of employees in the UK. <span className="variable">{data.bingepc}</span> per cent of employees in this income range also go binge drinking at least once per month. This compares to 50.1 per cent of all employees surveyed in the UK. Heavy drinking is often associated with other risk factors, such as <a href="https://www.ft.com/content/38ba3602-3fa7-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">financial worries</a>.
+        <span className="variable">{data.alcoholpc}</span> per cent of employees aged {selectedDimension} drink more than 14 units of alcohol per week. This compares to an average of {averages.alcoholpc} per cent of all employees surveyed. <span className="variable">{data.bingepc}</span> per cent of employees in this age range also go binge drinking at least once per month. Binge drinking is more common in younger workers. Heavy drinking is often associated with other problems and, if noticed by employers, should be a trigger to provide <a href="https://www.ft.com/content/529a4548-db7e-11e8-9f04-38d397e6661c" target="_blank" rel="noopener noreferrer" className="o-typography-link">help</a>.
         {/* eslint-enable max-len */}
       </p>
 
@@ -38,7 +45,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.physicallyinactivepc}</span> per cent of employees earning {data.income} are physically inactive, meaning that they get less than 150 minutes of physical activity per week; this compares to 35.9 per cent of all employees in the UK. If sedentary employees start to introduce 150 minutes per week of at least moderate exercise, they can reduce productive days lost by 3.2 per year. Some employers are <a href="https://www.ft.com/content/fb5e84ba-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">taking action</a> and helping staff to become more active.
+        <span className="variable">{data.physicallyinactivepc}</span> per cent of employees aged {selectedDimension} are physically inactive, meaning they exercise for less than 150 minutes per week. This compares to an average of {averages.physicallyinactivepc} per cent of all employees surveyed. Staff who are involved in physical activity challenges, such as competing with colleagues in a race, have reported <a href="https://www.ft.com/content/f0f209b2-c7f4-11e8-86e6-19f5b7134d1c" target="_blank" rel="noopener noreferrer" className="o-typography-link">significant improvements</a> to their overall health and happiness.
         {/* eslint-enable max-len */}
       </p>
 
@@ -46,7 +53,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.fruitvegpc}</span> per cent of employees earning {data.income} do not eat at least five portions of fruit and vegetables per day. This compares to 45.5 per cent of all employees in the UK. Britain’s Healthiest Workplace research shows employees with poor diets lose 3.5 productive days per year. Employers are responding <a href="https://www.ft.com/content/f829ff40-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">with incentives</a> to eat more salad and less fried food.
+        <span className="variable">{data.fruitvegpc}</span> per cent of employees aged {selectedDimension} do not eat at least five portions of fruit and vegetables per day. This compares to an average of {averages.fruitvegpc} per cent of all employees surveyed. Britain’s Healthiest Workplace research shows the UK’s youngest employees have the worst diets, something that “<a href="https://www.ft.com/content/529a4548-db7e-11e8-9f04-38d397e6661c" target="_blank" rel="noopener noreferrer" className="o-typography-link">onboarding</a>” executives might want to consider when thinking about how to help young employees settle in.
         {/* eslint-enable max-len */}
       </p>
 
@@ -54,7 +61,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.smokepc}</span> per cent of employees earning {data.income} smoke cigarettes, cigars or pipes. This compares to 10.1 per cent of all employees in the UK. While the UK, in common with many other countries around the globe, has laws that prevent smoking in the workplace, China has <a href="https://www.ft.com/content/0817f89c-3fa5-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">yet to introduce</a> a national ban and around half of all Chinese men are regular smokers.
+        <span className="variable">{data.smokepc}</span> per cent of employees aged {selectedDimension} smoke cigarettes, cigars or pipes. This compares to an average of {averages.spokepc} per cent of all employees surveyed. Workplace interventions can have a powerful effect on smokers, with at least one company reporting a <a href="https://www.ft.com/content/3ede482e-c652-11e8-86e6-19f5b7134d1c" target="_blank" rel="noopener noreferrer" className="o-typography-link">steep drop</a> in the number of staff who smoke after provision of cessation classes.
         {/* eslint-enable max-len */}
       </p>
 
@@ -62,7 +69,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.sleeppc}</span> per cent of employees earning {data.income} sleep less than seven hours per night. This compares to 29.6 per cent of all employees in the UK. Sleep disorders have been shown to have a dramatic effect on work productivity and are a significant cause of accidents in the workplace. Research shows nearly 30 per cent of British workers sleep less than seven hours per night. Some employers are providing places to <a href="https://www.ft.com/content/09067126-3720-11e7-99bd-13beb0903fa3" target="_blank" rel="noopener noreferrer" className="o-typography-link">take a nap</a> at work.
+        <span className="variable">{data.sleeppc}</span> per cent of employees aged {selectedDimension} sleep less than seven hours per day. This compares to an average of {averages.sleeppc} per cent of all employees surveyed. Lack of sleep has been associated with ill health, low productivity and irregular working hours, notably for those on <a href="https://www.ft.com/content/d8d82ebe-9cbc-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">zero hour</a> contracts.
         {/* eslint-enable max-len */}
       </p>
 
@@ -70,7 +77,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.obesepc}</span> per cent of employees earning {data.income} are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to 17.9 per cent of all employees in the UK. Some professions, such as nursing, are particularly badly affected — about 25 per cent of UK nurses have a body mass index of more than 30. One idea is gaining traction: should <a href="https://www.ft.com/content/ab4559ee-371f-11e7-99bd-13beb0903fa3" target="_blank" rel="noopener noreferrer" className="o-typography-link">weight be a factor</a> in career appraisals?
+        <span className="variable">{data.obesepc}</span> per cent of employees aged {selectedDimension} are classed as obese, meaning that they have a body mass index of 30 or higher. This compares to an average of {averages.obesepc} per cent of all employees surveyed. Malaysia has become the <a href="https://www.ft.com/content/e8f25cb4-9cbe-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">fattest country</a> in Asia, sparking a debate over who is to blame and what employers and policymakers can do about it.
         {/* eslint-enable max-len */}
       </p>
 
@@ -78,7 +85,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.twomscondspc}</span> per cent of employees earning {data.income} have two or more musculoskeletal conditions. This compares to 53.1 per cent of all employees in the UK. For many opioid addicts in the US, their plight started with painkillers for conditions such as these. <a href="https://www.ft.com/content/abf2ccf0-371f-11e7-99bd-13beb0903fa3" target="_blank" rel="noopener noreferrer" className="o-typography-link">US employers</a> have to bear their portion of the blame for the opioid addiction epidemic.
+        <span className="variable">{data.twomscondspc}</span> per cent of employees aged {selectedDimension} have two or more musculoskeletal conditions. This compares to an average of {averages.twomscondspc} per cent of all employees surveyed. An estimated <a href="https://www.ft.com/content/04c74a88-9cc1-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">17.8m</a> people in the UK live with some form of arthritis - nearly a third of the total population.
         {/* eslint-enable max-len */}
       </p>
 
@@ -86,7 +93,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.depressionpc}</span> per cent of employees earning {data.income} suffer from depression. This compares to 5.6 per cent of all employees in the UK. Research shows 33 productive days are <a href="https://www.ft.com/content/f585d494-3fa2-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">lost per year</a> by those suffering from moderate to severe depression. Managers <a href="https://www.ft.com/content/358985be-3fa7-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">need to be trained</a> to recognise the symptoms.
+        <span className="variable">{data.depressionpc}</span> per cent of employees aged {selectedDimension} suffer from depression. This compares to an average of {averages.depressionpc}  per cent of all employees surveyed. Britain’s Healthiest Workplace research shows that younger employees are far more likely to suffer from mental health conditions, but although many companies now have good policies in place, <a href="https://www.ft.com/content/d2fcf18c-9cbc-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">more training</a> is needed for line managers.
         {/* eslint-enable max-len */}
       </p>
 
@@ -94,7 +101,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.finconcernspc}</span> per cent of employees earning {data.income} have “a lot of” financial concerns. This compares to 7.3 per cent of all employees in the UK. Nearly <a href="https://www.ft.com/content/38ba3602-3fa7-11e7-82b6-896b95f30f58" target="_blank" rel="noopener noreferrer" className="o-typography-link">half of all</a> employees surveyed for Britain’s Healthiest Workplace indicated they have at least some money worries and are losing six productive days per year — some employers are finding ways to help.
+        <span className="variable">{data.finconcernspc}</span> per cent of employees aged {selectedDimension} have “a lot of” financial concerns. This compares to an average of {averages.finconcernspc} per cent of all employees surveyed. <a href="https://www.ft.com/content/0777dece-9cbb-11e8-88de-49c908b1f264" target="_blank" rel="noopener noreferrer" className="o-typography-link">Money worries</a> accounted for an average of 7.9 productive days lost per employee in the UK last year, according to Britain’s Healthiest Workplace research.
         {/* eslint-enable max-len */}
       </p>
     </section>
@@ -106,6 +113,7 @@ Copy.propTypes = {
   guess: PropTypes.number.isRequired,
   rightWrong: PropTypes.string.isRequired,
   submitted: PropTypes.bool.isRequired,
+  averages: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Copy;
