@@ -9,7 +9,7 @@ class SmallMultipleLine extends PureComponent {
   }
 
   render() {
-    return <g />;
+    return <g transform={this.props.transform} />;
   }
 }
 

@@ -8,7 +8,7 @@ class Chart extends PureComponent {
 
     this.chartData = [];
     this.margin = { top: 20, right: 10, bottom: 20, left: 10 };
-    this.padding = { top: 0, right: 0, bottom: 60, left: 60 };
+    this.padding = { top: 0, right: 60, bottom: 60, left: 0 };
     this.transformData = this.transformData.bind(this);
   }
 
@@ -44,20 +44,49 @@ class Chart extends PureComponent {
   }
 
   render() {
-    const { width, height } = this.props.graphicsDimensions;
+    let stacked;
+    switch (this.props.layout) {
+      case 'XL':
+      case 'L':
+      case 'M':
+        stacked = false;
+        break;
+      case 'S':
+      case 'default':
+      default:
+        stacked = true;
+    }
+    const innerWidth = this.props.graphicsDimensions.width - this.margin.left - this.margin.right;
+    const innerHeight = this.props.graphicsDimensions.height - this.margin.top - this.margin.bottom;
+    const chartsCount = Object.keys(this.chartData).length;
+    const width = stacked ?
+      innerWidth - this.padding.left - this.padding.right :
+      (innerWidth - this.padding.left - this.padding.right) / chartsCount;
+    const height = stacked ?
+      (innerHeight - this.padding.top - this.padding.bottom) / chartsCount :
+      innerHeight - this.padding.top - this.padding.bottom;
 
     return (
       <section className="full-width">
         <svg
           className="chart"
-          width={width}
-          height={height}
+          width={this.props.graphicsDimensions.width}
+          height={this.props.graphicsDimensions.height}
         >
           <g transform={`translate(${this.margin.left}, ${this.margin.top})`}>
-            {Object.keys(this.chartData).map(key => (
+            {Object.keys(this.chartData).map((key, i) => (
               <SmallMultipleLine
                 key={key}
                 data={this.chartData[key]}
+                width={width}
+                height={height}
+                transform={stacked ?
+                  `translate(${this.padding.left}, ${this.padding.top + (i * height)})` :
+                  `translate(${this.padding.left + (i * width)}, ${this.padding.top})`
+                }
+                axisTop={stacked && i === 0}
+                axisRight={stacked || (!stacked && i === chartsCount - 1)}
+                axisBottom={(stacked && i === chartsCount - 1) || !stacked}
               />
             ))}
           </g>
