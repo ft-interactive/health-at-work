@@ -98,12 +98,8 @@ class Chart extends PureComponent {
 
 Chart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
-  graphicsDimensions: PropTypes.objectOf(PropTypes.any),
+  graphicsDimensions: PropTypes.objectOf(PropTypes.any).isRequired,
   layout: PropTypes.string.isRequired,
-};
-
-Chart.defaultProps = {
-  graphicsDimensions: { width: 300, height: 400 },
 };
 
 export default Chart;
