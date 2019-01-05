@@ -154,7 +154,10 @@ class App extends Component {
           />
         </section>
 
-        <ResponsiveChart />
+        <ResponsiveChart
+          data={this.props.data}
+          highlighted={this.state.submitted && renderData.age}
+        />
 
         <Copy
           data={renderData}
