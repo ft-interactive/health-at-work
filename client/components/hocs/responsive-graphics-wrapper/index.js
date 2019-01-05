@@ -39,6 +39,7 @@ const responsiveGraphicsWrapper = (Component) => {
         switch (newLayout) {
           case 'XL':
             this.setState({
+              layout: newLayout,
               graphicsDimensions: { width: 1180, height: 700 },
               gutters: 20,
             });
@@ -46,6 +47,7 @@ const responsiveGraphicsWrapper = (Component) => {
             return;
           case 'L':
             this.setState({
+              layout: newLayout,
               graphicsDimensions: { width: 700, height: 500 },
               gutters: 20,
             });
@@ -53,6 +55,7 @@ const responsiveGraphicsWrapper = (Component) => {
             return;
           case 'M':
             this.setState({
+              layout: newLayout,
               graphicsDimensions: { width: 700, height: 500 },
               gutters: 20,
             });
@@ -62,6 +65,7 @@ const responsiveGraphicsWrapper = (Component) => {
           case 'default':
           default:
             this.setState({
+              layout: newLayout,
               graphicsDimensions: { width: 300, height: 400 },
               gutters: 10,
             });
