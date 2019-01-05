@@ -6,7 +6,7 @@ class Chart extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.chartData = [];
+    this.data = {};
     this.margin = { top: 20, right: 10, bottom: 20, left: 10 };
     this.padding = { top: 0, right: 60, bottom: 60, left: 0 };
     this.transformData = this.transformData.bind(this);
@@ -30,16 +30,16 @@ class Chart extends PureComponent {
     } = this.props.data[0];
     const riskFactors = Object.keys(riskFactorKeys);
 
-    this.chartData = riskFactors.reduce((obj, key) => ({ ...obj, [key]: '' }), {});
+    this.data = riskFactors.reduce((obj, key) => ({ ...obj, [key]: '' }), {});
 
-    Object.keys(this.chartData).forEach((riskFactor) => {
+    Object.keys(this.data).forEach((riskFactor) => {
       const agePercentages = [];
 
       this.props.data.forEach(ageGroup => (
         agePercentages.push({ age: ageGroup.age, percentage: ageGroup[riskFactor] })
       ));
 
-      this.chartData[riskFactor] = agePercentages;
+      this.data[riskFactor] = agePercentages;
     });
   }
 
@@ -58,7 +58,7 @@ class Chart extends PureComponent {
     }
     const innerWidth = this.props.graphicsDimensions.width - this.margin.left - this.margin.right;
     const innerHeight = this.props.graphicsDimensions.height - this.margin.top - this.margin.bottom;
-    const chartsCount = Object.keys(this.chartData).length;
+    const chartsCount = Object.keys(this.data).length;
     const width = stacked ?
       innerWidth - this.padding.left - this.padding.right :
       (innerWidth - this.padding.left - this.padding.right) / chartsCount;
@@ -74,10 +74,10 @@ class Chart extends PureComponent {
           height={this.props.graphicsDimensions.height}
         >
           <g transform={`translate(${this.margin.left}, ${this.margin.top})`}>
-            {Object.keys(this.chartData).map((key, i) => (
+            {Object.keys(this.data).map((key, i) => (
               <SmallMultipleLine
                 key={key}
-                data={this.chartData[key]}
+                data={this.data[key]}
                 width={width}
                 height={height}
                 transform={stacked ?
