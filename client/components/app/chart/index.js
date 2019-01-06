@@ -37,7 +37,7 @@ class Chart extends PureComponent {
       const aAverage = a.chartData.find(d => d.age.toLowerCase() === 'average');
       const bAverage = b.chartData.find(d => d.age.toLowerCase() === 'average');
 
-      return aAverage.percentage < bAverage.percentage;
+      return bAverage.percentage - aAverage.percentage;
     });
 
     this.transformedData = transformedData;
