@@ -16,8 +16,6 @@ class Chart extends PureComponent {
   }
 
   transformData() {
-    console.log('Transforming data…');
-
     const { data } = this.props;
     const {
       rank,
@@ -35,7 +33,9 @@ class Chart extends PureComponent {
       data.forEach(d => chartData.push({ age: d.age, percentage: d[key] }));
 
       return { riskFactor: key, chartData };
-    });
+    }).sort((a, b) => a.chartData[11].percentage < b.chartData[11].percentage);
+
+    console.log(transformedData);
 
     this.transformedData = transformedData;
   }
