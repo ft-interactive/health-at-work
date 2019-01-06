@@ -8,7 +8,7 @@ const responsiveGraphicsWrapper = (Component) => {
 
       this.state = {
         layout: 'S',
-        graphicsDimensions: { width: 300, height: 400 },
+        graphicsDimensions: { width: 300, height: 1180 },
         gutters: 10,
       };
       this.handleLayoutChange = this.handleLayoutChange.bind(this);
@@ -40,7 +40,7 @@ const responsiveGraphicsWrapper = (Component) => {
           case 'XL':
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 1180, height: 700 },
+              graphicsDimensions: { width: 1180, height: 500 },
               gutters: 20,
             });
 
@@ -66,7 +66,7 @@ const responsiveGraphicsWrapper = (Component) => {
           default:
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 300, height: 400 },
+              graphicsDimensions: { width: 300, height: 1180 },
               gutters: 10,
             });
         }
