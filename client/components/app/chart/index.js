@@ -46,18 +46,7 @@ class Chart extends PureComponent {
   render() {
     const { graphicsDimensions, layout } = this.props;
     const { data, margin, padding } = this;
-    let stacked;
-    switch (layout) {
-      case 'XL':
-      case 'L':
-      case 'M':
-        stacked = false;
-        break;
-      case 'S':
-      case 'default':
-      default:
-        stacked = true;
-    }
+    const stacked = !['XL', 'L', 'M'].includes(layout);
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
     const chartsCount = Object.keys(data).length;
