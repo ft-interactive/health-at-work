@@ -6,10 +6,9 @@ class Chart extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.transformedData = {};
+    this.transformedData = [];
     this.margin = { top: 20, right: 10, bottom: 20, left: 10 };
     this.padding = { top: 0, right: 60, bottom: 60, left: 0 };
-    this.transformData = this.transformData.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +18,7 @@ class Chart extends PureComponent {
   transformData() {
     console.log('Transforming data…');
 
+    const { data } = this.props;
     const {
       rank,
       age,
@@ -26,26 +26,23 @@ class Chart extends PureComponent {
       mostserious1,
       mostserious2,
       mostserious3,
-      ...riskFactorKeys
-    } = this.props.data[0];
-    const riskFactors = Object.keys(riskFactorKeys);
+      ...riskFactors
+    } = data[0];
+    const riskFactorKeys = Object.keys(riskFactors);
+    const transformedData = riskFactorKeys.map((key) => {
+      const chartData = [];
 
-    this.transformedData = riskFactors.reduce((obj, key) => ({ ...obj, [key]: '' }), {});
+      data.forEach(d => chartData.push({ age: d.age, percentage: d[key] }));
 
-    Object.keys(this.transformedData).forEach((riskFactor) => {
-      const agePercentages = [];
-
-      this.props.data.forEach(ageGroup => (
-        agePercentages.push({ age: ageGroup.age, percentage: ageGroup[riskFactor] })
-      ));
-
-      this.transformedData[riskFactor] = agePercentages;
+      return { riskFactor: key, chartData };
     });
+
+    this.transformedData = transformedData;
   }
 
   render() {
-    const { graphicsDimensions, layout } = this.props;
     const { transformedData, margin, padding } = this;
+    const { graphicsDimensions, layout } = this.props;
     const stacked = !['XL', 'L', 'M'].includes(layout);
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
@@ -65,10 +62,10 @@ class Chart extends PureComponent {
           height={graphicsDimensions.height}
         >
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            {Object.keys(transformedData).map((key, i) => (
+            {transformedData.map((d, i) => (
               <SmallMultipleLine
-                key={key}
-                data={transformedData[key]}
+                key={d.riskFactor}
+                data={d.chartData}
                 width={width}
                 height={height}
                 layout={layout}
