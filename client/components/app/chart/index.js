@@ -44,8 +44,10 @@ class Chart extends PureComponent {
   }
 
   render() {
+    const { graphicsDimensions, layout } = this.props;
+    const { data, margin, padding } = this;
     let stacked;
-    switch (this.props.layout) {
+    switch (layout) {
       case 'XL':
       case 'L':
       case 'M':
@@ -56,33 +58,34 @@ class Chart extends PureComponent {
       default:
         stacked = true;
     }
-    const innerWidth = this.props.graphicsDimensions.width - this.margin.left - this.margin.right;
-    const innerHeight = this.props.graphicsDimensions.height - this.margin.top - this.margin.bottom;
-    const chartsCount = Object.keys(this.data).length;
+    const innerWidth = graphicsDimensions.width - margin.left - margin.right;
+    const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
+    const chartsCount = Object.keys(data).length;
     const width = stacked ?
-      innerWidth - this.padding.left - this.padding.right :
-      (innerWidth - this.padding.left - this.padding.right) / chartsCount;
+      innerWidth - padding.left - padding.right :
+      (innerWidth - padding.left - padding.right) / chartsCount;
     const height = stacked ?
-      (innerHeight - this.padding.top - this.padding.bottom) / chartsCount :
-      innerHeight - this.padding.top - this.padding.bottom;
+      (innerHeight - padding.top - padding.bottom) / chartsCount :
+      innerHeight - padding.top - padding.bottom;
 
     return (
       <section className="full-width">
         <svg
           className="chart"
-          width={this.props.graphicsDimensions.width}
-          height={this.props.graphicsDimensions.height}
+          width={graphicsDimensions.width}
+          height={graphicsDimensions.height}
         >
-          <g transform={`translate(${this.margin.left}, ${this.margin.top})`}>
-            {Object.keys(this.data).map((key, i) => (
+          <g transform={`translate(${margin.left}, ${margin.top})`}>
+            {Object.keys(data).map((key, i) => (
               <SmallMultipleLine
                 key={key}
-                data={this.data[key]}
+                data={data[key]}
                 width={width}
                 height={height}
+                layout={layout}
                 transform={stacked ?
-                  `translate(${this.padding.left}, ${this.padding.top + (i * height)})` :
-                  `translate(${this.padding.left + (i * width)}, ${this.padding.top})`
+                  `translate(${padding.left}, ${padding.top + (i * height)})` :
+                  `translate(${padding.left + (i * width)}, ${padding.top})`
                 }
                 axisTop={stacked && i === 0}
                 axisRight={stacked || (!stacked && i === chartsCount - 1)}
