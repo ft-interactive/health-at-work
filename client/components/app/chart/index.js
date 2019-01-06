@@ -6,7 +6,7 @@ class Chart extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.data = {};
+    this.transformedData = {};
     this.margin = { top: 20, right: 10, bottom: 20, left: 10 };
     this.padding = { top: 0, right: 60, bottom: 60, left: 0 };
     this.transformData = this.transformData.bind(this);
@@ -30,26 +30,26 @@ class Chart extends PureComponent {
     } = this.props.data[0];
     const riskFactors = Object.keys(riskFactorKeys);
 
-    this.data = riskFactors.reduce((obj, key) => ({ ...obj, [key]: '' }), {});
+    this.transformedData = riskFactors.reduce((obj, key) => ({ ...obj, [key]: '' }), {});
 
-    Object.keys(this.data).forEach((riskFactor) => {
+    Object.keys(this.transformedData).forEach((riskFactor) => {
       const agePercentages = [];
 
       this.props.data.forEach(ageGroup => (
         agePercentages.push({ age: ageGroup.age, percentage: ageGroup[riskFactor] })
       ));
 
-      this.data[riskFactor] = agePercentages;
+      this.transformedData[riskFactor] = agePercentages;
     });
   }
 
   render() {
     const { graphicsDimensions, layout } = this.props;
-    const { data, margin, padding } = this;
+    const { transformedData, margin, padding } = this;
     const stacked = !['XL', 'L', 'M'].includes(layout);
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
-    const chartsCount = Object.keys(data).length;
+    const chartsCount = Object.keys(transformedData).length;
     const width = stacked ?
       innerWidth - padding.left - padding.right :
       (innerWidth - padding.left - padding.right) / chartsCount;
@@ -65,10 +65,10 @@ class Chart extends PureComponent {
           height={graphicsDimensions.height}
         >
           <g transform={`translate(${margin.left}, ${margin.top})`}>
-            {Object.keys(data).map((key, i) => (
+            {Object.keys(transformedData).map((key, i) => (
               <SmallMultipleLine
                 key={key}
-                data={data[key]}
+                data={transformedData[key]}
                 width={width}
                 height={height}
                 layout={layout}
