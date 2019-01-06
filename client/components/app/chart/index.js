@@ -33,9 +33,12 @@ class Chart extends PureComponent {
       data.forEach(d => chartData.push({ age: d.age, percentage: d[key] }));
 
       return { riskFactor: key, chartData };
-    }).sort((a, b) => a.chartData[11].percentage < b.chartData[11].percentage);
+    }).sort((a, b) => {
+      const aAverage = a.chartData.find(d => d.age.toLowerCase() === 'average');
+      const bAverage = b.chartData.find(d => d.age.toLowerCase() === 'average');
 
-    console.log(transformedData);
+      return aAverage.percentage < bAverage.percentage;
+    });
 
     this.transformedData = transformedData;
   }
