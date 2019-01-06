@@ -1,63 +1,89 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { scaleBand, scaleLinear } from 'd3-scale';
+import { scalePoint, scaleLinear } from 'd3-scale';
+import { line } from 'd3-shape';
 import { axisTop, axisRight, axisBottom } from 'd3-axis';
 import { select } from 'd3-selection';
 
-const d3 = Object.assign({}, { scaleBand, scaleLinear, axisTop, axisRight, axisBottom, select });
+const d3 = Object.assign({}, {
+  scalePoint,
+  scaleLinear,
+  line,
+  axisTop,
+  axisRight,
+  axisBottom,
+  select,
+});
 
 class SmallMultipleLine extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.data = props.data;
-    this.renderSmallMultiple = this.renderSmallMultiple.bind(this);
+    this.x = d3.scalePoint();
+    this.y = d3.scaleLinear();
+    this.xAxis = d3.axisBottom(this.x)
+      .tickFormat('');
+    this.yAxis = d3.axisRight(this.y);
+    this.lineGenerator = d3.line();
+    this.renderAxes = this.renderAxes.bind(this);
   }
 
   componentDidMount() {
-    this.renderSmallMultiple();
+    this.renderAxes();
   }
 
   componentDidUpdate() {
-    this.renderSmallMultiple();
+    this.renderAxes();
   }
 
-  renderSmallMultiple() {
-    const { data, width, height, layout } = this.props;
-    const smallMultiplesGutter = ['XL, L, M'].includes(layout) ? 20 : 10;
-    const x = d3.scaleBand()
-      .domain(data.map(d => d.age))
-      .range([0, width - smallMultiplesGutter]);
-    const y = d3.scaleLinear()
-      .domain([0, 80])
-      .range([height, 0]);
-    const xAxis = d3.axisBottom(x);
-    const yAxis = d3.axisRight(y);
+  renderAxes() {
+    const { xAxis, yAxis } = this;
 
-    d3.select(this.xAxis)
+    d3.select(this.gXAxis)
       .call(xAxis);
 
-    d3.select(this.yAxis)
+    d3.select(this.gYAxis)
       .call(yAxis);
   }
 
   render() {
-    const { width, height, transform } = this.props;
-    const xAxis = (this.props.axisTop || this.props.axisBottom) &&
-      <g
-        ref={(g) => { this.xAxis = g; }}
-        transform={`translate(0, ${this.props.axisBottom ? height : 0})`}
-      />;
-    const yAxis = this.props.axisRight &&
-      <g
-        ref={(g) => { this.yAxis = g; }}
-        transform={`translate(${width}, 0)`}
-      />;
+    const { x, y, lineGenerator } = this;
+    const { data, width, height, layout, transform } = this.props;
+    const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
+    const smallMultiplesGutter = layout === 'XL' ? 10 : 5;
+
+    x.domain(filteredData.map(d => d.age))
+      .rangeRound([0, width - smallMultiplesGutter])
+      .padding(0);
+
+    y.domain([0, 80])
+      .range([height, 0]);
+
+    lineGenerator.x(d => x(d.age))
+      .y(d => y(d.percentage));
 
     return (
       <g transform={transform}>
-        {xAxis}
-        {yAxis}
+        {(this.props.axisTop || this.props.axisBottom) &&
+          <g
+            ref={(g) => { this.gXAxis = g; }}
+            transform={`translate(0, ${this.props.axisBottom ? height : 0})`}
+            className="x axis"
+          />
+        }
+
+        {this.props.axisRight &&
+          <g
+            ref={(g) => { this.gYAxis = g; }}
+            transform={`translate(${width}, 0)`}
+            className="y axis"
+          />
+        }
+
+        <path
+          d={lineGenerator(data)}
+          className="line"
+        />
       </g>
     );
   }
