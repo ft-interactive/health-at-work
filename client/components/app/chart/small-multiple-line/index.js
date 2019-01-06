@@ -50,14 +50,14 @@ class SmallMultipleLine extends PureComponent {
     const { x, y, lineGenerator } = this;
     const { data, width, height, layout, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
-    const smallMultiplesGutter = layout === 'XL' ? 10 : 5;
+    const smallMultiplesGutter = ['L', 'M'].includes(layout) ? 5 : 10;
 
     x.domain(filteredData.map(d => d.age))
       .rangeRound([0, width - smallMultiplesGutter])
       .padding(0);
 
     y.domain([0, 80])
-      .range([height, 0]);
+      .range([height - smallMultiplesGutter, 0]);
 
     lineGenerator.x(d => x(d.age))
       .y(d => y(d.percentage));
@@ -67,7 +67,7 @@ class SmallMultipleLine extends PureComponent {
         {(this.props.axisTop || this.props.axisBottom) &&
           <g
             ref={(g) => { this.gXAxis = g; }}
-            transform={`translate(0, ${this.props.axisBottom ? height : 0})`}
+            transform={`translate(0, ${this.props.axisBottom ? height - smallMultiplesGutter : 0})`}
             className="x axis"
           />
         }
@@ -75,7 +75,7 @@ class SmallMultipleLine extends PureComponent {
         {this.props.axisRight &&
           <g
             ref={(g) => { this.gYAxis = g; }}
-            transform={`translate(${width}, 0)`}
+            transform={`translate(${width - smallMultiplesGutter}, 0)`}
             className="y axis"
           />
         }
