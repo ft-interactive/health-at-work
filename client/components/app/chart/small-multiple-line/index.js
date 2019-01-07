@@ -148,6 +148,7 @@ SmallMultipleLine.propTypes = {
   axisTop: PropTypes.bool.isRequired,
   axisRight: PropTypes.bool.isRequired,
   axisBottom: PropTypes.bool.isRequired,
+  riskFactor: PropTypes.string.isRequired,
 };
 
 export default SmallMultipleLine;

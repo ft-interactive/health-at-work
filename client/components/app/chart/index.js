@@ -45,7 +45,7 @@ class Chart extends PureComponent {
 
   render() {
     const { transformedData, margin, padding } = this;
-    const { graphicsDimensions, highlighted, layout } = this.props;
+    const { highlighted, layout, graphicsDimensions } = this.props;
     const stacked = !['XL', 'L', 'M'].includes(layout);
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
@@ -80,6 +80,7 @@ class Chart extends PureComponent {
                 axisTop={stacked && i === 0}
                 axisRight={stacked || (!stacked && i === chartsCount - 1)}
                 axisBottom={(stacked && i === chartsCount - 1) || !stacked}
+                riskFactor={d.riskFactor}
               />
             ))}
           </g>
