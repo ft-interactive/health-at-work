@@ -120,6 +120,17 @@ class SmallMultipleLine extends PureComponent {
           d={lineGenerator(filteredData)}
           className="line"
         />
+
+        <g className="points">
+          {filteredData.map(d => (
+            <circle
+              key={d.age}
+              cx={x(d.age)}
+              cy={y(d.percentage)}
+              r={4}
+            />
+          ))}
+        </g>
       </g>
     );
   }
