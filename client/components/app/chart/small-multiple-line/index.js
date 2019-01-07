@@ -89,14 +89,15 @@ class SmallMultipleLine extends PureComponent {
       .y(d => y(d.percentage));
 
     return (
-      <g transform={transform}>
-        {(this.props.axisTop || this.props.axisBottom) &&
-          <g
-            ref={(g) => { this.gXAxis = g; }}
-            transform={`translate(0, ${this.props.axisBottom ? height - smallMultiplesGutter : 0})`}
-            className="x axis"
-          />
-        }
+      <g
+        transform={transform}
+        className="small-multiple-line"
+      >
+        <rect
+          width={width - smallMultiplesGutter}
+          height={height - smallMultiplesGutter}
+          className="background"
+        />
 
         <g
           ref={(g) => { this.gXGrid = g; }}
@@ -107,6 +108,14 @@ class SmallMultipleLine extends PureComponent {
           ref={(g) => { this.gYGrid = g; }}
           className="y grid"
         />
+
+        {(this.props.axisTop || this.props.axisBottom) &&
+          <g
+            ref={(g) => { this.gXAxis = g; }}
+            transform={`translate(0, ${this.props.axisBottom ? height - smallMultiplesGutter : 0})`}
+            className="x axis"
+          />
+        }
 
         {this.props.axisRight &&
           <g

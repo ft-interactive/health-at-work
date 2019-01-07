@@ -1,14 +1,71 @@
-.line {
-  path {
-    stroke: black;
-    fill: none;
-  }
-}
+$font-size-default: 14px;
+$font-size-m: 16px;
+$font-size-xl: 18px;
+$axis-stroke-width: 1px;
+$axis-stroke-color: #cec6b9;
+$grid-stroke-width: 1px;
+$grid-stroke-color: oColorsGetPaletteColor('black-10');
 
-.points {
-  circle {
-    &.highlighted {
-      fill: oColorsGetPaletteColor('claret-100');
+.small-multiple-line {
+  .background {
+    fill: oColorsMix(white, paper, 40);
+  }
+
+  .axis {
+    path {
+      stroke-width: $axis-stroke-width;
+      stroke: $axis-stroke-color;
+    }
+
+    .tick {
+      line {
+        stroke-width: $axis-stroke-width;
+        stroke: $axis-stroke-color;
+      }
+
+      text {
+        font-family: MetricWeb, sans-serif;
+        font-size: $font-size-default;
+        font-feature-settings: 'tnum';
+        fill: oColorsGetPaletteColor('black-60');
+
+        @include oGridRespondTo(M) {
+          font-size: $font-size-m;
+        }
+
+        @include oGridRespondTo(XL) {
+          font-size: $font-size-xl;
+        }
+      }
+    }
+  }
+
+  .grid {
+    path {
+      stroke-width: $grid-stroke-width;
+      stroke: $grid-stroke-color;
+    }
+
+    .tick {
+      line {
+        stroke-width: $grid-stroke-width;
+        stroke: $grid-stroke-color;
+      }
+    }
+  }
+
+  .line {
+    path {
+      stroke: black;
+      fill: none;
+    }
+  }
+
+  .points {
+    circle {
+      &.highlighted {
+        fill: oColorsGetPaletteColor('claret-100');
+      }
     }
   }
 }
