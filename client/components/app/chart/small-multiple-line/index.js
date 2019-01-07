@@ -20,7 +20,8 @@ class SmallMultipleLine extends PureComponent {
     super(props);
 
     this.x = d3.scalePoint();
-    this.y = d3.scaleLinear();
+    this.y = d3.scaleLinear()
+      .domain([0, 80]);
     this.xAxis = d3.axisBottom(this.x)
       .tickFormat('')
       .tickSizeOuter(0);
@@ -57,8 +58,7 @@ class SmallMultipleLine extends PureComponent {
       .rangeRound([0, width - smallMultiplesGutter])
       .padding(0);
 
-    y.domain([0, 80])
-      .range([height - smallMultiplesGutter, 0]);
+    y.range([height - smallMultiplesGutter, 0]);
 
     lineGenerator.x(d => x(d.age))
       .y(d => y(d.percentage));
