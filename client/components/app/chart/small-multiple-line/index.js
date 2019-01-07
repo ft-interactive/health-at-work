@@ -116,10 +116,11 @@ class SmallMultipleLine extends PureComponent {
           />
         }
 
-        <path
-          d={lineGenerator(filteredData)}
-          className="line"
-        />
+        <g className="line">
+          <path
+            d={lineGenerator(filteredData)}
+          />
+        </g>
 
         <g className="points">
           {filteredData.map(d => (
