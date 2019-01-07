@@ -25,7 +25,8 @@ class SmallMultipleLine extends PureComponent {
     this.xAxis = d3.axisBottom(this.x)
       .tickFormat('')
       .tickSizeOuter(0);
-    this.yAxis = d3.axisRight(this.y);
+    this.yAxis = d3.axisRight(this.y)
+      .ticks(5);
     this.lineGenerator = d3.line();
     this.renderAxes = this.renderAxes.bind(this);
   }
@@ -52,7 +53,7 @@ class SmallMultipleLine extends PureComponent {
     const { x, y, lineGenerator } = this;
     const { data, width, height, layout, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
-    const smallMultiplesGutter = ['L', 'M'].includes(layout) ? 10 : 20;
+    const smallMultiplesGutter = ['L', 'M'].includes(layout) ? 6 : 12;
 
     x.domain(filteredData.map(d => d.age))
       .rangeRound([0, width - smallMultiplesGutter])
