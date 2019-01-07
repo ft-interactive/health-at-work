@@ -123,13 +123,23 @@ class SmallMultipleLine extends PureComponent {
         </g>
 
         <g className="points">
-          {filteredData.map(d => (
+          {filteredData.filter(d => d.age !== highlighted).map(d => (
             <circle
               key={d.age}
               cx={x(d.age)}
               cy={y(d.percentage)}
               r={4}
-              className={d.age === highlighted ? 'highlighted' : ''}
+            />
+          ))}
+
+          {/*  Render highlighted circle separately to position it over other circles */}
+          {filteredData.filter(d => d.age === highlighted).map(d => (
+            <circle
+              key={d.age}
+              cx={x(d.age)}
+              cy={y(d.percentage)}
+              r={4}
+              className={'highlighted'}
             />
           ))}
         </g>
