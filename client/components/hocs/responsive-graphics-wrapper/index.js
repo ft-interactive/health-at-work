@@ -8,7 +8,7 @@ const responsiveGraphicsWrapper = (Component) => {
 
       this.state = {
         layout: 'S',
-        graphicsDimensions: { width: 300, height: 1180 },
+        graphicsDimensions: { width: 300, height: 3320 },
         gutters: 10,
       };
       this.handleLayoutChange = this.handleLayoutChange.bind(this);
@@ -66,7 +66,7 @@ const responsiveGraphicsWrapper = (Component) => {
           default:
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 300, height: 1180 },
+              graphicsDimensions: { width: 300, height: 3320 },
               gutters: 10,
             });
         }
