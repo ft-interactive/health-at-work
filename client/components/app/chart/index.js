@@ -100,7 +100,10 @@ class Chart extends PureComponent {
 
 Chart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
-  highlighted: PropTypes.bool.isRequired,
+  highlighted: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]).isRequired,
   layout: PropTypes.string.isRequired,
   graphicsDimensions: PropTypes.objectOf(PropTypes.any).isRequired,
 };

@@ -152,7 +152,10 @@ SmallMultipleLine.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  highlighted: PropTypes.bool.isRequired,
+  highlighted: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+  ]).isRequired,
   layout: PropTypes.string.isRequired,
   transform: PropTypes.string.isRequired,
   axisTop: PropTypes.bool.isRequired,
