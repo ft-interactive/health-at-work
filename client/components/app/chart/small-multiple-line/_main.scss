@@ -1,25 +1,27 @@
+$background-color: oColorsMix(white, paper, 40);
+$axis-stroke-color: #cec6b9;
+$grid-stroke-color: oColorsGetPaletteColor('black-10');
+$highlight-color: #eb5e8d;
+$other-color: #c2b7af;
 $font-size-default: 14px;
 $font-size-m: 16px;
 $font-size-xl: 18px;
-$axis-stroke-width: 1px;
-$axis-stroke-color: #cec6b9;
-$grid-stroke-width: 1px;
-$grid-stroke-color: oColorsGetPaletteColor('black-10');
+$line-weight-default: 3px;
+$line-weight-m: 2px;
+$line-weight-l: 2.6px;
 
 .small-multiple-line {
   .background {
-    fill: oColorsMix(white, paper, 40);
+    fill: $background-color;
   }
 
   .axis {
     path {
-      stroke-width: $axis-stroke-width;
       stroke: $axis-stroke-color;
     }
 
     .tick {
       line {
-        stroke-width: $axis-stroke-width;
         stroke: $axis-stroke-color;
       }
 
@@ -42,13 +44,11 @@ $grid-stroke-color: oColorsGetPaletteColor('black-10');
 
   .grid {
     path {
-      stroke-width: $grid-stroke-width;
       stroke: $grid-stroke-color;
     }
 
     .tick {
       line {
-        stroke-width: $grid-stroke-width;
         stroke: $grid-stroke-color;
       }
     }
@@ -56,15 +56,30 @@ $grid-stroke-color: oColorsGetPaletteColor('black-10');
 
   .line {
     path {
-      stroke: black;
       fill: none;
+      stroke-width: $line-weight-default;
+      stroke: $other-color;
+
+      @include oGridRespondTo(M) {
+        stroke-width: $line-weight-m;
+      }
+
+      @include oGridRespondTo(L) {
+        stroke-width: $line-weight-l;
+      }
+
+      @include oGridRespondTo(XL) {
+        stroke-width: $line-weight-default;
+      }
     }
   }
 
   .points {
     circle {
+      fill: $other-color;
+
       &.highlighted {
-        fill: oColorsGetPaletteColor('claret-100');
+        fill: $highlight-color;
       }
     }
   }

@@ -52,7 +52,20 @@ class SmallMultipleLine extends PureComponent {
   renderAxes() {
     const { xAxisTop, xAxisBottom, yAxis, xGrid, yGrid } = this;
     const { width, height, layout } = this.props;
-    const smallMultiplesGutter = ['XL', 'S', 'default'].includes(layout) ? 12 : 6;
+    const smallMultiplesGutter = ((l) => {
+      switch (l) {
+        case 'XL':
+          return 12;
+        case 'L':
+          return 6;
+        case 'M':
+          return 3;
+        case 'S':
+        case 'default':
+        default:
+          return 20;
+      }
+    })(layout);
 
     yAxis.tickFormat(this.props.axisRight ? d3.format(',.1s') : '');
     xGrid.tickSizeOuter(height - smallMultiplesGutter);
@@ -77,7 +90,34 @@ class SmallMultipleLine extends PureComponent {
     const { x, y, lineGenerator } = this;
     const { data, width, height, highlighted, layout, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
-    const smallMultiplesGutter = ['L', 'M'].includes(layout) ? 6 : 12;
+    const smallMultiplesGutter = ((l) => {
+      switch (l) {
+        case 'XL':
+          return 12;
+        case 'L':
+          return 6;
+        case 'M':
+          return 3;
+        case 'S':
+        case 'default':
+        default:
+          return 20;
+      }
+    })(layout);
+    const circleRadius = ((l) => {
+      switch (l) {
+        case 'XL':
+          return 4.2;
+        case 'L':
+          return 3.4;
+        case 'M':
+          return 2.6;
+        case 'S':
+        case 'default':
+        default:
+          return 4.2;
+      }
+    })(layout);
 
     x.domain(filteredData.map(d => d.age))
       .rangeRound([0, width - smallMultiplesGutter])
@@ -137,7 +177,7 @@ class SmallMultipleLine extends PureComponent {
               key={d.age}
               cx={x(d.age)}
               cy={y(d.percentage)}
-              r={4}
+              r={circleRadius}
             />
           ))}
 
@@ -147,7 +187,7 @@ class SmallMultipleLine extends PureComponent {
               key={d.age}
               cx={x(d.age)}
               cy={y(d.percentage)}
-              r={4}
+              r={circleRadius}
               className={'highlighted'}
             />
           ))}

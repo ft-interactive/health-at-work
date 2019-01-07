@@ -8,7 +8,7 @@ const responsiveGraphicsWrapper = (Component) => {
 
       this.state = {
         layout: 'S',
-        graphicsDimensions: { width: 300, height: 3320 },
+        graphicsDimensions: { width: 300, height: 2220 },
         gutters: 10,
       };
       this.handleLayoutChange = this.handleLayoutChange.bind(this);
@@ -48,7 +48,7 @@ const responsiveGraphicsWrapper = (Component) => {
           case 'L':
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 700, height: 500 },
+              graphicsDimensions: { width: 940, height: 400 },
               gutters: 20,
             });
 
@@ -56,7 +56,7 @@ const responsiveGraphicsWrapper = (Component) => {
           case 'M':
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 700, height: 500 },
+              graphicsDimensions: { width: 700, height: 300 },
               gutters: 20,
             });
 
@@ -66,7 +66,7 @@ const responsiveGraphicsWrapper = (Component) => {
           default:
             this.setState({
               layout: newLayout,
-              graphicsDimensions: { width: 300, height: 3320 },
+              graphicsDimensions: { width: 300, height: 2220 },
               gutters: 10,
             });
         }
