@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import ChartHead from './chart-head';
 import SmallMultipleLine from './small-multiple-line';
 
 class Chart extends PureComponent {
@@ -59,6 +60,13 @@ class Chart extends PureComponent {
 
     return (
       <section className="full-width">
+        <ChartHead
+          title="How health risk factors change with age"
+          subHead="Risk factor prevalence by age group (%)"
+          layout={layout}
+          width={graphicsDimensions.width}
+        />
+
         <svg
           className="chart"
           width={graphicsDimensions.width}
