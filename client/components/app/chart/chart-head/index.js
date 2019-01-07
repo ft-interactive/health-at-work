@@ -2,20 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ChartHead(props) {
-  const size = ((layout) => {
-    switch (layout) {
-      case 'XL':
-        return 'l';
-      case 'L':
-      case 'M':
-        return 'm';
-      case 'S':
-      case ' default':
-      default:
-        return '';
-    }
-  })(props.layout);
-
   return (
     <div
       className="chart-head"
@@ -23,7 +9,7 @@ function ChartHead(props) {
     >
       <div className="stab-rule" />
 
-      <h2 className={`o-typography-heading-level-2 ${size}`}>
+      <h2 className="o-typography-heading-level-2">
         {props.title}
       </h2>
 
@@ -35,7 +21,6 @@ function ChartHead(props) {
 ChartHead.propTypes = {
   title: PropTypes.string.isRequired,
   subHead: PropTypes.string.isRequired,
-  layout: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
 };
 
