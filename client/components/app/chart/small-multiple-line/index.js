@@ -82,7 +82,7 @@ class SmallMultipleLine extends PureComponent {
         }
 
         <path
-          d={lineGenerator(data)}
+          d={lineGenerator(filteredData)}
           className="line"
         />
       </g>
