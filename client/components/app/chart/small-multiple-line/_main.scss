@@ -4,3 +4,11 @@
     fill: none;
   }
 }
+
+.points {
+  circle {
+    &.highlighted {
+      fill: oColorsGetPaletteColor('claret-100');
+    }
+  }
+}

@@ -45,7 +45,7 @@ class Chart extends PureComponent {
 
   render() {
     const { transformedData, margin, padding } = this;
-    const { graphicsDimensions, layout } = this.props;
+    const { graphicsDimensions, highlighted, layout } = this.props;
     const stacked = !['XL', 'L', 'M'].includes(layout);
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
@@ -71,6 +71,7 @@ class Chart extends PureComponent {
                 data={d.chartData}
                 width={width}
                 height={height}
+                highlighted={highlighted}
                 layout={layout}
                 transform={stacked ?
                   `translate(${padding.left}, ${padding.top + (i * height)})` :
@@ -90,8 +91,9 @@ class Chart extends PureComponent {
 
 Chart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
-  graphicsDimensions: PropTypes.objectOf(PropTypes.any).isRequired,
+  highlighted: PropTypes.bool.isRequired,
   layout: PropTypes.string.isRequired,
+  graphicsDimensions: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Chart;

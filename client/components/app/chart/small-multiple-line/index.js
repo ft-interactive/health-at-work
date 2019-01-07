@@ -75,7 +75,7 @@ class SmallMultipleLine extends PureComponent {
 
   render() {
     const { x, y, lineGenerator } = this;
-    const { data, width, height, layout, transform } = this.props;
+    const { data, width, height, highlighted, layout, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
     const smallMultiplesGutter = ['L', 'M'].includes(layout) ? 6 : 12;
 
@@ -129,6 +129,7 @@ class SmallMultipleLine extends PureComponent {
               cx={x(d.age)}
               cy={y(d.percentage)}
               r={4}
+              className={d.age === highlighted ? 'highlighted' : ''}
             />
           ))}
         </g>
@@ -141,6 +142,7 @@ SmallMultipleLine.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  highlighted: PropTypes.bool.isRequired,
   layout: PropTypes.string.isRequired,
   transform: PropTypes.string.isRequired,
   axisTop: PropTypes.bool.isRequired,
