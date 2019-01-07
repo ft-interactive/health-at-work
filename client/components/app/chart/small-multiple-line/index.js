@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { scalePoint, scaleLinear } from 'd3-scale';
 import { line } from 'd3-shape';
 import { axisTop, axisRight, axisBottom } from 'd3-axis';
+import { format } from 'd3-format';
 import { select } from 'd3-selection';
 
 const d3 = Object.assign({}, {
@@ -12,6 +13,7 @@ const d3 = Object.assign({}, {
   axisTop,
   axisRight,
   axisBottom,
+  format,
   select,
 });
 
@@ -22,11 +24,19 @@ class SmallMultipleLine extends PureComponent {
     this.x = d3.scalePoint();
     this.y = d3.scaleLinear()
       .domain([0, 80]);
-    this.xAxis = d3.axisBottom(this.x)
+    this.xAxisTop = d3.axisTop(this.x)
+      .tickFormat('')
+      .tickSizeOuter(0);
+    this.xAxisBottom = d3.axisBottom(this.x)
       .tickFormat('')
       .tickSizeOuter(0);
     this.yAxis = d3.axisRight(this.y)
       .ticks(5);
+    this.xGrid = d3.axisBottom(this.x)
+      .tickValues([]);
+    this.yGrid = d3.axisRight(this.y)
+      .ticks(5)
+      .tickFormat('');
     this.lineGenerator = d3.line();
     this.renderAxes = this.renderAxes.bind(this);
   }
@@ -40,13 +50,27 @@ class SmallMultipleLine extends PureComponent {
   }
 
   renderAxes() {
-    const { xAxis, yAxis } = this;
+    const { xAxisTop, xAxisBottom, yAxis, xGrid, yGrid } = this;
+    const { width, height, layout } = this.props;
+    const smallMultiplesGutter = ['XL', 'S', 'default'].includes(layout) ? 12 : 6;
+
+    yAxis.tickFormat(this.props.axisRight ? d3.format(',.1s') : '');
+    xGrid.tickSizeOuter(height - smallMultiplesGutter);
+    yGrid.tickSize(width - smallMultiplesGutter);
 
     d3.select(this.gXAxis)
-      .call(xAxis);
+      .call(this.props.axisTop ? xAxisTop : xAxisBottom);
 
     d3.select(this.gYAxis)
       .call(yAxis);
+
+    d3.select(this.gXGrid)
+      .call(xGrid);
+
+    d3.select(this.gYGrid)
+        .call(yGrid)
+      .select('.domain')
+        .remove();
   }
 
   render() {
@@ -73,6 +97,16 @@ class SmallMultipleLine extends PureComponent {
             className="x axis"
           />
         }
+
+        <g
+          ref={(g) => { this.gXGrid = g; }}
+          className="x grid"
+        />
+
+        <g
+          ref={(g) => { this.gYGrid = g; }}
+          className="y grid"
+        />
 
         {this.props.axisRight &&
           <g
