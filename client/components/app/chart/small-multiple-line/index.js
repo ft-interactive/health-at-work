@@ -149,10 +149,17 @@ class SmallMultipleLine extends PureComponent {
           className="y grid"
         />
 
-        {(this.props.axisTop || this.props.axisBottom) &&
+        {this.props.axisBottom &&
           <g
             ref={(g) => { this.gXAxis = g; }}
-            transform={`translate(0, ${this.props.axisBottom ? height - smallMultiplesGutter : 0})`}
+            transform={`translate(0, ${height - smallMultiplesGutter})`}
+            className="x axis"
+          />
+        }
+
+        {this.props.axisTop &&
+          <g
+            ref={(g) => { this.gXAxis = g; }}
             className="x axis"
           />
         }
