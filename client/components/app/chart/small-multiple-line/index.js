@@ -21,7 +21,8 @@ class SmallMultipleLine extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.x = d3.scalePoint();
+    this.x = d3.scalePoint()
+      .padding(0);
     this.y = d3.scaleLinear()
       .domain([0, 80]);
     this.xAxisTop = d3.axisTop(this.x)
@@ -120,8 +121,7 @@ class SmallMultipleLine extends PureComponent {
     })(layout);
 
     x.domain(filteredData.map(d => d.age))
-      .rangeRound([0, width - smallMultiplesGutter])
-      .padding(0);
+      .rangeRound([0, width - smallMultiplesGutter]);
 
     y.range([height - smallMultiplesGutter, 0]);
 
