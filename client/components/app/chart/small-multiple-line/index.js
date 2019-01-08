@@ -107,15 +107,15 @@ class SmallMultipleLine extends PureComponent {
     const circleRadius = ((l) => {
       switch (l) {
         case 'XL':
-          return 4.2;
+          return 4.4;
         case 'L':
-          return 3.4;
+          return 3.6;
         case 'M':
           return 2.6;
         case 'S':
         case 'default':
         default:
-          return 4.2;
+          return 4.4;
       }
     })(layout);
 
