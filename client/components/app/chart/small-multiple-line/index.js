@@ -21,8 +21,7 @@ class SmallMultipleLine extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.x = d3.scalePoint()
-      .padding(0);
+    this.x = d3.scalePoint();
     this.y = d3.scaleLinear()
       .domain([0, 80]);
     this.xAxisTop = d3.axisTop(this.x)
@@ -39,6 +38,8 @@ class SmallMultipleLine extends PureComponent {
       .ticks(5)
       .tickFormat('');
     this.lineGenerator = d3.line();
+    this.currentGutter = this.currentGutter.bind(this);
+    this.currentCircleRadius = this.currentCircleRadius.bind(this);
     this.renderAxes = this.renderAxes.bind(this);
   }
 
@@ -50,27 +51,44 @@ class SmallMultipleLine extends PureComponent {
     this.renderAxes();
   }
 
+  currentGutter() {
+    switch (this.props.layout) {
+      case 'XL':
+        return 12;
+      case 'L':
+        return 6;
+      case 'M':
+        return 3;
+      case 'S':
+      case 'default':
+      default:
+        return 20;
+    }
+  }
+
+  currentCircleRadius() {
+    switch (this.props.layout) {
+      case 'XL':
+        return 4.5;
+      case 'L':
+        return 4;
+      case 'M':
+        return 3.5;
+      case 'S':
+      case 'default':
+      default:
+        return 4.5;
+    }
+  }
+
   renderAxes() {
-    const { xAxisTop, xAxisBottom, yAxis, xGrid, yGrid } = this;
-    const { width, height, layout } = this.props;
-    const smallMultiplesGutter = ((l) => {
-      switch (l) {
-        case 'XL':
-          return 12;
-        case 'L':
-          return 6;
-        case 'M':
-          return 3;
-        case 'S':
-        case 'default':
-        default:
-          return 18;
-      }
-    })(layout);
+    const { xAxisTop, xAxisBottom, yAxis, xGrid, yGrid, currentGutter } = this;
+    const { width, height } = this.props;
+    const gutter = currentGutter();
 
     yAxis.tickFormat(this.props.axisRight ? d3.format(',.1s') : '');
-    xGrid.tickSizeOuter(height - smallMultiplesGutter);
-    yGrid.tickSize(width - smallMultiplesGutter);
+    xGrid.tickSizeOuter(height - gutter);
+    yGrid.tickSize(width - gutter);
 
     d3.select(this.gXAxis)
       .call(this.props.axisTop ? xAxisTop : xAxisBottom);
@@ -88,37 +106,11 @@ class SmallMultipleLine extends PureComponent {
   }
 
   render() {
-    const { x, y, lineGenerator } = this;
+    const { x, y, lineGenerator, currentGutter, currentCircleRadius } = this;
     const { data, index, width, height, highlighted, layout, stacked, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
-    const smallMultiplesGutter = ((l) => {
-      switch (l) {
-        case 'XL':
-          return 12;
-        case 'L':
-          return 6;
-        case 'M':
-          return 3;
-        case 'S':
-        case 'default':
-        default:
-          return 20;
-      }
-    })(layout);
-    const circleRadius = ((l) => {
-      switch (l) {
-        case 'XL':
-          return 4.4;
-        case 'L':
-          return 3.6;
-        case 'M':
-          return 2.6;
-        case 'S':
-        case 'default':
-        default:
-          return 4.4;
-      }
-    })(layout);
+    const gutter = currentGutter();
+    const circleRadius = currentCircleRadius();
     const labelX = (age) => {
       switch (age) {
         case ('18-20'):
@@ -145,9 +137,9 @@ class SmallMultipleLine extends PureComponent {
     };
 
     x.domain(filteredData.map(d => d.age))
-      .rangeRound([0, width - smallMultiplesGutter]);
+      .rangeRound([0, width - gutter]);
 
-    y.range([height - smallMultiplesGutter, 0]);
+    y.range([height - gutter, 0]);
 
     lineGenerator.x(d => x(d.age))
       .y(d => y(d.percentage));
@@ -158,8 +150,8 @@ class SmallMultipleLine extends PureComponent {
         className="small-multiple-line"
       >
         <rect
-          width={width - smallMultiplesGutter}
-          height={height - smallMultiplesGutter}
+          width={width - gutter}
+          height={height - gutter}
           className="background"
         />
 
@@ -176,7 +168,7 @@ class SmallMultipleLine extends PureComponent {
         {this.props.axisBottom &&
           <g
             ref={(g) => { this.gXAxis = g; }}
-            transform={`translate(0, ${height - smallMultiplesGutter})`}
+            transform={`translate(0, ${height - gutter})`}
             className="x axis"
           />
         }
@@ -191,7 +183,7 @@ class SmallMultipleLine extends PureComponent {
         {this.props.axisRight &&
           <g
             ref={(g) => { this.gYAxis = g; }}
-            transform={`translate(${width - smallMultiplesGutter}, 0)`}
+            transform={`translate(${width - gutter}, 0)`}
             className="y axis"
           />
         }
@@ -225,10 +217,7 @@ class SmallMultipleLine extends PureComponent {
               x={x(d.age) + labelX(d.age)}
               y={y(d.percentage) + labelY(d.age)}
               className={`point-label${d.age === highlighted ? ' highlighted' : ''}`}
-              style={!['18-20', '66+'].includes(d.age) ?
-                { textAnchor: 'end' } :
-                null
-              }
+              style={!['18-20', '66+'].includes(d.age) ? { textAnchor: 'end' } : null}
             >
               {d.age}
             </text>
