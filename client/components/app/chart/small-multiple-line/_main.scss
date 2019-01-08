@@ -2,6 +2,7 @@ $background-color: oColorsMix(white, paper, 40);
 $axis-stroke-color: #cec6b9;
 $grid-stroke-color: oColorsGetPaletteColor('black-10');
 $highlight-color: #eb5e8d;
+$highlight-text-color: #ea538c;
 $other-color: #c2b7af;
 $font-size-default: 14px;
 $font-size-m: 16px;
@@ -16,6 +17,8 @@ $line-weight-l: 2.4px;
   }
 
   .axis {
+    font-family: MetricWeb, sans-serif;
+
     path {
       stroke: $axis-stroke-color;
     }
@@ -26,7 +29,6 @@ $line-weight-l: 2.4px;
       }
 
       text {
-        font-family: MetricWeb, sans-serif;
         font-size: $font-size-default;
         font-feature-settings: 'tnum';
         fill: oColorsGetPaletteColor('black-60');
@@ -87,5 +89,34 @@ $line-weight-l: 2.4px;
   circle.highlighted {
     fill: $highlight-color;
     opacity: 1;
+  }
+
+  .point-label {
+    font-family: MetricWeb, sans-serif;
+    font-size: $font-size-default;
+    font-feature-settings: 'tnum';
+    text-anchor: middle;
+    fill: oColorsGetPaletteColor('black-60');
+
+    @include oGridRespondTo(M) {
+      font-size: $font-size-m;
+    }
+
+    @include oGridRespondTo(XL) {
+      font-size: $font-size-xl;
+    }
+
+    &:first-of-type {
+      text-anchor: start;
+    }
+
+    &:last-of-type {
+      text-anchor: end;
+    }
+
+    &.highlighted {
+      font-weight: 600;
+      fill: $highlight-text-color;
+    }
   }
 }

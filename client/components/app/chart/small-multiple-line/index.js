@@ -89,7 +89,7 @@ class SmallMultipleLine extends PureComponent {
 
   render() {
     const { x, y, lineGenerator } = this;
-    const { data, width, height, highlighted, layout, transform } = this.props;
+    const { data, index, width, height, highlighted, layout, stacked, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
     const smallMultiplesGutter = ((l) => {
       switch (l) {
@@ -119,6 +119,30 @@ class SmallMultipleLine extends PureComponent {
           return 4.4;
       }
     })(layout);
+    const labelX = (age) => {
+      switch (age) {
+        case ('18-20'):
+          return circleRadius;
+        case (age === '66+' && layout === 'M' ? age : null):
+          return circleRadius;
+        case '66+':
+          return -circleRadius;
+        default:
+          return -circleRadius;
+      }
+    };
+    const labelY = (age) => {
+      switch (age) {
+        case (age === '18-20' && stacked ? age : null):
+          return circleRadius;
+        case (age === '18-20' && !stacked ? age : null):
+          return -circleRadius;
+        case '66+':
+          return -circleRadius;
+        default:
+          return circleRadius * 3;
+      }
+    };
 
     x.domain(filteredData.map(d => d.age))
       .rangeRound([0, width - smallMultiplesGutter]);
@@ -179,17 +203,37 @@ class SmallMultipleLine extends PureComponent {
             />
           </g>
 
-          <g className="points">
-            {filteredData.filter(d => d.age !== highlighted).map(d => (
+          {filteredData.map(d =>
+            d.age !== highlighted && (
+            <g
+              key={d.age}
+              className="points"
+            >
               <circle
-                key={d.age}
                 cx={x(d.age)}
                 cy={y(d.percentage)}
                 r={circleRadius}
               />
-            ))}
-          </g>
+            </g>
+          ))}
         </g>
+
+        {filteredData.map(d => (
+          index === 0 && ['18-20', '66+', highlighted].includes(d.age) && (
+            <text
+              key={d.age}
+              x={x(d.age) + labelX(d.age)}
+              y={y(d.percentage) + labelY(d.age)}
+              className={`point-label${d.age === highlighted ? ' highlighted' : ''}`}
+              style={!['18-20', '66+'].includes(d.age) ?
+                { textAnchor: 'end' } :
+                null
+              }
+            >
+              {d.age}
+            </text>
+          )
+        ))}
 
         {/*  Render highlighted circle separately to position it over other circles */}
         {filteredData.filter(d => d.age === highlighted).map(d => (
@@ -208,6 +252,7 @@ class SmallMultipleLine extends PureComponent {
 
 SmallMultipleLine.propTypes = {
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
+  index: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   highlighted: PropTypes.oneOfType([
