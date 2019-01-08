@@ -215,6 +215,7 @@ SmallMultipleLine.propTypes = {
     PropTypes.string,
   ]).isRequired,
   layout: PropTypes.string.isRequired,
+  stacked: PropTypes.bool.isRequired,
   transform: PropTypes.string.isRequired,
   axisTop: PropTypes.bool.isRequired,
   axisRight: PropTypes.bool.isRequired,
