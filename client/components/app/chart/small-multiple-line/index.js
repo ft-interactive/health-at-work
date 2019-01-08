@@ -165,33 +165,35 @@ class SmallMultipleLine extends PureComponent {
           />
         }
 
-        <g className="line">
-          <path
-            d={lineGenerator(filteredData)}
+        <g className="marks">
+          <g className="line">
+            <path
+              d={lineGenerator(filteredData)}
+            />
+          </g>
+
+          <g className="points">
+            {filteredData.filter(d => d.age !== highlighted).map(d => (
+              <circle
+                key={d.age}
+                cx={x(d.age)}
+                cy={y(d.percentage)}
+                r={circleRadius}
+              />
+            ))}
+          </g>
+        </g>
+
+        {/*  Render highlighted circle separately to position it over other circles */}
+        {filteredData.filter(d => d.age === highlighted).map(d => (
+          <circle
+            key={d.age}
+            cx={x(d.age)}
+            cy={y(d.percentage)}
+            r={circleRadius}
+            className={'highlighted'}
           />
-        </g>
-
-        <g className="points">
-          {filteredData.filter(d => d.age !== highlighted).map(d => (
-            <circle
-              key={d.age}
-              cx={x(d.age)}
-              cy={y(d.percentage)}
-              r={circleRadius}
-            />
-          ))}
-
-          {/*  Render highlighted circle separately to position it over other circles */}
-          {filteredData.filter(d => d.age === highlighted).map(d => (
-            <circle
-              key={d.age}
-              cx={x(d.age)}
-              cy={y(d.percentage)}
-              r={circleRadius}
-              className={'highlighted'}
-            />
-          ))}
-        </g>
+        ))}
       </g>
     );
   }

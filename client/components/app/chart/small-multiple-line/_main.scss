@@ -54,33 +54,38 @@ $line-weight-l: 2.6px;
     }
   }
 
-  .line {
-    path {
-      fill: none;
-      stroke-width: $line-weight-default;
-      stroke: $other-color;
+  .marks {
+    opacity: 0.6;
 
-      @include oGridRespondTo(M) {
-        stroke-width: $line-weight-m;
-      }
-
-      @include oGridRespondTo(L) {
-        stroke-width: $line-weight-l;
-      }
-
-      @include oGridRespondTo(XL) {
+    .line {
+      path {
+        fill: none;
         stroke-width: $line-weight-default;
+        stroke: $other-color;
+
+        @include oGridRespondTo(M) {
+          stroke-width: $line-weight-m;
+        }
+
+        @include oGridRespondTo(L) {
+          stroke-width: $line-weight-l;
+        }
+
+        @include oGridRespondTo(XL) {
+          stroke-width: $line-weight-default;
+        }
+      }
+    }
+
+    .points {
+      circle {
+        fill: $other-color;
       }
     }
   }
 
-  .points {
-    circle {
-      fill: $other-color;
-
-      &.highlighted {
-        fill: $highlight-color;
-      }
-    }
+  circle.highlighted {
+    fill: $highlight-color;
+    opacity: 1;
   }
 }
