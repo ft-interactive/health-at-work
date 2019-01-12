@@ -95,7 +95,7 @@ $line-weight-l: 2.7px;
     font-family: MetricWeb, sans-serif;
     font-size: $font-size-default;
     font-feature-settings: 'tnum';
-    text-anchor: middle;
+    text-anchor: end;
     fill: oColorsGetPaletteColor('black-60');
 
     @include oGridRespondTo(M) {
@@ -104,14 +104,6 @@ $line-weight-l: 2.7px;
 
     @include oGridRespondTo(XL) {
       font-size: $font-size-xl;
-    }
-
-    &:first-of-type {
-      text-anchor: start;
-    }
-
-    &:last-of-type {
-      text-anchor: end;
     }
 
     &.highlighted {

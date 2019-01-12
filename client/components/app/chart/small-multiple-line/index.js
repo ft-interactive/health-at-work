@@ -217,7 +217,7 @@ class SmallMultipleLine extends PureComponent {
               x={x(d.age) + labelX(d.age)}
               y={y(d.percentage) + labelY(d.age)}
               className={`point-label${d.age === highlighted ? ' highlighted' : ''}`}
-              style={!['18-20', '66+'].includes(d.age) ? { textAnchor: 'end' } : null}
+              style={d.age === '18-20' ? { textAnchor: 'start' } : null}
             >
               {d.age}
             </text>
