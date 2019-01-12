@@ -53,11 +53,11 @@ class Chart extends PureComponent {
     const padding = ((l) => {
       switch (l) {
         case 'XL':
-          return { top: 90, right: 10, bottom: 0, left: 0 };
+          return { top: 90, right: 10, bottom: 0, left: 30 };
         case 'L':
-          return { top: 80, right: 10, bottom: 0, left: 0 };
+          return { top: 80, right: 20, bottom: 0, left: 30 };
         case 'M':
-          return { top: 80, right: 20, bottom: 0, left: 0 };
+          return { top: 80, right: 20, bottom: 0, left: 30 };
         case 'S':
         case 'default':
         default:
