@@ -284,9 +284,10 @@ class SmallMultipleLine extends PureComponent {
 
         {filteredData.map((d) => {
           const visibleLabels = stacked ? [highlighted] : ['18-20', '66+', highlighted];
+          const hiddenLabels = stacked ? ['18-20', '66+'] : [];
 
           return (
-            index === 0 && visibleLabels.includes(d.age) && (
+            index === 0 && visibleLabels.includes(d.age) && !hiddenLabels.includes(d.age) && (
               <text
                 key={d.age}
                 x={x(d.age) + labelX(d.age)}
