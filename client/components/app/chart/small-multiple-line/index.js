@@ -61,7 +61,7 @@ class SmallMultipleLine extends PureComponent {
       case 'S':
       case 'default':
       default:
-        return 20;
+        return 34.5;
     }
   }
 
