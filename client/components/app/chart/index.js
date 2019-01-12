@@ -8,8 +8,6 @@ class Chart extends PureComponent {
     super(props);
 
     this.transformedData = [];
-    this.margin = { top: 20, right: 10, bottom: 20, left: 10 };
-    this.padding = { top: 0, right: 20, bottom: 0, left: 30 };
   }
 
   componentDidMount() {
@@ -45,12 +43,27 @@ class Chart extends PureComponent {
   }
 
   render() {
-    const { transformedData, margin, padding } = this;
+    const { transformedData } = this;
     const { highlighted, layout, graphicsDimensions } = this.props;
     const stacked = ['default', 'S'].includes(layout);
+    const margin = { top: 20, right: 10, bottom: 20, left: 10 };
     const innerWidth = graphicsDimensions.width - margin.left - margin.right;
     const innerHeight = graphicsDimensions.height - margin.top - margin.bottom;
     const chartsCount = Object.keys(transformedData).length;
+    const padding = ((l) => {
+      switch (l) {
+        case 'XL':
+          return { top: 90, right: 10, bottom: 0, left: 0 };
+        case 'L':
+          return { top: 80, right: 10, bottom: 0, left: 0 };
+        case 'M':
+          return { top: 80, right: 20, bottom: 0, left: 0 };
+        case 'S':
+        case 'default':
+        default:
+          return { top: 20, right: 0, bottom: 0, left: 0 };
+      }
+    })(layout);
     const width = stacked ?
       innerWidth - padding.left - padding.right :
       (innerWidth - padding.left - padding.right) / chartsCount;
