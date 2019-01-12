@@ -39,7 +39,6 @@ class SmallMultipleLine extends PureComponent {
       .tickFormat('');
     this.lineGenerator = d3.line();
     this.currentGutter = this.currentGutter.bind(this);
-    this.currentCircleRadius = this.currentCircleRadius.bind(this);
     this.renderAxes = this.renderAxes.bind(this);
   }
 
@@ -63,21 +62,6 @@ class SmallMultipleLine extends PureComponent {
       case 'default':
       default:
         return 20;
-    }
-  }
-
-  currentCircleRadius() {
-    switch (this.props.layout) {
-      case 'XL':
-        return 4.5;
-      case 'L':
-        return 4;
-      case 'M':
-        return 3.5;
-      case 'S':
-      case 'default':
-      default:
-        return 4.5;
     }
   }
 
@@ -106,11 +90,24 @@ class SmallMultipleLine extends PureComponent {
   }
 
   render() {
-    const { x, y, lineGenerator, currentGutter, currentCircleRadius } = this;
+    const { x, y, lineGenerator, currentGutter } = this;
     const { data, index, width, height, highlighted, layout, stacked, transform } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
     const gutter = currentGutter();
-    const circleRadius = currentCircleRadius();
+    const circleRadius = ((l) => {
+      switch (l) {
+        case 'XL':
+          return 4.5;
+        case 'L':
+          return 4;
+        case 'M':
+          return 3.5;
+        case 'S':
+        case 'default':
+        default:
+          return 4.5;
+      }
+    })(layout);
     const labelX = (age) => {
       switch (age) {
         case ('18-20'):
