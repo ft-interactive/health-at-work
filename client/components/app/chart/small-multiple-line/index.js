@@ -91,9 +91,22 @@ class SmallMultipleLine extends PureComponent {
 
   render() {
     const { x, y, lineGenerator, currentGutter } = this;
-    const { data, index, width, height, highlighted, layout, stacked, transform } = this.props;
+    const { data, index, width, height, highlighted, layout, stacked, transform, riskFactor } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
     const gutter = currentGutter();
+    const fontSize = ((l) => {
+      switch (l) {
+        case 'XL':
+          return 18;
+        case 'L':
+        case 'M':
+          return 16;
+        case 'S':
+        case 'default':
+        default:
+          return 14;
+      }
+    })(layout);
     const circleRadius = ((l) => {
       switch (l) {
         case 'XL':
@@ -132,6 +145,34 @@ class SmallMultipleLine extends PureComponent {
           return circleRadius * 3;
       }
     };
+    const chartLabel = ((rf) => {
+      switch (rf) {
+        case 'fruitvegpc':
+          return 'Poor nutrition';
+        case 'twomscondspc':
+          return ['Musculoskeletal', 'conditions'];
+        case 'bingepc':
+          return 'Binge drinking';
+        case 'sleeppc':
+          return 'Lack of sleep';
+        case 'physicallyinactivepc':
+          return 'Inactivity';
+        case 'alcoholpc':
+          return 'Excessive drinking';
+        case 'twoplusstressdimensions':
+          return 'High stress';
+        case 'obesepc':
+          return 'Obesity';
+        case 'smokepc':
+          return 'Smoking';
+        case 'finconcernspc':
+          return 'Financial concerns';
+        case 'depressionpc':
+          return 'Depression';
+        default:
+          return this.props.riskFactor;
+      }
+    })(riskFactor);
 
     x.domain(filteredData.map(d => d.age))
       .rangeRound([0, width - gutter]);
@@ -146,6 +187,30 @@ class SmallMultipleLine extends PureComponent {
         transform={transform}
         className="small-multiple-line"
       >
+        <text
+          transform={stacked ?
+            `translate(${(width - gutter) / 2}, -9)` :
+            `translate(${(width - gutter) / 2}, -9) rotate(-45)`
+          }
+          className="chart-label"
+        >
+          {Array.isArray(chartLabel) ?
+            chartLabel.map((d, i) => (
+              <tspan
+                key={d}
+                x={stacked ? null : 0}
+                y={stacked ? null : -fontSize + (i * fontSize)}
+              >
+                {stacked ?
+                  `${d} ` :
+                  d
+                }
+              </tspan>
+            )) :
+            chartLabel
+          }
+        </text>
+
         <rect
           width={width - gutter}
           height={height - gutter}

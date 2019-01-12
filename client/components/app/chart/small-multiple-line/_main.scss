@@ -111,4 +111,20 @@ $line-weight-l: 2.7px;
       fill: $highlight-text-color;
     }
   }
+
+  .chart-label {
+    font-family: MetricWeb, sans-serif;
+    font-size: $font-size-default;
+    text-anchor: middle;
+    fill: oColorsGetPaletteColor('black-60');
+
+    @include oGridRespondTo(M) {
+      font-size: $font-size-m;
+      text-anchor: start;
+    }
+
+    @include oGridRespondTo(XL) {
+      font-size: $font-size-xl;
+    }
+  }
 }
