@@ -79,15 +79,15 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    const filteredData = this.props.data.filter(d => d.age === this.state.inputValues.age);
+    const filteredData = this.props.data.find(d => d.age === this.state.inputValues.age); // TODO: use .find()
     const { age, daysGuess } = this.state.inputValues;
     let rightWrong = this.state.renderValues.rightWrong;
 
     event.preventDefault();
 
-    if (daysGuess > Math.round(filteredData[0].absence.days)) {
+    if (daysGuess > Math.round(filteredData.absence.days)) {
       rightWrong = 'The actual number is lower';
-    } else if (daysGuess < Math.round(filteredData[0].absence.days)) {
+    } else if (daysGuess < Math.round(filteredData.absence.days)) {
       rightWrong = 'The actual number is higher';
     } else {
       rightWrong = 'You are correct';
@@ -97,7 +97,7 @@ class App extends Component {
       submitted: true,
       submitButtonText: 'Refresh article',
       renderValues: {
-        data: filteredData[0],
+        data: filteredData,
         age,
         daysGuess,
         rightWrong,
