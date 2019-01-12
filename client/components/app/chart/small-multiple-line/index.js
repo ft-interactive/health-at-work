@@ -25,10 +25,8 @@ class SmallMultipleLine extends PureComponent {
     this.y = d3.scaleLinear()
       .domain([0, 80]);
     this.xAxisTop = d3.axisTop(this.x)
-      .tickFormat('')
       .tickSizeOuter(0);
     this.xAxisBottom = d3.axisBottom(this.x)
-      .tickFormat('')
       .tickSizeOuter(0);
     this.yAxis = d3.axisRight(this.y)
       .ticks(5);
@@ -67,12 +65,14 @@ class SmallMultipleLine extends PureComponent {
 
   renderAxes() {
     const { xAxisTop, xAxisBottom, yAxis, xGrid, yGrid, currentGutter } = this;
-    const { width, height } = this.props;
+    const { width, height, stacked } = this.props;
     const gutter = currentGutter();
 
     yAxis.tickFormat(this.props.axisRight ? d3.format(',.1s') : '');
     xGrid.tickSizeOuter(height - gutter);
     yGrid.tickSize(width - gutter);
+    xAxisTop.tickFormat(d => (['18-20', '41-45', '66+'].includes(d) ? d : ''));
+    xAxisBottom.tickFormat(d => (stacked && ['18-20', '41-45', '66+'].includes(d) ? d : ''));
 
     d3.select(this.gXAxis)
       .call(this.props.axisTop ? xAxisTop : xAxisBottom);

@@ -61,7 +61,7 @@ class Chart extends PureComponent {
         case 'S':
         case 'default':
         default:
-          return { top: 20, right: 0, bottom: 0, left: 0 };
+          return { top: 20, right: 0, bottom: 0, left: 10 };
       }
     })(layout);
     const width = stacked ?
