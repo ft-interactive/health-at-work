@@ -1,4 +1,4 @@
-section {
+section.copy {
   padding: 8px 0 0;
 
   .o-typography-body {
@@ -27,7 +27,7 @@ section {
       left: -4px;
       width: 4px;
       height: 21px;
-      background-color: #ff1a66;
+      background-color: #eb5e8d;
       transition: all 600ms;
     }
   }
@@ -90,10 +90,10 @@ section {
       color: rgba(51, 48, 46, 0);
 
       &:before {
-        -webkit-box-shadow: 0 0 6px 3px #ff1a66;
-        -moz-box-shadow: 0 0 6px 3px #ff1a66;
-        box-shadow: 0 0 6px 3px #ff1a66;
-        background-color: rgba(255, 26, 102, 0.8);
+        -webkit-box-shadow: 0 0 6px 3px #eb5e8d;
+        -moz-box-shadow: 0 0 6px 3px #eb5e8d;
+        box-shadow: 0 0 6px 3px #eb5e8d;
+        background-color: rgba(235, 94, 141, 0.8);
       }
     }
 

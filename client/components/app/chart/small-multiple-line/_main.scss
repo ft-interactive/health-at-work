@@ -1,0 +1,130 @@
+$background-color: oColorsMix(white, paper, 40);
+$axis-stroke-color: #cec6b9;
+$grid-stroke-color: oColorsGetPaletteColor('black-10');
+$highlight-color: #eb5e8d;
+$highlight-text-color: #ea538c;
+$other-color: #c2b7af;
+$font-size-default: 14px;
+$font-size-m: 16px;
+$font-size-xl: 18px;
+$line-weight-default: 3px;
+$line-weight-m: 2.3px;
+$line-weight-l: 2.7px;
+
+.small-multiple-line {
+  .background {
+    fill: $background-color;
+  }
+
+  .axis {
+    font-family: MetricWeb, sans-serif;
+
+    path {
+      stroke: $axis-stroke-color;
+    }
+
+    .tick {
+      line {
+        stroke: $axis-stroke-color;
+      }
+
+      text {
+        font-size: $font-size-default;
+        font-feature-settings: 'tnum';
+        fill: oColorsGetPaletteColor('black-60');
+
+        @include oGridRespondTo(M) {
+          font-size: $font-size-m;
+        }
+
+        @include oGridRespondTo(XL) {
+          font-size: $font-size-xl;
+        }
+      }
+    }
+  }
+
+  .grid {
+    path {
+      stroke: $grid-stroke-color;
+    }
+
+    .tick {
+      line {
+        stroke: $grid-stroke-color;
+      }
+    }
+  }
+
+  .marks {
+    opacity: 0.6;
+
+    .line {
+      path {
+        fill: none;
+        stroke-width: $line-weight-default;
+        stroke: $other-color;
+
+        @include oGridRespondTo(M) {
+          stroke-width: $line-weight-m;
+        }
+
+        @include oGridRespondTo(L) {
+          stroke-width: $line-weight-l;
+        }
+
+        @include oGridRespondTo(XL) {
+          stroke-width: $line-weight-default;
+        }
+      }
+    }
+
+    .points {
+      circle {
+        fill: $other-color;
+      }
+    }
+  }
+
+  circle.highlighted {
+    fill: $highlight-color;
+    opacity: 1;
+  }
+
+  .point-label {
+    font-family: MetricWeb, sans-serif;
+    font-size: $font-size-default;
+    font-feature-settings: 'tnum';
+    text-anchor: end;
+    fill: oColorsGetPaletteColor('black-60');
+
+    @include oGridRespondTo(M) {
+      font-size: $font-size-m;
+    }
+
+    @include oGridRespondTo(XL) {
+      font-size: $font-size-xl;
+    }
+
+    &.highlighted {
+      font-weight: 600;
+      fill: $highlight-text-color;
+    }
+  }
+
+  .chart-label {
+    font-family: MetricWeb, sans-serif;
+    font-size: $font-size-default;
+    text-anchor: middle;
+    fill: oColorsGetPaletteColor('black-60');
+
+    @include oGridRespondTo(M) {
+      font-size: $font-size-m;
+      text-anchor: start;
+    }
+
+    @include oGridRespondTo(XL) {
+      font-size: $font-size-xl;
+    }
+  }
+}

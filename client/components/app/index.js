@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Select from './select';
 import InputRange from './input-range';
 import Button from './button';
+import responsiveGraphicsWrapper from '../hocs/responsive-graphics-wrapper';
+import Chart from './chart';
 import Copy from './copy';
 
 class App extends Component {
@@ -77,15 +79,15 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    const filteredData = this.props.data.filter(d => d.age === this.state.inputValues.age);
+    const filteredData = this.props.data.find(d => d.age === this.state.inputValues.age); // TODO: use .find()
     const { age, daysGuess } = this.state.inputValues;
     let rightWrong = this.state.renderValues.rightWrong;
 
     event.preventDefault();
 
-    if (daysGuess > Math.round(filteredData[0].absence.days)) {
+    if (daysGuess > Math.round(filteredData.absence.days)) {
       rightWrong = 'The actual number is lower';
-    } else if (daysGuess < Math.round(filteredData[0].absence.days)) {
+    } else if (daysGuess < Math.round(filteredData.absence.days)) {
       rightWrong = 'The actual number is higher';
     } else {
       rightWrong = 'You are correct';
@@ -95,7 +97,7 @@ class App extends Component {
       submitted: true,
       submitButtonText: 'Refresh article',
       renderValues: {
-        data: filteredData[0],
+        data: filteredData,
         age,
         daysGuess,
         rightWrong,
@@ -126,6 +128,7 @@ class App extends Component {
 
   render() {
     const renderData = this.state.submitted ? this.state.renderValues.data : this.props.data[0];
+    const ResponsiveChart = responsiveGraphicsWrapper(Chart);
     const averages = this.props.data.filter(d => d.age.toLowerCase() === 'average')[0];
 
     return (
@@ -150,6 +153,11 @@ class App extends Component {
             submitted={this.state.submitted}
           />
         </section>
+
+        <ResponsiveChart
+          data={this.props.data}
+          highlighted={this.state.submitted && renderData.age}
+        />
 
         <Copy
           data={renderData}

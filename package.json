@@ -13,7 +13,7 @@
     ]
   },
   "devDependencies": {
-    "@financial-times/g-deploy": "^3.0.5",
+    "@financial-times/g-deploy": "^3.0.7",
     "ansi-to-html": "^0.6.3",
     "axios": "^0.16.2",
     "babel-core": "^6.25.0",
@@ -74,10 +74,10 @@
   "private": true,
   "scripts": {
     "build": "gulp",
-    "check-accessibility": "pa11y --threshold 100 $(ft-graphics-deploy --get-commit-url)",
-    "check-accessibility:preview": "pa11y --threshold 100 $(ft-graphics-deploy --preview --get-commit-url)",
+    "check-accessibility": "pa11y --threshold 100 $(g-deploy --get-commit-url)",
+    "check-accessibility:preview": "pa11y --threshold 100 $(g-deploy --preview --get-commit-url)",
     "clean": "rm -rf dist",
-    "deploy": "ft-graphics-deploy --assets-prefix=https://ig.ft.com/v2/__assets/",
+    "deploy": "g-deploy --assets-prefix=https://ig.ft.com/v2/__assets/",
     "lint": "eslint --no-eslintrc --config=.eslintrc-ci.yml .",
     "prebuild": "npm run clean",
     "prestart": "npm run clean",
@@ -85,6 +85,11 @@
     "start": "nodemon --watch gulpfile.babel.js --exec 'gulp watch'"
   },
   "dependencies": {
+    "d3-axis": "^1.0.12",
+    "d3-format": "^1.3.2",
+    "d3-scale": "^2.1.2",
+    "d3-selection": "^1.3.2",
+    "d3-shape": "^1.2.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
