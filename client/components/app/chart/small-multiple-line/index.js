@@ -91,7 +91,17 @@ class SmallMultipleLine extends PureComponent {
 
   render() {
     const { x, y, lineGenerator, currentGutter } = this;
-    const { data, index, width, height, highlighted, layout, stacked, transform, riskFactor } = this.props;
+    const {
+      data,
+      index,
+      width,
+      height,
+      highlighted,
+      layout,
+      stacked,
+      transform,
+      riskFactor,
+    } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
     const gutter = currentGutter();
     const fontSize = ((l) => {
@@ -189,7 +199,7 @@ class SmallMultipleLine extends PureComponent {
       >
         <text
           transform={stacked ?
-            `translate(${(width - gutter) / 2}, -9)` :
+            `translate(${(width - gutter) / 2}, ${this.props.axisTop ? -24.5 : -9})` :
             `translate(${(width - gutter) / 2}, -9) rotate(-45)`
           }
           className="chart-label"
