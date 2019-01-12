@@ -282,19 +282,23 @@ class SmallMultipleLine extends PureComponent {
           ))}
         </g>
 
-        {filteredData.map(d => (
-          index === 0 && ['18-20', '66+', highlighted].includes(d.age) && (
-            <text
-              key={d.age}
-              x={x(d.age) + labelX(d.age)}
-              y={y(d.percentage) + labelY(d.age)}
-              className={`point-label${d.age === highlighted ? ' highlighted' : ''}`}
-              style={d.age === '18-20' ? { textAnchor: 'start' } : null}
-            >
-              {d.age}
-            </text>
-          )
-        ))}
+        {filteredData.map((d) => {
+          const visibleLabels = stacked ? [highlighted] : ['18-20', '66+', highlighted];
+
+          return (
+            index === 0 && visibleLabels.includes(d.age) && (
+              <text
+                key={d.age}
+                x={x(d.age) + labelX(d.age)}
+                y={y(d.percentage) + labelY(d.age)}
+                className={`point-label${d.age === highlighted ? ' highlighted' : ''}`}
+                style={d.age === '18-20' ? { textAnchor: 'start' } : null}
+              >
+                {d.age}
+              </text>
+            )
+          );
+        })}
 
         {/*  Render highlighted circle separately to position it over other circles */}
         {filteredData.filter(d => d.age === highlighted).map(d => (
