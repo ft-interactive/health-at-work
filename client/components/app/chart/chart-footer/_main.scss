@@ -1,0 +1,14 @@
+.chart-footer {
+  margin: 0 auto;
+  font-family: MetricWeb, sans-serif;
+
+  .o-typography-footer {
+    font-size: 12px;
+    line-height: 12px;
+
+    @include oGridRespondTo(M) {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+}

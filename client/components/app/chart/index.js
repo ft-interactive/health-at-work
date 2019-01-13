@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ChartHead from './chart-head';
+import ChartFooter from './chart-footer';
 import SmallMultipleLine from './small-multiple-line';
 
 class Chart extends PureComponent {
@@ -107,6 +108,23 @@ class Chart extends PureComponent {
             ))}
           </g>
         </svg>
+
+        <ChartFooter
+          source="VitalityHealth/Rand Europe; Britain’s Healthiest Workplace"
+          credit={
+            <span>Graphic: David Blood (
+              <a
+                href="https://twitter.com/davidcblood"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="o-typography-link"
+              >
+                @davidcblood
+              </a>
+            )</span>
+          }
+          width={graphicsDimensions.width}
+        />
       </section>
     );
   }
