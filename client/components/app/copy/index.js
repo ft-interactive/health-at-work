@@ -9,16 +9,6 @@ function Copy(props) {
 
   return (
     <section className={className}>
-      <p className="o-typography-body">
-        The three most serious problems for employees aged {selectedDimension} are:
-      </p>
-
-      <ol className="o-typography-list o-typography-list--ordered">
-        <li>{data.mostserious1}</li>
-        <li>{data.mostserious2}</li>
-        <li>{data.mostserious3}</li>
-      </ol>
-
       <h2 className="o-typography-heading-level-2">Work-related stress</h2>
 
       <p className="o-typography-body">
