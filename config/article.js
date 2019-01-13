@@ -14,7 +14,7 @@ export default () => ({ // eslint-disable-line
   headline: 'Do you get healthier as you get older?',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Our interactive feature suggests that younger workers are reacting badly to some of the stresses they have to suffer',
+  summary: 'Our interactive feature suggests younger workers suffer from a range of mental health issues',
 
   topic: {
     name: 'Health at Work',
@@ -49,7 +49,7 @@ export default () => ({ // eslint-disable-line
   title: 'Do you get healthier as you get older?',
 
   // meta data
-  description: 'Our interactive feature suggests that younger workers are reacting badly to some of the stresses they have to suffer',
+  description: 'Our interactive feature suggests younger workers suffer from a range of mental health issues',
 
   /*
   TODO: Select Twitter card type -
@@ -67,7 +67,7 @@ export default () => ({ // eslint-disable-line
   // General social
   socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A1f8ad1be-96dc-11e7-8c5c-c8d8fa6961bb?source=ig&width=1400',
   socialHeadline: 'The millennial bug: are you suffering too?',
-  socialDescription: 'Enter your age into our interactive and find out how you compare on drinking, smoking, mental health and a range of other problems that employees encounter',
+  socialDescription: 'Enter your age into our interactive and find out how you compare on drinking, smoking, mental health and other problems that employees encounter',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
   // TWEET BUTTON CUSTOM TEXT
