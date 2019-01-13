@@ -158,13 +158,13 @@ class SmallMultipleLine extends PureComponent {
     const chartLabel = ((rf) => {
       switch (rf) {
         case 'fruitvegpc':
-          return 'Poor nutrition';
+          return 'Healthy eating';
         case 'twomscondspc':
-          return ['Musculoskeletal', 'conditions'];
+          return ['Musculoskeletal', 'ailments'];
         case 'bingepc':
           return 'Binge drinking';
         case 'sleeppc':
-          return 'Lack of sleep';
+          return 'Inadequate sleep';
         case 'physicallyinactivepc':
           return 'Inactivity';
         case 'alcoholpc':

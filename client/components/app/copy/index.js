@@ -9,7 +9,7 @@ function Copy(props) {
 
   return (
     <section className={className}>
-      <h2 className="o-typography-heading-level-2">Nutrition</h2>
+      <h2 className="o-typography-heading-level-2">Healthy eating</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -17,7 +17,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Musculoskeletal conditions</h2>
+      <h2 className="o-typography-heading-level-2">Musculoskeletal ailments</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -25,7 +25,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Drinking alcohol</h2>
+      <h2 className="o-typography-heading-level-2">Binge or excessive drinking</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -33,7 +33,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Sleep deprivation</h2>
+      <h2 className="o-typography-heading-level-2">Inadequate sleep</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -41,7 +41,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Physical activity</h2>
+      <h2 className="o-typography-heading-level-2">Inactivity</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -49,7 +49,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Work-related stress</h2>
+      <h2 className="o-typography-heading-level-2">High stress</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
@@ -81,7 +81,7 @@ function Copy(props) {
         {/* eslint-enable max-len */}
       </p>
 
-      <h2 className="o-typography-heading-level-2">Mental health</h2>
+      <h2 className="o-typography-heading-level-2">Depression</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
