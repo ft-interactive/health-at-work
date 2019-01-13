@@ -11,10 +11,10 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date('2017-09-13T11:00:00Z'),
 
-  headline: 'Guess how your income affects your health',
+  headline: 'Do you get healthier as you get older?',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Our interactive feature shows that, as your pay packet increases, so do certain risky behaviours',
+  summary: 'Our interactive feature suggests that younger workers are reacting badly to some of the stresses they have to suffer',
 
   topic: {
     name: 'Health at Work',
@@ -41,15 +41,15 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Emma Boyde', url: 'https://www.ft.com/stream/0bd8a76c-860c-3e51-ac3c-95d84535dc49' },
     { name: 'David Blood', url: 'https://www.ft.com/david-blood' },
+    { name: 'Emma Boyde', url: 'https://www.ft.com/stream/0bd8a76c-860c-3e51-ac3c-95d84535dc49' },
   ],
 
   // Appears in the HTML <title>
-  title: 'Guess how your income affects your health',
+  title: 'Do you get healthier as you get older?',
 
   // meta data
-  description: 'Our interactive feature shows that, as your pay packet increases, so do certain risky behaviours',
+  description: 'Our interactive feature suggests that younger workers are reacting badly to some of the stresses they have to suffer',
 
   /*
   TODO: Select Twitter card type -
@@ -66,8 +66,8 @@ export default () => ({ // eslint-disable-line
   */
   // General social
   socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A1f8ad1be-96dc-11e7-8c5c-c8d8fa6961bb?source=ig&width=1400',
-  socialHeadline: 'Guess how your income affects your health',
-  socialDescription: 'Our interactive feature shows that, as your pay packet increases, so do certain risky behaviours',
+  socialHeadline: 'The millennial bug: are you suffering too?',
+  socialDescription: 'Enter your age into our interactive and find out how you compare on drinking, smoking, mental health and a range of other problems that employees encounter',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
   // TWEET BUTTON CUSTOM TEXT
