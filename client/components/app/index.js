@@ -127,43 +127,58 @@ class App extends Component {
   }
 
   render() {
-    const renderData = this.state.submitted ? this.state.renderValues.data : this.props.data[0];
+    const { ageSelected, submitted, submitButtonText, inputValues, renderValues } = this.state;
+    const { handleSelectChange, handleDaysChange, handleSubmit } = this;
+    const { data } = this.props;
+    const renderData = submitted ? renderValues.data : data[0];
     const ResponsiveChart = responsiveGraphicsWrapper(Chart);
-    const averages = this.props.data.filter(d => d.age.toLowerCase() === 'average')[0];
+    const averages = data.filter(d => d.age.toLowerCase() === 'average')[0];
+    let className = 'copy';
+    if (!submitted) className += ' blurred';
 
     return (
       <div>
         <section className="o-forms">
           <Select
-            data={this.props.data}
-            value={this.state.inputValues.age}
-            onChange={this.handleSelectChange}
+            data={data}
+            value={inputValues.age}
+            onChange={handleSelectChange}
           />
 
           <InputRange
-            value={this.state.inputValues.daysGuess}
-            onChange={this.handleDaysChange}
-            disabled={!this.state.ageSelected}
+            value={inputValues.daysGuess}
+            onChange={handleDaysChange}
+            disabled={!ageSelected}
           />
 
           <Button
-            value={this.state.submitButtonText}
-            onClick={this.handleSubmit}
-            disabled={!this.state.ageSelected}
-            submitted={this.state.submitted}
+            value={submitButtonText}
+            onClick={handleSubmit}
+            disabled={!ageSelected}
+            submitted={submitted}
           />
         </section>
 
-        <ResponsiveChart
-          data={this.props.data}
-          highlighted={this.state.submitted && renderData.age}
-        />
+        <section className={className}>
+          <p className="o-typography-body">
+            {/* eslint-disable max-len */}
+            You guessed {renderValues.daysGuess} days. {renderValues.rightWrong || 'You are correct'}: employees aged {renderData.age} lose <span className="variable">{(submitted && renderData.absence.days) || renderValues.daysGuess}</span> days per year because of absenteeism and presenteeism, according to a survey developed by VitalityHealth and produced in association with Rand Europe, the Financial Times, the University of Cambridge and Healthy Workplace, a joint venture between Vitality and Nuffield Health.
+            {/* eslint-enable max-len */}
+          </p>
+        </section>
+
+        {submitted &&
+          <ResponsiveChart
+            data={data}
+            highlighted={submitted && renderData.age}
+          />
+        }
 
         <Copy
           data={renderData}
-          guess={this.state.renderValues.daysGuess}
-          rightWrong={this.state.renderValues.rightWrong}
-          submitted={this.state.submitted}
+          guess={renderValues.daysGuess}
+          rightWrong={renderValues.rightWrong}
+          submitted={submitted}
           averages={averages}
         />
       </div>
