@@ -113,8 +113,8 @@ section.copy {
 
 .cssfilters {
   .o-typography-body {
-    -webkit-filter: none;
-    filter: none;
+    -webkit-filter: blur(0);
+    filter: blur(0);
   }
 
   .blurred {
