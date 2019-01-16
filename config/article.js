@@ -92,7 +92,7 @@ export default () => ({ // eslint-disable-line
   // ADVERTISING
   ads: {
     // Ad unit hierarchy makes ads more granular.
-    gptSite: 'ft.com/specialreports',
+    gptSite: 'ft.com/special.reports',
     // Start with ft.com and /companies /markets /world as appropriate to your story
     gptZone: 'health.at.work',
     // granular targeting is optional and will be specified by the ads team
