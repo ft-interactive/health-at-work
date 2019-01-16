@@ -28,7 +28,7 @@ function ChartHead(props) {
           />
         </svg>
 
-        <h3 className="o-typography-heading-level-3">Average across age groups</h3>
+        <h3 className="o-typography-heading-level-3">Survey average (adjusted for age, income and gender)</h3>
       </div>
     </div>
   );

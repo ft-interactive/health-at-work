@@ -76,7 +76,7 @@ class Chart extends PureComponent {
       <section className="full-width">
         <ChartHead
           title="How health risk factors vary with age"
-          subHead="Risk factor prevalence per age group (%)"
+          subHead="Risk factor prevalence (%, adjusted for income and gender)"
           width={graphicsDimensions.width}
         />
 

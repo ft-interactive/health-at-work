@@ -162,7 +162,13 @@ class App extends Component {
         <section className={className}>
           <p className="o-typography-body">
             {/* eslint-disable max-len */}
-            You guessed {renderValues.daysGuess} days. {renderValues.rightWrong || 'You are correct'}: employees aged {renderData.age} lose <span className="variable">{(submitted && renderData.absence.days) || renderValues.daysGuess}</span> days per year because of absenteeism and presenteeism, according to a survey developed by VitalityHealth and produced in association with Rand Europe, the Financial Times, the University of Cambridge and Healthy Workplace, a joint venture between Vitality and Nuffield Health.
+            You guessed {renderValues.daysGuess} days. {renderValues.rightWrong || 'You are correct'}: employees aged {renderData.age} lose <span className="variable">{(submitted && renderData.absence.days) || renderValues.daysGuess}</span> days of productivity per year because of absenteeism and presenteeism, according to a survey developed by VitalityHealth and produced in association with Rand Europe, the Financial Times, the University of Cambridge and Healthy Workplace, a joint venture between VitalityHealth and Nuffield Health.
+            {/* eslint-enable max-len */}
+          </p>
+
+          <p className="o-typography-body">
+            {/* eslint-disable max-len */}
+            The graphic below shows how the prevalance of health risk factors such as poor nutrition, alcohol consumption and mental health issues changes with age.
             {/* eslint-enable max-len */}
           </p>
         </section>
