@@ -9,7 +9,7 @@ function Copy(props) {
 
   return (
     <section className={className}>
-      <h2 className="o-typography-heading-level-2">Healthy eating</h2>
+      <h2 className="o-typography-heading-level-2">Poor nutrition</h2>
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
