@@ -103,6 +103,7 @@ class SmallMultipleLine extends PureComponent {
       riskFactor,
     } = this.props;
     const filteredData = data.filter(d => d.age.toLowerCase() !== 'average');
+    const average = data.find(d => d.age.toLowerCase() === 'average');
     const gutter = currentGutter();
     const fontSize = ((l) => {
       switch (l) {
@@ -236,6 +237,15 @@ class SmallMultipleLine extends PureComponent {
           ref={(g) => { this.gYGrid = g; }}
           className="y grid"
         />
+
+        <g className="average">
+          <line
+            x1={1}
+            x2={width - gutter}
+            y1={y(average.percentage)}
+            y2={y(average.percentage)}
+          />
+        </g>
 
         {this.props.axisBottom &&
           <g

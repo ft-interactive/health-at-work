@@ -32,4 +32,36 @@
     line-height: 18px;
     color: oColorsGetPaletteColor('black-60');
   }
+
+  .key {
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      line {
+        stroke: oColorsGetPaletteColor('black-60');
+        stroke-width: 2px;
+        stroke-dasharray: 4 2;
+      }
+    }
+
+    h3 {
+      margin-left: 23px;
+      font-size: 14px;
+      line-height: 14px;
+
+      @include oGridRespondTo(M) {
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      @include oGridRespondTo(XL) {
+        font-size: 18px;
+        line-height: 18px;
+      }
+    }
+  }
 }

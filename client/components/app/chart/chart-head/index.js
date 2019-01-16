@@ -14,6 +14,22 @@ function ChartHead(props) {
       </h2>
 
       <h3 className="o-typography-heading-level-3">{props.subHead}</h3>
+
+      <div className="key">
+        <svg
+          width={18}
+          height={18}
+        >
+          <line
+            x1={0}
+            x2={18}
+            y1={9}
+            y2={9}
+          />
+        </svg>
+
+        <h3 className="o-typography-heading-level-3">Average across age groups</h3>
+      </div>
     </div>
   );
 }
