@@ -32,7 +32,7 @@ export default () => ({ // eslint-disable-line
     credit: '© Getty',
 
     // You can provide a UUID to an image and it was populate everything else
-    uuid: 'e9b9778e-199d-11e9-9e64-d150b3105d21',
+    uuid: '22c84502-1a78-11e9-9e64-d150b3105d21',
 
     // You can also provide a URL
     // url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
@@ -65,7 +65,7 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3Ae9b9778e-199d-11e9-9e64-d150b3105d21?source=ig&width=1400',
+  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A22c84502-1a78-11e9-9e64-d150b3105d21?source=ig&width=1400',
   socialHeadline: 'The millennial bug: are you suffering too?',
   socialDescription: 'Enter your age into our interactive and find out how you compare on drinking, smoking, mental health and other problems that employees encounter',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
