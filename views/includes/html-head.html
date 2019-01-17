@@ -5,7 +5,7 @@
 {# resource hints #}
 <link rel="preconnect" href="https://origami-build.ft.com">
 <link rel="preconnect" href="https://build.origami.ft.com" crossorigin>
-<!-- <link rel="preconnect" href="https://cdn.polyfill.io"> -->
+<link rel="preconnect" href="https://polyfill.io">
 
 {# Stylesheets #}
 <link inline rel="stylesheet" href="components/core/top.css">
@@ -15,6 +15,15 @@
 <link rel="stylesheet" href="{{ stylesheet | safe }}">
 {% endfor %}{% endif -%}
 
+<script>
+function app() {
+  var tag = document.createElement('script');
+  tag.setAttribute('src', 'index.js');
+  tag.async = true;
+  tag.defer = true;
+  document.body.appendChild(tag);
+}
+</script>
 
 <link href="https://plus.google.com/113457471429583444041/" rel="publisher" />
 <meta property="fb:app_id" content="429755910551755" />
@@ -59,7 +68,7 @@
 {# Prioritised JavaScript #}
 
 <!-- Add polyfill service -->
-<!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js?callback=client&amp;features=default,fetch"></script> -->
+<script src="https://polyfill.io/v3/polyfill.min.js?callback=app&features=default,fetch"></script>
 
 <!-- Add CTM checks -->
 <script type="text/javascript">
