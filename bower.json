@@ -2,7 +2,7 @@
   "name": "starter-kit",
   "private": true,
   "dependencies": {
-    "o-colors": "^4.1.1",
+    "o-colors": "^4.7.9",
     "o-grid": "^4.4.4",
     "o-icons": "^5.4.0",
     "o-forms": "^4.0.4"
