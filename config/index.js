@@ -7,8 +7,8 @@ export default async () => {
   const d = await article();
   const flags = await getFlags();
   const onwardJourney = await getOnwardJourney();
-  const berthaId = '1Y2bS7fOXkSlz7jLkt00KBjOF43WqER3bDN8DqiFGNXI';
-  const endpoint = `http://bertha.ig.ft.com/view/publish/gss/${berthaId}/2018`;
+  const berthaId = '1ivmubf00UxNliNQhu4zVC9F_1BsfpOaVpSH6VKqW9cg';
+  const endpoint = `http://bertha.ig.ft.com/view/publish/gss/${berthaId}/data`;
   let data;
 
   try {
