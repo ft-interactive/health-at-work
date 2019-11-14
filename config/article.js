@@ -9,7 +9,7 @@ export default () => ({ // eslint-disable-line
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date('2020-01-17T10:00:00Z'),
+  publishedDate: new Date('2019-11-21T10:00:00Z'),
 
   headline: 'Do you get healthier as you get older?',
 
