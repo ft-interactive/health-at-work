@@ -1,15 +1,15 @@
 export default () => ({ // eslint-disable-line
 
   // link file UUID
-  id: '69208b2a-18b3-11e9-b93e-f4351a53f1c3',
+  id: '806e39f6-06d0-11ea-a984-fbbacad9e7dd',
 
   // canonical URL of the published page
   //  get filled in by the ./configure script
-  url: 'https://ig.ft.com/special-reports/health-work/2018',
+  url: 'https://ig.ft.com/special-reports/health-work/2019',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
-  publishedDate: new Date('2019-01-17T10:00:00Z'),
+  publishedDate: new Date('2020-01-17T10:00:00Z'),
 
   headline: 'Do you get healthier as you get older?',
 
@@ -41,7 +41,7 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Emma Boyde', url: 'https://www.ft.com/stream/0bd8a76c-860c-3e51-ac3c-95d84535dc49' },
+    { name: 'Chelsea Bruce-Lockhart', url: 'https://www.ft.com/chelsea-bruce-lockhart' },
     { name: 'David Blood', url: 'https://www.ft.com/david-blood' },
   ],
 
