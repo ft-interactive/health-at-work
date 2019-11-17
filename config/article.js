@@ -11,10 +11,10 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date('2019-11-21T04:30:00Z'),
 
-  headline: 'Do you get healthier as you get older?',
+  headline: 'At work but out of it',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Our interactive feature suggests younger workers suffer from a range of mental health issues',
+  summary: 'Presenteeism among ill employees is a growing cause of lost productivity, especially among younger workers',
 
   topic: {
     name: 'Health at Work',
@@ -46,10 +46,10 @@ export default () => ({ // eslint-disable-line
   ],
 
   // Appears in the HTML <title>
-  title: 'Do you get healthier as you get older?',
+  title: 'Presenteeism: At work but out of it',
 
   // meta data
-  description: 'Our interactive feature suggests younger workers suffer from a range of mental health issues',
+  description: 'Presenteeism among ill employees is a growing cause of lost productivity, especially among millenial workers',
 
   /*
   TODO: Select Twitter card type -
