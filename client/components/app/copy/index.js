@@ -41,7 +41,7 @@ function Copy(props) {
 
       <p className="o-typography-body">
         {/* eslint-disable max-len */}
-        <span className="variable">{data.alcoholpc}</span> per cent of employees aged {selectedDimension} <strong>drink more than 14 units</strong> of alcohol per week, compared with 28 per cent of all employees. <span className="variable">{data.bingepc}</span> per cent in this age range also <strong>binge-drink</strong> at least once a month (consuming XX units of alcohol in a single session). Raised blood alcohol levels have been found to increase the likelihood of poor judgments and mistakes at work, as well as reducing productivity.
+        <span className="variable">{data.alcoholpc}</span> per cent of employees aged {selectedDimension} <strong>drink more than 14 units</strong> of alcohol per week, compared with 28 per cent of all employees. <span className="variable">{data.bingepc}</span> per cent in this age range also <strong>binge-drink</strong> at least once a month. Raised blood alcohol levels have been found to increase the likelihood of poor judgments and mistakes at work, as well as reducing productivity.
         {/* eslint-enable max-len */}
       </p>
       <p className="o-typography-body">
