@@ -29,7 +29,7 @@ export default () => ({ // eslint-disable-line
   mainImage: {
     title: '',
     description: '',
-    credit: '© Dreamstime',
+    credit: '© Getty Images',
 
     // You can provide a UUID to an image and it was populate everything else
     uuid: '1b2eb852-0a24-11ea-8fb7-8fcec0c3b0f9',
