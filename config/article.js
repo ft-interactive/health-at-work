@@ -32,7 +32,7 @@ export default () => ({ // eslint-disable-line
     credit: '© Dreamstime',
 
     // You can provide a UUID to an image and it was populate everything else
-    uuid: '22c84502-1a78-11e9-9e64-d150b3105d21',
+    uuid: '1b2eb852-0a24-11ea-8fb7-8fcec0c3b0f9',
 
     // You can also provide a URL
     // url: 'https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2Fc4bf0be4-7c15-11e4-a7b8-00144feabdc0?source=ig&fit=scale-down&width=700',
@@ -42,7 +42,6 @@ export default () => ({ // eslint-disable-line
   // if array of authors, url is optional
   byline: [
     { name: 'Chelsea Bruce-Lockhart', url: 'https://www.ft.com/chelsea-bruce-lockhart' },
-    { name: 'David Blood', url: 'https://www.ft.com/david-blood' },
   ],
 
   // Appears in the HTML <title>
@@ -65,9 +64,9 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A22c84502-1a78-11e9-9e64-d150b3105d21?source=ig&width=1400',
-  socialHeadline: 'The millennial bug: are you suffering too?',
-  socialDescription: 'Enter your age into our interactive and find out how you compare on drinking, smoking, mental health and other problems that employees encounter',
+  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A1b2eb852-0a24-11ea-8fb7-8fcec0c3b0f9?source=ig&width=1400',
+  socialHeadline: 'Presenteeism: At work but out of it',
+  socialDescription: 'See how workers your age compare on drinking, smoking, mental health and other problems that hamper productivity',
   // twitterCreator: '@author's_account', // shows up in summary_large_image cards
 
   // TWEET BUTTON CUSTOM TEXT

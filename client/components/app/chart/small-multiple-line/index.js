@@ -163,7 +163,7 @@ class SmallMultipleLine extends PureComponent {
         case 'twomscondspc':
           return ['Musculoskeletal', 'ailments'];
         case 'bingepc':
-          return 'Binge drinking';
+          return 'Binge-drinking';
         case 'sleeppc':
           return 'Inadequate sleep';
         case 'physicallyinactivepc':

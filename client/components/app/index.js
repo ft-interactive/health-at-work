@@ -162,7 +162,7 @@ class App extends Component {
         <section className={className}>
           <p className="o-typography-body">
             {/* eslint-disable max-len */}
-            You guessed {renderValues.daysGuess} days. <strong>{renderValues.rightWrong || 'You are correct'}: employees aged {renderData.age} lose {(submitted && renderData.absence.days) || renderValues.daysGuess} days of productivity per year because of absenteeism and presenteeism</strong>, according to a survey developed by VitalityHealth and produced in association with Rand Europe, the Financial Times, the University of Cambridge and Healthy Workplace, a joint venture between VitalityHealth and Nuffield Health.
+            You guessed {renderValues.daysGuess} days. <strong>{renderValues.rightWrong || 'You are correct'}: employees aged {renderData.age} lose {(submitted && renderData.absence.days) || renderValues.daysGuess} days of productivity per year to presenteeism</strong>, according to the Vitality survey.
             {/* eslint-enable max-len */}
           </p>
 
